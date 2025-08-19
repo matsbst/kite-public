@@ -211,13 +211,23 @@ export function extractStoryImages(story: any): string[] {
 
   const images: string[] = [];
 
-  // Extract images from articles
-  if (story.articles && Array.isArray(story.articles)) {
-    story.articles.forEach((article: any) => {
-      if (article.image && typeof article.image === "string") {
-        images.push(article.image);
-      }
-    });
+  // First priority: Extract primary and secondary images if they exist
+  if (story.primary_image?.url) {
+    images.push(story.primary_image.url);
+  }
+  if (story.secondary_image?.url) {
+    images.push(story.secondary_image.url);
+  }
+
+  // If we have primary/secondary images, only use those for preloading
+  // Otherwise fall back to extracting from articles
+  if (images.length === 0 && story.articles && Array.isArray(story.articles)) {
+    // Only take first two article images as fallback (matching the old behavior)
+    const articleImages = story.articles
+      .slice(0, 2)
+      .map((article: any) => article.image)
+      .filter((img: any) => img && typeof img === "string");
+    images.push(...articleImages);
   }
 
   return images.filter(Boolean);

@@ -72,7 +72,7 @@
 
       <!-- Spin circle (rotates counter-clockwise) -->
       <img
-        src={theme.current === "dark"
+        src={theme.isDark
           ? "/svg/spin_circle_dark.svg"
           : "/svg/spin_circle_light.svg"}
         alt=""

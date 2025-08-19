@@ -1,7 +1,7 @@
 import { browser } from "$app/environment";
 
 const STORAGE_KEY = "kite-story-count";
-const DEFAULT_STORY_COUNT = 10;
+const DEFAULT_STORY_COUNT = 12;
 const MIN_STORY_COUNT = 3;
 const MAX_STORY_COUNT = 12;
 

@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "Che cos'è questo?\n</transl'l_start>",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "Cerca",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "Cerca storie...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "Nessun risultato trovato",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "Cerca storie",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "Digita per cercare in tutte le categorie",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "Naviga",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "Seleziona",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "Attiva/disattiva ricerca",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "Cerca in tutte le date",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "risultati trovati",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "attuale",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "storico",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "Ricerca dati storici",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "Ricerca storica completata",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "Ricerca in corso...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "Ricerca cronologia...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "risultato",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "risultati",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "di",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "per",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "La ricerca cronologica richiede almeno 3 caratteri",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "Fai volare la tua ricerca...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "Vola tra le notizie...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "Cogli il vento dell'informazione...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "Naviga le correnti delle notizie...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "Supera il rumore...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "Vola tra le storie di oggi...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "Scivola nel flusso di notizie...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "Eleva la tua ricerca di notizie...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "Vola tra i titoli...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "Collega la tua ricerca...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "{{count}} risultati storici inclusi",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "Inizia la ricerca",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "Digita per cercare o usa i filtri",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "Prova questi filtri",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "Filtra per categoria (es. categoria:Tecnologia)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "Cerca all'interno di un intervallo di date (es. da:2025-01-01 a:oggi)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "Scorciatoie rapide",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "Digita \"cat\" per categorie, date come \"ieri\" o \"settimana scorsa\"",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "Nessun risultato trovato",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "Nessun risultato trovato",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "Prova a modificare i termini di ricerca o i filtri per trovare quello che cerchi.",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "Visualizzazione",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "Carica altri risultati",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "Caricamento altri risultati...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "Mostra {{shown}} di {{total}} risultati",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "Non mostrare più questi suggerimenti",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "Usa gli URL più recenti",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "Usa gli URL /latest per le notizie attuali, così i segnalibri mostrano sempre i contenuti più recenti",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "Abilitato",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "Disabilitato",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "Prova termini di ricerca diversi per trovare quello che cerchi.",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "Prova a cercare:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "fonte",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "fonti",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "Chiudi ricerca",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "Cerca notizie",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "chiudi",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "cerca",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "Caricamento dati storici...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "Torna su",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

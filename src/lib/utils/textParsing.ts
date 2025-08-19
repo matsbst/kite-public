@@ -26,23 +26,36 @@ export function parseStructuredText(text: string): {
  */
 export function parseTimelineEvent(event: any): {
   date: string;
-  description: string;
+  content: string;
 } {
   let date = "";
-  let description = "";
+  let content = "";
 
   if (typeof event === "object") {
     date = event.date || "";
-    description = event.description || "";
-  } else if (typeof event === "string" && event.includes("::")) {
-    const parts = event.split("::");
-    date = parts[0] || "";
-    description = parts.slice(1).join(":") || event;
+    content = event.content || "";
+  } else if (typeof event === "string") {
+    // Handle string format with various separators
+    if (event.includes("::")) {
+      // Preferred separator
+      const parts = event.split("::");
+      date = parts[0] || "";
+      content = parts.slice(1).join("::") || event;
+    } else if (event.includes(":")) {
+      // Fallback to single colon (be careful with time formats)
+      const parts = event.split(":");
+      // Assume first part is date if it looks like a date
+      date = parts[0] || "";
+      content = parts.slice(1).join(":") || event;
+    } else {
+      // No separator, treat as content only
+      content = event;
+    }
   } else {
-    description = event;
+    content = String(event);
   }
 
-  return { date, description };
+  return { date, content };
 }
 
 /**

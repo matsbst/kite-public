@@ -39,7 +39,7 @@ class DataService {
   }
 
   async loadInitialData(
-    language: string = "en",
+    language: string = "default",
     providedBatchInfo?: { id: string; createdAt: string },
   ) {
     return batchService.loadInitialData(language, providedBatchInfo);
@@ -52,7 +52,7 @@ class DataService {
     batchId: string,
     categoryUuid: string,
     limit: number = 12,
-    language: string = "en",
+    language: string = "default",
   ) {
     return storiesService.loadStories(batchId, categoryUuid, limit, language);
   }
@@ -60,33 +60,33 @@ class DataService {
   /**
    * OnThisDay functionality
    */
-  async loadOnThisDayEvents(language: string = "en") {
+  async loadOnThisDayEvents(language: string = "default") {
     return onThisDayService.loadOnThisDayEvents(language);
   }
 
   /**
    * Media/Source functionality
    */
-  async loadMediaData(language: string = "en") {
+  async loadMediaData(language: string = "default") {
     return mediaService.loadMediaData(language);
   }
 
-  async getMediaInfoForDomain(domain: string, language: string = "en") {
+  async getMediaInfoForDomain(domain: string, language: string = "default") {
     return mediaService.getMediaInfoForDomain(domain, language);
   }
 
-  async loadMediaDataForHost(host: string, language: string = "en") {
+  async loadMediaDataForHost(host: string, language: string = "default") {
     return mediaService.loadMediaDataForHost(host, language);
   }
 
   /**
    * Chaos Index functionality
    */
-  async loadChaosIndex(language: string = "en") {
+  async loadChaosIndex(language: string = "default") {
     return chaosIndexService.loadChaosIndex(language);
   }
 
-  async getChaosIndexHistory(language: string = "en", days: number = 30) {
+  async getChaosIndexHistory(language: string = "default", days: number = 30) {
     return chaosIndexService.getChaosIndexHistory(language, days);
   }
 }

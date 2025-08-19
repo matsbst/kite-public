@@ -35,20 +35,28 @@ export class UrlNavigationService {
       return params;
     }
 
-    // Check if first segment looks like a batch ID
+    // Check if first segment is "latest"
     const firstSegment = pathSegments[0];
-    const isBatchId = this.isBatchId(firstSegment);
-
-    if (!isBatchId) {
-      // No batch ID, this is latest batch with category
-      params.batchId = null;
-      params.categoryId = pathSegments[0];
-      params.storyIndex = pathSegments[1] ? parseInt(pathSegments[1]) : null;
-    } else {
-      // Has batch ID
-      params.batchId = pathSegments[0];
+    if (firstSegment === "latest") {
+      // /latest/... URLs always use the latest batch
+      params.batchId = null; // null means latest
       params.categoryId = pathSegments[1] || null;
       params.storyIndex = pathSegments[2] ? parseInt(pathSegments[2]) : null;
+    } else {
+      // Check if first segment looks like a batch ID
+      const isBatchId = this.isBatchId(firstSegment);
+
+      if (!isBatchId) {
+        // No batch ID, this is latest batch with category
+        params.batchId = null;
+        params.categoryId = pathSegments[0];
+        params.storyIndex = pathSegments[1] ? parseInt(pathSegments[1]) : null;
+      } else {
+        // Has batch ID
+        params.batchId = pathSegments[0];
+        params.categoryId = pathSegments[1] || null;
+        params.storyIndex = pathSegments[2] ? parseInt(pathSegments[2]) : null;
+      }
     }
 
     // Validate story index if present
@@ -67,16 +75,21 @@ export class UrlNavigationService {
   static buildUrl(
     params: NavigationParams,
     currentDataLang?: SupportedLanguage,
+    useLatestPrefix: boolean = false,
   ): string {
     const { batchId, categoryId, storyIndex } = params;
 
-    // Always include batch ID for shareability
-    if (!batchId) {
-      return "/";
+    // Build URL path
+    let url = "/";
+
+    if (useLatestPrefix) {
+      // Use /latest prefix when requested (ignore batchId)
+      url = "/latest";
+    } else if (batchId) {
+      // Use specific batch ID for historical
+      url = `/${batchId}`;
     }
 
-    // Build URL path
-    let url = `/${batchId}`;
     if (categoryId) {
       url += `/${categoryId}`;
     }

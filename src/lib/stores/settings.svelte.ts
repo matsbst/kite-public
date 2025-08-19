@@ -12,6 +12,7 @@ interface SettingsState {
   showIntro: boolean;
   activeTab?: string;
   storyExpandMode: StoryExpandMode;
+  useLatestUrls: boolean;
 }
 
 // Initialize settings state
@@ -22,6 +23,7 @@ const settingsState = $state<SettingsState>({
   categoryHeaderPosition: "bottom",
   showIntro: false,
   storyExpandMode: "doubleClick",
+  useLatestUrls: false, // Default to false to maintain backwards compatibility
 });
 
 // Helper functions
@@ -51,6 +53,37 @@ function saveToStorage(key: string, value: string) {
 function loadFromStorage(key: string, defaultValue: string): string {
   if (!browser) return defaultValue;
   return localStorage.getItem(key) || defaultValue;
+}
+
+// Initialize settings immediately if in browser
+if (browser) {
+  const fontSize = loadFromStorage("fontSize", "normal") as FontSize;
+  const storyCount = parseInt(loadFromStorage("storyCount", "10"));
+  const categoryHeaderPosition = loadFromStorage(
+    "categoryHeaderPosition",
+    "bottom",
+  ) as CategoryHeaderPosition;
+  const introShown = loadFromStorage("introShown", "false") === "true";
+  const useLatestUrlsRaw = loadFromStorage("useLatestUrls", "false");
+  const useLatestUrls = useLatestUrlsRaw === "true";
+
+  console.log("⚙️ Settings initialization:", {
+    useLatestUrlsRaw,
+    useLatestUrls,
+    localStorageValue: localStorage.getItem("useLatestUrls"),
+  });
+
+  settingsState.fontSize = fontSize;
+  settingsState.storyCount = Math.max(3, Math.min(12, storyCount));
+  settingsState.categoryHeaderPosition = categoryHeaderPosition;
+  settingsState.showIntro = !introShown;
+  settingsState.storyExpandMode = loadFromStorage(
+    "storyExpandMode",
+    "doubleClick",
+  ) as StoryExpandMode;
+  settingsState.useLatestUrls = useLatestUrls;
+
+  applyFontSize(fontSize);
 }
 
 // Settings store API
@@ -83,9 +116,18 @@ export const settings = {
     return settingsState.storyExpandMode;
   },
 
+  get useLatestUrls() {
+    return settingsState.useLatestUrls;
+  },
+
   setStoryExpandMode(mode: StoryExpandMode) {
     settingsState.storyExpandMode = mode;
     saveToStorage("storyExpandMode", mode);
+  },
+
+  setUseLatestUrls(use: boolean) {
+    settingsState.useLatestUrls = use;
+    saveToStorage("useLatestUrls", use.toString());
   },
 
   open(tab?: string) {
@@ -129,25 +171,11 @@ export const settings = {
   },
 
   init() {
+    // Settings are already initialized at module load time
+    // This method is kept for backwards compatibility
     if (!browser) return;
 
-    const fontSize = loadFromStorage("fontSize", "normal") as FontSize;
-    const storyCount = parseInt(loadFromStorage("storyCount", "10"));
-    const categoryHeaderPosition = loadFromStorage(
-      "categoryHeaderPosition",
-      "bottom",
-    ) as CategoryHeaderPosition;
-    const introShown = loadFromStorage("introShown", "false") === "true";
-
-    settingsState.fontSize = fontSize;
-    settingsState.storyCount = Math.max(3, Math.min(12, storyCount));
-    settingsState.categoryHeaderPosition = categoryHeaderPosition;
-    settingsState.showIntro = !introShown;
-    settingsState.storyExpandMode = loadFromStorage(
-      "storyExpandMode",
-      "doubleClick",
-    ) as StoryExpandMode;
-
-    applyFontSize(fontSize);
+    // Re-apply font size in case DOM wasn't ready at module load
+    applyFontSize(settingsState.fontSize);
   },
 };

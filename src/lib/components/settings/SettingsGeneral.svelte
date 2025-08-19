@@ -52,6 +52,7 @@
     settings.categoryHeaderPosition as string,
   );
   let currentStoryExpandMode = $state(settings.storyExpandMode as string);
+  let currentUseLatestUrls = $state(settings.useLatestUrls);
 
   // Sync local state with stores
   $effect(() => {
@@ -64,6 +65,10 @@
 
   $effect(() => {
     currentStoryExpandMode = settings.storyExpandMode as string;
+  });
+
+  $effect(() => {
+    currentUseLatestUrls = settings.useLatestUrls;
   });
 
   // Font size change handler
@@ -81,6 +86,12 @@
   function handleStoryExpandModeChange(mode: StoryExpandMode) {
     settings.setStoryExpandMode(mode);
     currentStoryExpandMode = mode;
+  }
+
+  function handleUseLatestUrlsChange(value: string) {
+    const enabled = value === "enabled";
+    settings.setUseLatestUrls(enabled);
+    currentUseLatestUrls = enabled;
   }
 
   // Show about screen
@@ -148,6 +159,29 @@
     <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
       {s("settings.storyExpandMode.description") ||
         "Choose how stories expand in a category"}
+    </p>
+  </div>
+
+  <!-- Use Latest URLs Setting -->
+  <div class="flex flex-col space-y-2">
+    <Select
+      value={currentUseLatestUrls ? "enabled" : "disabled"}
+      options={[
+        {
+          value: "enabled",
+          label: s("settings.useLatestUrls.enabled") || "Enabled",
+        },
+        {
+          value: "disabled",
+          label: s("settings.useLatestUrls.disabled") || "Disabled",
+        },
+      ]}
+      label={s("settings.useLatestUrls.label") || "Use Latest URLs"}
+      onChange={handleUseLatestUrlsChange}
+    />
+    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+      {s("settings.useLatestUrls.description") ||
+        "Use /latest URLs for current news so bookmarks always show the latest content"}
     </p>
   </div>
 

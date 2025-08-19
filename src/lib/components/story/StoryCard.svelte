@@ -146,6 +146,7 @@
 <article
   bind:this={storyElement}
   id="story-{story.cluster_number}"
+  data-story-id={story.cluster_number?.toString() || story.title}
   aria-label="News story: {story.title}"
   class="relative py-2 transition-all duration-300"
   class:border-b={!isExpanded}

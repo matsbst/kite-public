@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import { s } from "$lib/client/localization.svelte";
+  import { features } from "$lib/config/features";
   import { dataService, dataReloadService } from "$lib/services/dataService";
   import { experimental } from "$lib/stores/experimental.svelte.js";
   import { fontSize } from "$lib/stores/fontSize.svelte.js";
@@ -8,7 +10,7 @@
   import { theme } from "$lib/stores/theme.svelte.js";
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
   import ChaosIndex from "./ChaosIndex.svelte";
-  // import { IconClock } from "@tabler/icons-svelte"; // Unused - time travel hidden
+  import { IconSearch, IconClock } from "@tabler/icons-svelte";
 
   // Props
   interface Props {
@@ -21,6 +23,7 @@
       summary: string;
       lastUpdated: string;
     };
+    onSearchClick?: () => void;
   }
 
   let {
@@ -29,6 +32,7 @@
     offlineMode = false,
     getLastUpdated = () => "Never",
     chaosIndex,
+    onSearchClick,
   }: Props = $props();
 
   // Date click state for cycling through different stats
@@ -40,6 +44,16 @@
   // Kite animation state
   let showFlyingKite = $state(false);
   let kiteStartPosition = $state({ x: 0, y: 0 });
+
+  // Platform detection for keyboard shortcut
+  const isMac =
+    browser &&
+    (("userAgentData" in navigator &&
+      (navigator as any).userAgentData?.platform === "macOS") ||
+      navigator.userAgent.toUpperCase().indexOf("MAC") >= 0);
+  const searchTooltip = $derived(
+    s("header.search") + (isMac ? " (⌘K)" : " (Ctrl+K)"),
+  );
 
   function handleLogoClick(event: MouseEvent) {
     // Get the logo element's position
@@ -242,7 +256,7 @@
   <div class="flex items-center justify-between">
     <div class="flex items-center">
       <img
-        src={theme.current === "dark"
+        src={theme.isDark
           ? "/svg/kagi_news_compact_dark.svg"
           : "/svg/kagi_news_compact.svg"}
         alt={s("app.logo.newsAlt") || "Kite News"}
@@ -272,17 +286,28 @@
         </div>
       {/if}
 
-      <!-- Time Travel button - hidden for now
+      <!-- Time Travel button - shown when historical search is enabled -->
+      {#if features.historicalSearch}
+        <button
+          onclick={() => timeTravel.toggle()}
+          title={s("header.timeTravel") || "Time Travel"}
+          aria-label={s("header.timeTravel") || "Time Travel"}
+          class="ml-2"
+          type="button"
+        >
+          <IconClock size={24} stroke={2} class="text-black dark:text-white" />
+        </button>
+      {/if}
+
       <button
-        onclick={() => timeTravel.toggle()}
-        title={s("header.timeTravel") || "Time Travel"}
-        aria-label={s("header.timeTravel") || "Time Travel"}
+        onclick={onSearchClick}
+        title={searchTooltip}
+        aria-label={s("header.search") || "Search"}
         class="ml-2"
         type="button"
       >
-        <IconClock size={24} stroke={2} class="text-black dark:text-white" />
+        <IconSearch size={24} stroke={2} class="text-black dark:text-white" />
       </button>
-      -->
 
       <button
         onclick={toggleFontSize}

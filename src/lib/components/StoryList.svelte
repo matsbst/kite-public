@@ -5,6 +5,8 @@
   import { storyCount } from "$lib/stores/storyCount.svelte.js";
   import type { Story } from "$lib/types";
   import { filterStories, type FilteredStory } from "$lib/utils/contentFilter";
+  import { generateStoryId } from "$lib/utils/storyId";
+  import { kiteDB } from "$lib/db/dexie";
   import StoryCard from "./story/StoryCard.svelte";
 
   // Props
@@ -47,14 +49,30 @@
   }
 
   // Handle read status toggle
-  function handleReadToggle(story: Story) {
-    readStories[story.title] = !readStories[story.title];
+  async function handleReadToggle(story: Story) {
+    const storyId = generateStoryId(story, batchId, currentCategory);
+    const isNowRead = !readStories[storyId];
+    readStories[storyId] = isNowRead;
+    
+    // Persist to database
+    if (isNowRead) {
+      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+    } else {
+      // Remove from database when unmarking as read
+      await kiteDB.unmarkStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      // Also remove from local state
+      delete readStories[storyId];
+      readStories = { ...readStories }; // Trigger reactivity
+    }
   }
 
   // Mark all as read
-  function markAllAsRead() {
-    displayedStories.forEach((story) => {
-      readStories[story.title] = true;
+  async function markAllAsRead() {
+    displayedStories.forEach(async (story) => {
+      const storyId = generateStoryId(story, batchId, currentCategory);
+      readStories[storyId] = true;
+      // Persist to database
+      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
     });
   }
 
@@ -109,7 +127,7 @@
 
   // Check if all stories are read
   const allStoriesRead = $derived(
-    displayedStories.every((story) => readStories[story.title]),
+    displayedStories.every((story) => readStories[generateStoryId(story, batchId, currentCategory)]),
   );
 
   // Check if all stories are expanded
@@ -164,7 +182,7 @@
         storyIndex={index}
         {batchId}
         categoryId={currentCategory}
-        isRead={readStories[story.title] || false}
+        isRead={readStories[generateStoryId(story, batchId, currentCategory)] || false}
         isExpanded={expandedStories[
           story.cluster_number?.toString() || story.title
         ] || false}

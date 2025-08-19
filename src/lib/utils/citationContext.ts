@@ -83,10 +83,15 @@ export function buildCitationMapping(
       }
     }
 
-    // Step 3: Try partial matches (domain contains the search string)
-    const partialMatches = articles.filter((article) =>
-      article.domain.toLowerCase().includes(searchDomain),
-    );
+    // Step 3: Try partial matches (domain contains the search string or vice versa)
+    const partialMatches = articles.filter((article) => {
+      const articleDomain = article.domain.toLowerCase();
+      // Check if search domain contains article domain OR article domain contains search domain
+      return (
+        articleDomain.includes(searchDomain) ||
+        searchDomain.includes(articleDomain)
+      );
+    });
 
     if (partialMatches.length > 0) {
       // Get unique domains from partial matches

@@ -1,8 +1,7 @@
 <script lang="ts">
   // Removed animations for consistency with Settings component
-  import { goto } from "$app/navigation";
   import { s } from "$lib/client/localization.svelte";
-  import { dataService, dataReloadService } from "$lib/services/dataService";
+  import { timeTravelNavigationService } from "$lib/services/timeTravelNavigationService";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import { language } from "$lib/stores/language.svelte.js";
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
@@ -246,14 +245,9 @@
   }
 
   async function goToToday() {
-    // Clear time travel and return to live mode
-    timeTravel.reset();
-    dataService.setTimeTravelBatch(null);
-
-    // Navigate to root URL for latest batch
     isSelectingBatch = true;
     try {
-      await goto("/");
+      await timeTravelNavigationService.exitTimeTravel();
     } finally {
       isSelectingBatch = false;
       timeTravel.close();
@@ -322,22 +316,17 @@
       });
 
       if (isLatestBatch) {
-        // For the latest batch, go to live mode
+        // For the latest batch, exit time travel mode
         console.log("Going to live mode - resetting time travel");
-        timeTravel.reset();
-        dataService.setTimeTravelBatch(null);
-
-        // Navigate to root URL for latest batch
-        await goto("/");
+        await timeTravelNavigationService.exitTimeTravel();
       } else {
-        // For all other batches, set time travel mode
+        // For all other batches, enter time travel mode
         console.log("Setting time travel mode for batch:", batch.id);
-        timeTravel.selectDate(new Date(batch.createdAt));
-        timeTravel.selectBatch(batch.id);
-        dataService.setTimeTravelBatch(batch.id);
-
-        // Navigate to batch URL
-        await goto(`/${batch.id}`);
+        await timeTravelNavigationService.enterTimeTravel({
+          batchId: batch.id,
+          batchDate: batch.createdAt,
+          reload: true,
+        });
       }
     } catch (error) {
       console.error("Error selecting batch:", error);

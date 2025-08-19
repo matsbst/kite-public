@@ -35,7 +35,7 @@ class BatchService {
    * Load all data for initial page load
    */
   async loadInitialData(
-    language: string = "en",
+    language: string = "default",
     providedBatchInfo?: {
       id: string;
       createdAt: string;

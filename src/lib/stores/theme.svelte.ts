@@ -28,6 +28,14 @@ function applyTheme(theme: ThemeOption) {
   if (metaThemeColor) {
     metaThemeColor.setAttribute("content", isDark ? "#1f2937" : "#ffffff");
   }
+
+  // Update favicon for dark mode
+  const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
+  if (favicon) {
+    favicon.href = isDark 
+      ? "/svg/kagi_news_icon_dark.svg" 
+      : "/svg/kagi_news_icon.svg";
+  }
 }
 
 function saveTheme(theme: ThemeOption) {
@@ -46,6 +54,15 @@ function loadTheme(): ThemeOption {
 export const theme = {
   get current() {
     return themeState.current;
+  },
+
+  get isDark() {
+    if (!browser) return false;
+    return (
+      themeState.current === "dark" ||
+      (themeState.current === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    );
   },
 
   set(theme: ThemeOption) {

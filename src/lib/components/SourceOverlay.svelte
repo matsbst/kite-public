@@ -1,5 +1,6 @@
 <script lang="ts">
   import { s } from "$lib/client/localization.svelte";
+  import FaviconImage from "$lib/components/common/FaviconImage.svelte";
   import { getTimeAgo } from "$lib/utils/getTimeAgo";
   import { scrollLock } from "$lib/utils/scrollLock.js";
   import {
@@ -198,12 +199,12 @@
       >
         <header class="mb-4 flex items-center justify-between">
           <div class="flex items-center space-x-2">
-            <img
-              src={currentSource?.favicon || "/svg/placeholder.svg"}
+            <FaviconImage
+              domain={currentSource?.name || ""}
               alt={currentSource?.name
                 ? `${currentSource.name} favicon`
                 : "Generic favicon"}
-              class="h-6 w-6"
+              class="h-6 w-6 rounded-full"
             />
             <h3
               id="source-overlay-title"

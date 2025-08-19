@@ -10,13 +10,13 @@ import { join } from "path";
 /**
  * Loads the kite.json file (or localized version) and returns parsed data
  */
-export async function loadKiteData(language: string = "en"): Promise<KiteData> {
+export async function loadKiteData(language: string = "default"): Promise<KiteData> {
   let kiteFile = "kite.json";
 
   logDebug("Loading kite data", { language });
 
   // Check if localized version exists
-  if (language !== "en") {
+  if (language !== "default") {
     const localizedFile = `kite_${language}.json`;
     logDebug("Attempting to load localized kite file", { localizedFile });
 
@@ -51,7 +51,7 @@ export async function loadKiteData(language: string = "en"): Promise<KiteData> {
  */
 export async function validateCategoryId(
   categoryId: string,
-  language: string = "en",
+  language: string = "default",
 ): Promise<boolean> {
   try {
     logDebug("Validating category ID", { categoryId, language });
@@ -73,7 +73,7 @@ export async function validateCategoryId(
     // For localized files, categories might have language suffix
     // Frontend sends clean IDs (e.g., "world"), but localized files contain IDs with suffix (e.g., "world_it")
     const categoryIdsToCheck = [categoryId];
-    if (language !== "en") {
+    if (language !== "default") {
       categoryIdsToCheck.push(`${categoryId}_${language}`);
     }
 
@@ -82,7 +82,7 @@ export async function validateCategoryId(
       language,
       categoryIdsToCheck,
       explanation:
-        language !== "en"
+        language !== "default"
           ? `Checking for both "${categoryId}" and "${categoryId}_${language}" in localized data`
           : `Checking for "${categoryId}" in default data`,
     });

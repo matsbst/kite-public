@@ -13,7 +13,7 @@ class StoriesService {
     batchId: string,
     categoryUuid: string,
     limit: number = 12, // Max 12 stories per category from UI
-    language: string = "en",
+    language: string = "default",
   ): Promise<{ stories: Story[]; readCount: number; timestamp: number }> {
     try {
       // Load stories for this category with language parameter

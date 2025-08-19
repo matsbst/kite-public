@@ -363,7 +363,7 @@
                 <img
                   src={tooltipImage}
                   alt={tooltipTitle}
-                  class="mb-2 h-32 w-full rounded object-cover"
+                  class="mb-2 w-full rounded h-auto object-contain"
                 />
               {/if}
               <p class="text-sm text-gray-600 dark:text-gray-400 break-words">

@@ -831,6 +831,10 @@
         "text": "Settings",
         "translationContext": "Title attribute for the settings button"
     },
+    "header.search": {
+        "text": "Search",
+        "translationContext": "Tooltip for search button in header"
+    },
     "header.timeTravel": {
         "text": "Time Travel",
         "translationContext": "Tooltip for time travel button in header"
@@ -1842,5 +1846,205 @@
     "worldTension.whatIsThis": {
         "text": "What is this?",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "search.historical": {
+        "text": "historical",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searching": {
+        "text": "Searching...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "Searching historical...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "result",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "results",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "of",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "for",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "Historical search needs 3+ characters",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "Let your search take flight...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "Soar through the news...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "Catch the wind of information...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "Navigate the news currents...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "Rise above the noise...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "Fly through today's stories...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "Glide into the news stream...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "Elevate your news search...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "Float through the headlines...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "String together your search...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "{{count}} historical results included",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "Start searching",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "Type to search or use filters",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "Try these filters",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "Filter by news category (e.g., category:Technology)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "Search within a date range (e.g., from:2025-01-01 to:today)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "Quick shortcuts",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "Type \"cat\" for categories, dates like \"yesterday\" or \"last week\"",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "No results found",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "No results found",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "Try adjusting your search terms or filters to find what you're looking for.",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "Showing",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "Load more results",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "Loading more results...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "Showing {{shown}} of {{total}} results",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "Don't show these tips again",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "search.no_results_description_simple": {
+        "text": "Try different search terms to find what you're looking for.",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "Try searching for:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "source",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "sources",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "Close search",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "Search news stories",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.navigate": {
+        "text": "navigate",
+        "translationContext": "Keyboard shortcut hint for arrow keys"
+    },
+    "search.select": {
+        "text": "select",
+        "translationContext": "Keyboard shortcut hint for Enter key"
+    },
+    "search.close": {
+        "text": "close",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "search",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "Loading historical data...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "Use Latest URLs",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "Use /latest URLs for current news so bookmarks always show the latest content",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "Enabled",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "Disabled",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "navigation.backToTop": {
+        "text": "Back to top",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

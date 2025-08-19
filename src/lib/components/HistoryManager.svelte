@@ -2,16 +2,19 @@
   import { browser } from "$app/environment";
   import { goto, replaceState } from "$app/navigation";
   import { page } from "$app/state";
+  import { dataService } from "$lib/services/dataService";
   import {
     UrlNavigationService,
     type NavigationParams,
   } from "$lib/services/urlNavigationService";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
+  import { settings } from "$lib/stores/settings.svelte.js";
 
   interface Props {
     batchId: string;
     categoryId: string;
     storyIndex?: number | null;
+    isLatestBatch?: boolean;
     onNavigate?: (params: NavigationParams) => void;
   }
 
@@ -19,6 +22,7 @@
     batchId = $bindable(),
     categoryId = $bindable(),
     storyIndex = $bindable(null),
+    isLatestBatch = false,
     onNavigate,
   }: Props = $props();
 
@@ -36,10 +40,30 @@
         params?.storyIndex !== undefined ? params.storyIndex : storyIndex,
     };
 
-    return UrlNavigationService.buildUrl(
+    // Use /latest URLs ONLY for the actual latest batch when setting is enabled
+    // During time travel, always use the batch ID
+    const useLatestPrefix =
+      isLatestBatch &&
+      settings.useLatestUrls &&
+      !dataService.isTimeTravelMode?.();
+
+    console.log("🔗 Building URL:", {
+      isLatestBatch,
+      isTimeTravelMode: dataService.isTimeTravelMode?.(),
+      useLatestUrlsSetting: settings.useLatestUrls,
+      useLatestPrefix,
+      batchId: navigationParams.batchId,
+      categoryId: navigationParams.categoryId,
+    });
+
+    const url = UrlNavigationService.buildUrl(
       navigationParams,
       dataLanguage.current,
+      useLatestPrefix,
     );
+
+    console.log("🔗 Built URL:", url);
+    return url;
   }
 
   // Update URL without triggering navigation
@@ -74,6 +98,14 @@
   // Handle initial page load and browser navigation
   $effect(() => {
     if (!browser) return;
+
+    console.log("🎯 HistoryManager effect running:", {
+      initialLoadProcessed,
+      isLatestBatch,
+      batchId,
+      categoryId,
+      useLatestUrlsSetting: settings.useLatestUrls,
+    });
 
     // Parse current URL
     const params = UrlNavigationService.parseUrl(page.url);
@@ -127,6 +159,7 @@
   let previousBatchId = $state<string>();
   let previousCategoryId = $state<string>();
   let previousStoryIndex = $state<number | null>();
+  let previousIsLatestBatch = $state<boolean>();
 
   // Update URL when props change
   $effect(() => {
@@ -136,11 +169,13 @@
     const batchChanged = batchId !== previousBatchId;
     const categoryChanged = categoryId !== previousCategoryId;
     const storyChanged = storyIndex !== previousStoryIndex;
+    const latestBatchChanged = isLatestBatch !== previousIsLatestBatch;
 
-    if (batchChanged || categoryChanged || storyChanged) {
+    if (batchChanged || categoryChanged || storyChanged || latestBatchChanged) {
       previousBatchId = batchId;
       previousCategoryId = categoryId;
       previousStoryIndex = storyIndex;
+      previousIsLatestBatch = isLatestBatch;
 
       // Update URL to reflect current state
       updateUrl();

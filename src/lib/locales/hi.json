@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "यह क्या है?",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "खोज",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "कहानियां खोजें...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "कोई परिणाम नहीं मिला",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "कहानियां खोजें",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "सभी श्रेणियों में खोजने के लिए टाइप करें",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "नेविगेट करें",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "चुनें",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "खोज टॉगल करें",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "सभी दिनांकों में खोजें",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "परिणाम मिले",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "वर्तमान",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "ऐतिहासिक",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "पुराने डेटा को खोजा जा रहा है",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "ऐतिहासिक खोज पूरी हुई",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "खोज रहे हैं...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "पुराना डेटा खोजा जा रहा है...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "परिणाम",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "परिणाम",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "के",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "के लिए",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "पुराने खोज के लिए कम से कम 3 अक्षर चाहिए",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "अपनी खोज को उड़ान भरने दें...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "ख़बरों की दुनिया में ऊंची उड़ान भरें...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "जानकारी की हवा पकड़ो...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "समाचार की धाराओं को नेविगेट करें...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "शोर-शराबे से ऊपर उठें...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "आज की कहानियों में गोता लगाएँ...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "ख़बरों की धारा में गोता लगाएँ...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "अपनी समाचार खोज को बेहतर बनाएँ...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "सुर्खियों में तैरें...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "अपनी खोज को एक साथ पिरोएँ...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "{{count}} ऐतिहासिक परिणाम शामिल हैं",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "खोज करना प्रारंभ करें",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "खोजने के लिए टाइप करें या फ़िल्टर का उपयोग करें",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "ये फ़िल्टर आज़माएँ",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "समाचार श्रेणी के अनुसार फ़िल्टर करें (उदा. श्रेणी:प्रौद्योगिकी)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "किसी दिनांक सीमा के अंदर खोजें (उदा. from:2025-01-01 to:today)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "त्वरित शॉर्टकट",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "श्रेणियों के लिए \"बिल्ली\", \"कल\" या \"पिछले सप्ताह\" जैसी तिथियां टाइप करें",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "कोई परिणाम नहीं मिला",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "कोई परिणाम नहीं मिला",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अपनी खोज शर्तों या फ़िल्टर को समायोजित करने का प्रयास करें।",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "दिखा रहा है",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "और परिणाम लोड करें",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "अधिक परिणाम लोड हो रहे हैं...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "{{total}} परिणामों में से {{shown}} दिखाए जा रहे हैं",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "इन युक्तियों को दुबारा न दिखाएँ",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "नवीनतम यूआरएल उपयोग करें",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "ताज़ा समाचारों के लिए /latest यूआरएल का उपयोग करें ताकि बुकमार्क हमेशा नवीनतम सामग्री दिखाएँ",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "सक्रिय",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "अक्षम",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अलग-अलग खोज शब्दों का प्रयोग करें।",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "यह खोजने का प्रयास करें:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "स्रोत",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "स्रोत",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "खोज बंद करें",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "समाचार खोजें",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "बंद करें",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "खोजें",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "पुराना डेटा लोड हो रहा है...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "शीर्ष पर वापस जाएं",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

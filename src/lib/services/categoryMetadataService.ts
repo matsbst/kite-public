@@ -1,6 +1,6 @@
 export interface CategoryMetadata {
   categoryId: string;
-  categoryType: "core" | "country" | "region" | "city" | "topic";
+  categoryType: "core" | "country" | "region" | "city" | "topic" | "other";
   displayName: string;
   displayNames?: Record<string, string>;
   sourceLanguage?: string;
@@ -16,6 +16,7 @@ export interface GroupedCategories {
   regions: CategoryMetadata[];
   cities: CategoryMetadata[];
   topics: CategoryMetadata[];
+  other: CategoryMetadata[];
 }
 
 export interface CategoryGroup {
@@ -63,6 +64,7 @@ class CategoryMetadataService {
       regions: categories.filter((c) => c.categoryType === "region"),
       cities: categories.filter((c) => c.categoryType === "city"),
       topics: categories.filter((c) => c.categoryType === "topic"),
+      other: categories.filter((c) => c.categoryType === "other"),
     };
   }
 
@@ -102,6 +104,12 @@ class CategoryMetadataService {
         title: "Topics",
         icon: "💡",
         categories: grouped.topics,
+      },
+      {
+        type: "other",
+        title: "Other",
+        icon: "📅",
+        categories: grouped.other,
       },
     ];
 

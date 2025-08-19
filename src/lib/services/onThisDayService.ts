@@ -11,7 +11,7 @@ class OnThisDayService {
    * Load OnThisDay events
    */
   async loadOnThisDayEvents(
-    language: string = "en",
+    language: string = "default",
   ): Promise<OnThisDayEvent[]> {
     try {
       // If we have a specific batch ID (time travel), use it

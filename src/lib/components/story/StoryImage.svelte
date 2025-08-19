@@ -85,6 +85,7 @@
   });
 </script>
 
+{#if !imageError}
 <section class="mt-6">
   <figure>
     <div class="relative">
@@ -107,7 +108,7 @@
           />
 
           <!-- Loading indicator -->
-          {#if !imageLoaded && !imageError}
+          {#if !imageLoaded}
             <div
               class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
             >
@@ -117,31 +118,7 @@
             </div>
           {/if}
 
-          <!-- Error indicator -->
-          {#if imageError}
-            <div
-              class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
-            >
-              <div class="text-center text-gray-500 dark:text-gray-400">
-                <svg
-                  class="mx-auto h-12 w-12 mb-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <p class="text-sm">Image unavailable</p>
-              </div>
-            </div>
-          {/if}
-
-          {#if showCaption && article.domain}
+          {#if showCaption && article.domain && imageLoaded && !imageError}
             <div
               class="bg-opacity-50 hover:bg-opacity-75 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-sm text-white"
             >
@@ -149,7 +126,7 @@
             </div>
           {/if}
         </a>
-        {#if showCaption && article.image_caption}
+        {#if showCaption && article.image_caption && imageLoaded && !imageError}
           <p class="mt-2 text-sm text-gray-600 italic dark:text-gray-400">
             {article.image_caption}
           </p>
@@ -158,3 +135,4 @@
     </div>
   </figure>
 </section>
+{/if}

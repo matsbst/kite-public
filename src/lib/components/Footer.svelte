@@ -66,7 +66,7 @@
       title={s("footer.about") || "About Kagi News"}
     >
       <img
-        src={theme.current === "dark"
+        src={theme.isDark
           ? "/svg/kagi_news_icon_dark.svg"
           : "/svg/kagi_news_icon.svg"}
         alt={s("app.logo.iconAlt") || "Kagi News"}

@@ -1,5 +1,6 @@
 import { browser } from "$app/environment";
 import type { Story } from "$lib/types";
+import { isMobileDevice } from "$lib/utils/device";
 import {
   preloadImages as basePreloadImages,
   extractStoryImages,
@@ -9,7 +10,6 @@ import {
   clearImageCache,
   cancelAllDownloads,
 } from "$lib/utils/imagePreloader";
-import { isMobileDevice } from "$lib/utils/device";
 import { dataService } from "./dataService";
 
 /**
@@ -268,7 +268,6 @@ class ImagePreloadingService {
       },
     );
   }
-
 
   /**
    * Logging utility

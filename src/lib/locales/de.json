@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "Was ist das?",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "Suche",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "Geschichten suchen...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "Keine Ergebnisse gefunden",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "Nach Geschichten suchen",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "Für Suche in allen Kategorien tippen",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "Navigieren",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "Auswählen",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "Suche umschalten",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "In allen Zeiträumen suchen",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "Ergebnisse gefunden",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "aktuell",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "historisch",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "Suche Verlaufsdaten",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "Historische Suche abgeschlossen",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "Suche läuft...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "Suche Verlaufsdaten...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "Ergebnis",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "Ergebnisse",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "von",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "für",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "Für die Verlaufssuche werden 3 oder mehr Zeichen benötigt",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "Lass deine Suche abheben...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "Flieg durch die Nachrichten...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "Den Informationswind einfangen...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "Navigieren Sie die Nachrichtenströme...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "Steigen Sie über den Lärm hinaus...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "Flieg durch die heutigen Geschichten...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "Gleiten Sie in den Newsstream...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "Optimieren Sie Ihre Nachrichtensuche...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "Fliegen Sie durch die Schlagzeilen...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "Suche verknüpfen...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "{{count}} historische Ergebnisse enthalten",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "Suche starten",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "Zum Suchen tippen oder Filter verwenden",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "Vorgeschlagene Filter",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "Nach Nachrichtenkategorie filtern (z.B. Kategorie:Technologie)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "Suche innerhalb eines Datumsbereichs (z. B. von:2025-01-01 bis:heute)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "Schnellzugriffe",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "Tippen Sie „Katze“ für Kategorien ein, Datumsangaben wie „gestern“ oder „letzte Woche“",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "Keine Ergebnisse gefunden",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "Keine Ergebnisse gefunden",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "Versuchen Sie, Ihre Suchbegriffe oder Filter anzupassen, um zu finden, wonach Sie suchen.",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "Anzeigen",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "Weitere Ergebnisse laden",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "Weitere Ergebnisse werden geladen...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "Zeige {{shown}} von {{total}} Ergebnissen",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "Diese Tipps nicht mehr anzeigen",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "Neueste URLs verwenden",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "Verwenden Sie /latest-URLs für aktuelle Nachrichten, damit Lesezeichen immer die neuesten Inhalte anzeigen",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "Aktiviert",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "Deaktiviert",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "Versuchen Sie andere Suchbegriffe, um zu finden, wonach Sie suchen.",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "Versuchen Sie die Suche nach:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "Quelle",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "Quellen",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "Suche schließen",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "Nachrichten durchsuchen",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "schließen",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "suchen",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "Historische Daten werden geladen...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "Nach oben",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

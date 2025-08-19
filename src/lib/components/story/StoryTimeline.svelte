@@ -22,11 +22,11 @@
   const displayEvents = $derived.by(() => {
     return timeline.map((event) => {
       const parsed = parseTimelineEvent(event);
-      if (citationMapping && parsed.description) {
+      if (citationMapping && parsed.content) {
         return {
           ...parsed,
-          description: replaceWithNumberedCitations(
-            parsed.description,
+          content: replaceWithNumberedCitations(
+            parsed.content,
             citationMapping,
           ),
         };
@@ -43,7 +43,7 @@
   <div class="timeline">
     {#each displayEvents as event, index}
       {@const eventCitations = getCitedArticlesForText(
-        event.description,
+        event.content,
         citationMapping,
         articles,
       )}
@@ -61,7 +61,7 @@
           {/if}
           <div class="timeline-description">
             <CitationText
-              text={event.description}
+              text={event.content}
               showFavicons={false}
               showNumbers={false}
               inline={true}

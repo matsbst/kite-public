@@ -22,7 +22,7 @@ export interface Perspective {
 
 export interface TimelineEvent {
   date: string;
-  description: string;
+  content: string;
 }
 
 export interface QnA {
@@ -88,6 +88,16 @@ export interface Story {
   gaming_industry_impact?: string[];
   technical_specifications?: string[];
   suggested_qna?: QnA[];
+  primary_image?: {
+    url: string;
+    caption: string;
+    credit?: string;
+  };
+  secondary_image?: {
+    url: string;
+    caption: string;
+    credit?: string;
+  };
   articles: Article[];
   domains?: Domain[];
   expanded?: boolean;

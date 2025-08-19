@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "これは何ですか？",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "検索",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "ストーリーを検索...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "検索結果がありません",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "ストーリーを検索",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "すべてのカテゴリから検索",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "移動",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "選択",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "検索切り替え",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "すべての日付を検索",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "検索結果",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "現在",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "履歴の",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "履歴データを検索中",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "履歴検索完了",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "検索中...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "履歴を検索中...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "結果",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "結果",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "の",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "の",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "3文字以上の入力が必要です",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "検索の翼を広げて...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "ニュースを駆け巡ろう...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "情報の風をつかまえて...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "ニュースの潮流を進む...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "雑音を越えて飛翔せよ...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "今日の記事を読み進める...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "ニュースの流れに滑り込もう...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "ニュース検索をレベルアップ...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "見出しを軽やかに流れて...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "検索をつなげてみよう...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "過去{{count}}件の結果を含む",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "検索を開始",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "検索する文字を入力、またはフィルターを使用",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "これらのフィルターを試す",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "ニュースカテゴリーで絞り込み（例：テクノロジー）",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "日付範囲で検索 (例: from:2025-01-01 to:今日)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "クイックショートカット",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "カテゴリは「cat」、日付は「昨日」や「先週」のように入力",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "検索結果が見つかりません",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "検索結果がありません",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "検索キーワードやフィルターを調整してみてください。",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "表示中",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "もっと見る",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "さらに読み込み中...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "{{shown}}件 / {{total}}件を表示中",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "これらのヒントを再表示しない",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "最新のURLを使用する",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "「/latest」URLを使用すると最新ニュースを表示でき、ブックマークしても常に最新コンテンツが表示されます",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "有効",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "無効",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "他の検索単語をお試しください",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "検索してみてください:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "ソース",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "情報源",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "検索を閉じる",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "ニュース記事を検索",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "閉じる",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "検索",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "過去データを読み込み中...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "ページトップへ戻る",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

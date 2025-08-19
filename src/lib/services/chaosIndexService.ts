@@ -9,7 +9,7 @@ class ChaosIndexService {
   /**
    * Load chaos index data
    */
-  async loadChaosIndex(language: string = "en"): Promise<{
+  async loadChaosIndex(language: string = "default"): Promise<{
     chaosIndex: number;
     chaosDescription: string;
     chaosLastUpdated: string | null;
@@ -40,7 +40,7 @@ class ChaosIndexService {
    * Get historical chaos index data
    */
   async getChaosIndexHistory(
-    language: string = "en",
+    language: string = "default",
     days: number = 30,
   ): Promise<Array<{ date: string; score: number; summary: string }>> {
     try {

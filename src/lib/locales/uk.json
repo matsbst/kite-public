@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "Що це таке?",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "Пошук",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "Шукати історії...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "Нічого не знайдено",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "Шукати історії",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "Введіть для пошуку в усіх категоріях",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "Навігація",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "Вибрати",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "Перемкнути пошук",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "Шукати за всі дати",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "знайдено результатів",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "поточний",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "історичний",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "Пошук історичних даних",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "Історичний пошук завершено",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "Пошук...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "Пошук історичних даних...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "результат",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "результати",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "з",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "за",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "Історія пошуку потребує 3+ символів",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "Нехай ваш пошук злетить...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "Ширяйте по новинах...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "Ловіть вітер інформації...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "Навігація в потоках новин...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "Підніміться над гамором...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "Переглянути сьогоднішні новини...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "Пориньте в потік новин...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "Піднесіть свій пошук новин...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "Пориньте в заголовки...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "Нанизуйте свій пошук...",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "Включено {{count}} історичних результатів",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "Почніть пошук",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "Введіть для пошуку або скористайтеся фільтрами",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "Спробуйте ці фільтри",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "Фільтрувати за категорією новин (наприклад, категорія:Технології)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "Пошук у діапазоні дат (наприклад, з:2025-01-01 до:сьогодні)",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "Швидкі ярлики",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "Введіть \"cat\" для категорій, дати на кшталт \"вчора\" або \"минулого тижня\"",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "Нічого не знайдено",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "Нічого не знайдено",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "Спробуйте змінити пошукові терміни або фільтри, щоб знайти те, що ви шукаєте.",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "Показано",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "Завантажити більше результатів",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "Завантаження інших результатів...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "Показано {{shown}} з {{total}} результатів",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "Більше не показувати ці підказки",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "Використовувати найновіші URL-адреси",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "Використовуйте /latest URL-адреси для поточних новин, щоб закладки завжди показували найновіший вміст",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "Увімкнено",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "Вимкнено",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "Спробуйте інші пошукові запити, щоб знайти те, що вам потрібно.",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "Спробуйте пошукати:",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "джерело",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "джерела",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "Закрити пошук",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "Шукати новини",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "закрити",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "пошук",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "Завантаження історичних даних...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "Нагору",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

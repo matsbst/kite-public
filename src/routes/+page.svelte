@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment";
+  import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { s } from "$lib/client/localization.svelte";
   import CategoryNavigation from "$lib/components/CategoryNavigation.svelte";
@@ -16,9 +17,12 @@
   import TemporaryCategoryTooltip from "$lib/components/TemporaryCategoryTooltip.svelte";
   import TimeTravel from "$lib/components/TimeTravel.svelte";
   import WikipediaPopup from "$lib/components/WikipediaPopup.svelte";
-  import { dataService, dataReloadService } from "$lib/services/dataService";
+  import { SearchModal } from "$lib/components/search";
+  import BackToTop from "$lib/components/BackToTop.svelte";
+  import { dataService } from "$lib/services/dataService";
   import { imagePreloadingService } from "$lib/services/imagePreloadingService";
   import { navigationHandlerService } from "$lib/services/navigationHandlerService";
+  import { timeTravelNavigationService } from "$lib/services/timeTravelNavigationService";
   import {
     UrlNavigationService,
     type NavigationParams,
@@ -37,6 +41,8 @@
     extractStoryImages,
   } from "$lib/utils/imagePreloader";
   import { onMount } from "svelte";
+  import { kiteDB } from "$lib/db/dexie";
+  import { generateStoryId } from "$lib/utils/storyId";
 
   // App state
   let dataLoaded = $state(false);
@@ -48,6 +54,7 @@
   let desktopCategoryNavigation = $state<CategoryNavigation>();
   let storyCountOverride = $state<number | null>(null);
   let showOnboarding = $state(false);
+  let showSearchModal = $state(false);
 
   // Reactive category header position
   const categoryHeaderPosition = $derived(settings.categoryHeaderPosition);
@@ -308,6 +315,10 @@
   }
 
   onMount(() => {
+    // Preload search doggo icon to prevent flicker
+    const doggoImg = new Image();
+    doggoImg.src = "/doggo_default.svg";
+    
     // Check for data language in URL first
     const urlParams = parseInitialUrl();
     if (urlParams.dataLang && urlParams.dataLang !== dataLanguage.current) {
@@ -321,18 +332,25 @@
       }
     }
 
-    // Load saved read stories from localStorage
-    try {
-      const saved = localStorage.getItem("readStories");
-      if (saved) {
-        const savedReadStories = JSON.parse(saved);
-        readStories = savedReadStories;
-        totalStoriesRead =
-          Object.values(savedReadStories).filter(Boolean).length;
+    // Migrate from localStorage to IndexedDB if needed (async but non-blocking)
+    (async () => {
+      await kiteDB.migrateFromLocalStorage();
+      
+      // Load saved read stories from IndexedDB
+      try {
+        const storyIds = await kiteDB.getReadStoryIds();
+        // Convert Set back to Record format for UI compatibility
+        readStories = {};
+        storyIds.forEach(id => {
+          readStories[id] = true;
+        });
+        totalStoriesRead = storyIds.size;
+      } catch (error) {
+        console.error("Error loading saved stories:", error);
+        readStories = {};
+        totalStoriesRead = 0;
       }
-    } catch (error) {
-      console.error("Error loading saved stories:", error);
-    }
+    })();
 
     // Handle URL hash navigation
     function handleHashChange() {
@@ -357,9 +375,21 @@
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashChange);
 
+    // Handle keyboard shortcuts
+    function handleGlobalKeyDown(event: KeyboardEvent) {
+      // Cmd+K or Ctrl+K to toggle search
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        event.preventDefault();
+        showSearchModal = !showSearchModal;
+      }
+    }
+
+    window.addEventListener("keydown", handleGlobalKeyDown);
+
     // Cleanup
     return () => {
       window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("keydown", handleGlobalKeyDown);
     };
   });
 
@@ -447,6 +477,101 @@
     wikipediaPopup = { visible: false, title: "", content: "", imageUrl: "" };
   };
 
+  // Handle story selection from search
+  async function handleSearchSelectStory(
+    categoryId: string,
+    story: Story,
+    batchId?: string,
+    batchDate?: string,
+  ) {
+    // If we have a batchId from historical search
+    if (batchId) {
+      try {
+        // Check if this is the latest batch
+        const latestResponse = await fetch(
+          `/api/batches/latest?lang=${dataLanguage.current}`,
+        );
+        const latestData = await latestResponse.json();
+        const isSelectedBatchLatest =
+          latestData.id && latestData.id === batchId;
+
+        const storyIndex = story.cluster_number ? story.cluster_number - 1 : 0;
+
+        if (!isSelectedBatchLatest) {
+          // For historical batches, use the centralized service
+          // Don't navigate yet - just load the data
+          await timeTravelNavigationService.enterTimeTravel({
+            batchId,
+            batchDate, // Use the date directly from search results
+            categoryId,
+            storyIndex,
+            reload: true,
+            navigate: false, // Don't navigate, let HistoryManager handle URL update
+          });
+
+          // After data loads, close the search modal
+          showSearchModal = false;
+
+          // Navigate to the category and story
+          if (categoryId !== currentCategory) {
+            handleCategoryChange(categoryId, true);
+          }
+
+          // Expand the selected story
+          const storyId = story.cluster_number?.toString() || story.title;
+          handleStoryToggle(storyId, true);
+
+          // Scroll to the story
+          setTimeout(() => {
+            const storyElement = document.querySelector(
+              `[data-story-id="${storyId}"]`,
+            );
+            if (storyElement) {
+              storyElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+            }
+          }, 100);
+        } else {
+          // For latest batch, just navigate normally
+          let targetUrl = "/";
+
+          if (settings.useLatestUrls) {
+            targetUrl = `/latest/${categoryId}/${storyIndex}`;
+          } else {
+            targetUrl = `/${batchId}/${categoryId}/${storyIndex}`;
+          }
+
+          await goto(targetUrl);
+        }
+
+        return;
+      } catch (error) {
+        console.error("Error handling batch selection from search:", error);
+      }
+    }
+
+    // Current batch - just navigate to category and story
+    if (categoryId !== currentCategory) {
+      handleCategoryChange(categoryId, true);
+    }
+
+    // Expand the selected story after a brief delay to ensure category change completes
+    setTimeout(() => {
+      const storyId = story.cluster_number?.toString() || story.title;
+      handleStoryToggle(storyId, true);
+
+      // Scroll to the story
+      const storyElement = document.querySelector(
+        `[data-story-id="${storyId}"]`,
+      );
+      if (storyElement) {
+        storyElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 100);
+  }
+
   function handleStoryToggle(storyId: string, updateUrl: boolean = true) {
     // Check current state
     const currentlyExpanded = expandedStories[storyId];
@@ -464,8 +589,18 @@
       );
 
       if (story) {
-        // Mark as read - also create new object for reactivity
-        readStories = { ...readStories, [story.title]: true };
+        // Mark as read - use proper story ID
+        const uniqueStoryId = generateStoryId(story, currentBatchId, currentCategory);
+        console.log('Marking story as read:', {
+          title: story.title,
+          clusterNumber: story.cluster_number,
+          currentBatchId,
+          generatedId: uniqueStoryId
+        });
+        readStories = { ...readStories, [uniqueStoryId]: true };
+        
+        // Also save to IndexedDB (non-blocking)
+        kiteDB.markStoryAsRead(story.title, story.cluster_number, currentBatchId, currentCategory);
 
         // Update URL with story index
         if (updateUrl && historyManager) {
@@ -501,11 +636,9 @@
     // Update total stories read count
     const readCount = Object.values(readStories).filter(Boolean).length;
     totalStoriesRead = readCount;
-
-    // Save to localStorage
-    if (typeof localStorage !== "undefined") {
-      localStorage.setItem("readStories", JSON.stringify(readStories));
-    }
+    
+    // Note: Individual story reads are now persisted directly in handleReadToggle and markAllAsRead
+    // This avoids the issue where bulkUpdateReadStories would lose story metadata
   });
 
   // Handle source overlay close
@@ -684,6 +817,8 @@
   <title
     >{s("app.title") || "Kite"} - {s("app.motto") || "News. Elevated."}</title
   >
+  <!-- Preload search doggo icon to prevent flicker -->
+  <link rel="preload" as="image" href="/doggo_default.svg" />
 </svelte:head>
 
 {#if !dataLoaded}
@@ -703,6 +838,7 @@
     batchId={currentBatchId}
     categoryId={currentCategory}
     storyIndex={currentStoryIndex}
+    {isLatestBatch}
     onNavigate={handleUrlNavigation}
   />
   <!-- Sticky Header Container for Mobile (includes category nav when on top) -->
@@ -714,6 +850,7 @@
         {totalStoriesRead}
         {getLastUpdated}
         {chaosIndex}
+        onSearchClick={() => (showSearchModal = true)}
       />
     </div>
     <!-- Category Navigation - Mobile when positioned at top -->
@@ -761,6 +898,7 @@
           {totalStoriesRead}
           {getLastUpdated}
           {chaosIndex}
+          onSearchClick={() => (showSearchModal = true)}
         />
       </div>
 
@@ -858,3 +996,18 @@
   {categories}
   onComplete={handleOnboardingComplete}
 />
+
+<!-- Search Modal -->
+<SearchModal
+  visible={showSearchModal}
+  {allCategoryStories}
+  {categories}
+  {currentCategory}
+  onClose={() => (showSearchModal = false)}
+  onSelectStory={handleSearchSelectStory}
+/>
+
+<!-- Back to Top Button -->
+{#if dataLoaded && !showOnboarding && !settings.showIntro}
+  <BackToTop />
+{/if}

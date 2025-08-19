@@ -10,12 +10,12 @@ export function removeNullFields<T>(obj: T): T {
   if (obj === null || obj === undefined) {
     return obj;
   }
-  
+
   if (Array.isArray(obj)) {
-    return obj.map(item => removeNullFields(item)) as T;
+    return obj.map((item) => removeNullFields(item)) as T;
   }
-  
-  if (typeof obj === 'object') {
+
+  if (typeof obj === "object") {
     const cleaned: any = {};
     for (const [key, value] of Object.entries(obj)) {
       if (value !== null && value !== undefined) {
@@ -24,6 +24,6 @@ export function removeNullFields<T>(obj: T): T {
     }
     return cleaned;
   }
-  
+
   return obj;
 }

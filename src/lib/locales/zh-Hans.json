@@ -1870,5 +1870,249 @@
     "worldTension.whatIsThis": {
         "text": "这是什么？",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "搜索",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "搜索故事...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "无结果",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "搜索故事",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "输入搜索所有类别",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "导航",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "选择",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "切换搜索",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "搜索所有日期",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "个结果",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "当前",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "历史",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "正在搜索历史数据",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "历史搜索完成",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "正在搜索...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "正在查询历史数据...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "结果",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "结果",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "的",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "的",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "历史搜索需3个以上字符",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "让搜索展翅高飞...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "在资讯中翱翔...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "驭信息之风...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "驾驭新闻潮流...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "超越喧嚣……",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "放飞今日故事……",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "进入新闻流…",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "升级你的新闻搜索...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "轻舟速览头条...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "搜索的线索……",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "包含 {{count}} 条历史结果",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "开始搜索",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "输入搜索或使用筛选",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "筛选",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "按新闻类别筛选（例如：类别：科技）",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "在日期范围内搜索（例如：从:2025-01-01 到:今天）",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "快捷方式",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "输入“cat”代表类别，输入“昨天”或“上周”代表日期",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "无结果",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "无结果",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "请尝试调整搜索词或筛选条件，以便找到您要查找的内容。",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "显示",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "加载更多结果",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "正在加载更多结果...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "显示 {{shown}} 条，共 {{total}} 条结果",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "不再显示这些提示",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "使用最新网址",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "使用 /latest URL 获取最新新闻，以便书签始终显示最新内容",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "已启用",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "已禁用",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "请尝试其他搜索词以找到所需内容。",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "尝试搜索：",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "来源",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "来源",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "关闭搜索",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "搜索新闻报道",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "关闭",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "搜索",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "正在加载历史数据...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "返回顶部",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

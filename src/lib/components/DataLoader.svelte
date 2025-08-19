@@ -8,8 +8,8 @@
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
   import { timeTravelBatch } from "$lib/stores/timeTravelBatch.svelte.js";
   import type { Category, Story } from "$lib/types";
-  import { formatTimeAgo } from "$lib/utils/formatTimeAgo";
   import { isMobileDevice } from "$lib/utils/device";
+  import { formatTimeAgo } from "$lib/utils/formatTimeAgo";
   import SplashScreen from "./SplashScreen.svelte";
   import { onMount } from "svelte";
 
@@ -182,17 +182,18 @@
       loadingStage = s("loading.stories") || "Loading all category stories...";
       loadingProgress = 30;
 
-      // Get all enabled categories except OnThisDay (case-insensitive)
+      // Get all enabled categories except OnThisDay (case-insensitive) for loading
       // Use validEnabledCategories to ensure we only try to load existing categories
-      const enabledCategories = validEnabledCategories.filter(
+      const enabledCategoriesForLoading = validEnabledCategories.filter(
         (cat) => cat.toLowerCase() !== "onthisday",
       );
 
       // If we have a category from URL that's not enabled, we need to include it
-      let categoriesToLoad = [...enabledCategories];
+      let categoriesToLoad = [...enabledCategoriesForLoading];
       let temporaryCategoryId: string | null = null;
 
-      if (initialCategoryId && !enabledCategories.includes(initialCategoryId)) {
+      // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
+      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(
@@ -208,23 +209,52 @@
 
       // Use category from URL if provided, otherwise use first enabled
       const targetCategory =
-        initialCategoryId || enabledCategories[0] || "World";
+        initialCategoryId || enabledCategoriesForLoading[0] || "World";
       currentCategory = targetCategory;
 
       // On mobile, only load the first category to save bandwidth and improve performance
       const isMobile = isMobileDevice();
-      const categoriesToActuallyLoad = isMobile ? [targetCategory] : categoriesToLoad;
-      
+      const categoriesToActuallyLoad = isMobile
+        ? [targetCategory]
+        : categoriesToLoad;
+
       if (isMobile) {
-        console.log(`📱 Mobile device detected - loading only first category: ${targetCategory}`);
+        console.log(
+          `📱 Mobile device detected - loading only first category: ${targetCategory}`,
+        );
       }
 
       // Load stories for categories (only first on mobile, all on desktop)
-      const categoryPromises = categoriesToActuallyLoad.map(async (categoryId) => {
-        try {
-          const categoryUuid = categoryMap[categoryId];
-          if (!categoryUuid) {
-            console.warn(`Category UUID not found for ${categoryId}`);
+      const categoryPromises = categoriesToActuallyLoad.map(
+        async (categoryId) => {
+          try {
+            const categoryUuid = categoryMap[categoryId];
+            if (!categoryUuid) {
+              console.warn(`Category UUID not found for ${categoryId}`);
+              return {
+                categoryId,
+                stories: [],
+                readCount: 0,
+                timestamp: Date.now() / 1000,
+              };
+            }
+            const result = await dataService.loadStories(
+              batchId,
+              categoryUuid,
+              12,
+              dataLanguage.current,
+            );
+            return {
+              categoryId,
+              stories: result.stories,
+              readCount: result.readCount,
+              timestamp: result.timestamp,
+            };
+          } catch (error) {
+            console.warn(
+              `Failed to load stories for category ${categoryId}:`,
+              error,
+            );
             return {
               categoryId,
               stories: [],
@@ -232,31 +262,8 @@
               timestamp: Date.now() / 1000,
             };
           }
-          const result = await dataService.loadStories(
-            batchId,
-            categoryUuid,
-            12,
-            dataLanguage.current,
-          );
-          return {
-            categoryId,
-            stories: result.stories,
-            readCount: result.readCount,
-            timestamp: result.timestamp,
-          };
-        } catch (error) {
-          console.warn(
-            `Failed to load stories for category ${categoryId}:`,
-            error,
-          );
-          return {
-            categoryId,
-            stories: [],
-            readCount: 0,
-            timestamp: Date.now() / 1000,
-          };
-        }
-      });
+        },
+      );
 
       const categoryResults = await Promise.all(categoryPromises);
 
@@ -384,16 +391,17 @@
         categoriesStore.setEnabled(validEnabledCategories);
       }
 
-      // Get all enabled categories except OnThisDay (case-insensitive)
-      const enabledCategories = validEnabledCategories.filter(
+      // Get all enabled categories except OnThisDay (case-insensitive) for loading
+      const enabledCategoriesForLoading = validEnabledCategories.filter(
         (cat) => cat.toLowerCase() !== "onthisday",
       );
 
       // If we have a category from URL that's not enabled, we need to include it
-      let categoriesToLoad = [...enabledCategories];
+      let categoriesToLoad = [...enabledCategoriesForLoading];
       let temporaryCategoryId: string | null = null;
 
-      if (initialCategoryId && !enabledCategories.includes(initialCategoryId)) {
+      // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
+      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(
@@ -408,23 +416,52 @@
       }
 
       const firstEnabledCategory =
-        initialCategoryId || enabledCategories[0] || "World";
+        initialCategoryId || enabledCategoriesForLoading[0] || "World";
       currentCategory = firstEnabledCategory;
 
       // On mobile, only load the first category to save bandwidth and improve performance
       const isMobile = isMobileDevice();
-      const categoriesToActuallyLoad = isMobile ? [firstEnabledCategory] : categoriesToLoad;
-      
+      const categoriesToActuallyLoad = isMobile
+        ? [firstEnabledCategory]
+        : categoriesToLoad;
+
       if (isMobile) {
-        console.log(`📱 Mobile device detected during reload - loading only first category: ${firstEnabledCategory}`);
+        console.log(
+          `📱 Mobile device detected during reload - loading only first category: ${firstEnabledCategory}`,
+        );
       }
 
       // Load stories for categories (only first on mobile, all on desktop)
-      const categoryPromises = categoriesToActuallyLoad.map(async (categoryId) => {
-        try {
-          const categoryUuid = categoryMap[categoryId];
-          if (!categoryUuid) {
-            console.warn(`Category UUID not found for ${categoryId}`);
+      const categoryPromises = categoriesToActuallyLoad.map(
+        async (categoryId) => {
+          try {
+            const categoryUuid = categoryMap[categoryId];
+            if (!categoryUuid) {
+              console.warn(`Category UUID not found for ${categoryId}`);
+              return {
+                categoryId,
+                stories: [],
+                readCount: 0,
+                timestamp: Date.now() / 1000,
+              };
+            }
+            const result = await dataService.loadStories(
+              batchId,
+              categoryUuid,
+              12,
+              dataLanguage.current,
+            );
+            return {
+              categoryId,
+              stories: result.stories,
+              readCount: result.readCount,
+              timestamp: result.timestamp,
+            };
+          } catch (error) {
+            console.warn(
+              `Failed to load stories for category ${categoryId}:`,
+              error,
+            );
             return {
               categoryId,
               stories: [],
@@ -432,31 +469,8 @@
               timestamp: Date.now() / 1000,
             };
           }
-          const result = await dataService.loadStories(
-            batchId,
-            categoryUuid,
-            12,
-            dataLanguage.current,
-          );
-          return {
-            categoryId,
-            stories: result.stories,
-            readCount: result.readCount,
-            timestamp: result.timestamp,
-          };
-        } catch (error) {
-          console.warn(
-            `Failed to load stories for category ${categoryId}:`,
-            error,
-          );
-          return {
-            categoryId,
-            stories: [],
-            readCount: 0,
-            timestamp: Date.now() / 1000,
-          };
-        }
-      });
+        },
+      );
 
       const categoryResults = await Promise.all(categoryPromises);
 
@@ -486,7 +500,7 @@
       }
 
       console.log(
-        `✅ Language reload complete: ${enabledCategories.length} categories, ${Object.values(allCategoryStories).flat().length} total stories`,
+        `✅ Language reload complete: ${enabledCategoriesForLoading.length} categories, ${Object.values(allCategoryStories).flat().length} total stories`,
       );
 
       // Notify parent component with updated data

@@ -1846,5 +1846,249 @@
     "worldTension.whatIsThis": {
         "text": "什麼是世界局勢緊張？",
         "translationContext": "Button text to show explanation of world tension"
+    },
+    "header.search": {
+        "text": "搜尋",
+        "translationContext": "Tooltip for search button in header"
+    },
+    "search.placeholder": {
+        "text": "搜尋故事...",
+        "translationContext": "Placeholder text for search input"
+    },
+    "search.noResults": {
+        "text": "沒有找到結果",
+        "translationContext": "Message shown when search returns no results"
+    },
+    "search.title": {
+        "text": "搜尋故事",
+        "translationContext": "Title shown in empty search modal"
+    },
+    "search.hint": {
+        "text": "輸入以搜尋所有類別",
+        "translationContext": "Hint text shown in empty search modal"
+    },
+    "search.navigate": {
+        "text": "導覽",
+        "translationContext": "Label for arrow key navigation"
+    },
+    "search.select": {
+        "text": "選取",
+        "translationContext": "Label for enter key selection"
+    },
+    "search.toggle": {
+        "text": "切換搜尋",
+        "translationContext": "Label for keyboard shortcut to toggle search"
+    },
+    "search.allBatches": {
+        "text": "搜尋所有日期",
+        "translationContext": "Label for toggle to search across all news batches"
+    },
+    "search.resultsFound": {
+        "text": "個結果",
+        "translationContext": "Label showing number of search results"
+    },
+    "search.current": {
+        "text": "目前",
+        "translationContext": "Label for results from current batch"
+    },
+    "search.historical": {
+        "text": "歷史",
+        "translationContext": "Label for results from historical batches"
+    },
+    "search.searchingHistorical": {
+        "text": "正在搜尋歷史資料",
+        "translationContext": "Status message while searching historical batches"
+    },
+    "search.historicalComplete": {
+        "text": "歷史搜尋完成",
+        "translationContext": "Status message when historical search is done"
+    },
+    "search.searching": {
+        "text": "搜尋中...",
+        "translationContext": "Loading message while searching"
+    },
+    "search.searching_historical": {
+        "text": "正在搜尋歷史資料...",
+        "translationContext": "Loading message while searching historical data"
+    },
+    "search.result_single": {
+        "text": "結果",
+        "translationContext": "Singular form of result"
+    },
+    "search.result_plural": {
+        "text": "結果",
+        "translationContext": "Plural form of results"
+    },
+    "search.of": {
+        "text": "的",
+        "translationContext": "Preposition used in 'X of Y results'"
+    },
+    "search.for": {
+        "text": "的",
+        "translationContext": "Preposition used in 'results for query'"
+    },
+    "search.historical_needs_3_chars": {
+        "text": "歷史搜尋需要3個以上字元",
+        "translationContext": "Message shown when query is too short for historical search"
+    },
+    "search.placeholder_1": {
+        "text": "讓您的搜尋自由翱翔...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_2": {
+        "text": "在新聞中翱翔...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_3": {
+        "text": "捕捉資訊之風...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_4": {
+        "text": "駕馭新聞洪流…",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_5": {
+        "text": "超脫喧囂…",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_6": {
+        "text": "開始瀏覽今日焦點...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_7": {
+        "text": "滑入最新消息...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_8": {
+        "text": "提升您的新聞搜尋體驗...",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_9": {
+        "text": "掠過頭條新聞……",
+        "translationContext": "Search placeholder easter egg referencing Kite"
+    },
+    "search.placeholder_10": {
+        "text": "串起您的搜尋…",
+        "translationContext": "Search placeholder easter egg referencing kite strings"
+    },
+    "search.historical_included": {
+        "text": "内含 {{count}} 個歷史結果",
+        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+    },
+    "search.get_started_title": {
+        "text": "開始搜尋",
+        "translationContext": "Title shown when search modal is empty"
+    },
+    "search.get_started_description": {
+        "text": "輸入以搜尋或使用篩選條件",
+        "translationContext": "Description shown when search modal is empty"
+    },
+    "search.try_these": {
+        "text": "建議篩選條件",
+        "translationContext": "Section title for filter suggestions"
+    },
+    "search.filter_category_hint": {
+        "text": "依新聞類別篩選 (例如：類別：科技)",
+        "translationContext": "Hint for category filter"
+    },
+    "search.filter_date_hint": {
+        "text": "搜尋指定日期範圍內的內容（例如：from:2025-01-01 to:today）",
+        "translationContext": "Hint for date filters"
+    },
+    "search.shortcuts_title": {
+        "text": "快速捷徑",
+        "translationContext": "Title for shortcuts section"
+    },
+    "search.shortcuts_hint": {
+        "text": "輸入「cat」可搜尋類別，例如「yesterday」或「last week」可搜尋日期",
+        "translationContext": "Hint for search shortcuts"
+    },
+    "search.no_results": {
+        "text": "沒有找到結果",
+        "translationContext": "Message when no results are found"
+    },
+    "search.no_results_title": {
+        "text": "查無結果",
+        "translationContext": "Title for empty search results"
+    },
+    "search.no_results_description": {
+        "text": "請嘗試調整搜尋字詞或篩選條件，以找到您要尋找的內容。",
+        "translationContext": "Description for empty search results"
+    },
+    "search.showing": {
+        "text": "顯示",
+        "translationContext": "Label used in 'Showing X of Y results'"
+    },
+    "search.load_more": {
+        "text": "載入更多結果",
+        "translationContext": "Button text to load more search results"
+    },
+    "search.loading_more": {
+        "text": "正在載入更多結果...",
+        "translationContext": "Loading message while fetching more results"
+    },
+    "search.showing_of": {
+        "text": "顯示 {{shown}} 個結果，共 {{total}} 個",
+        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+    },
+    "search.dismiss_tips": {
+        "text": "不再顯示這些提示",
+        "translationContext": "Tooltip for dismissing filter tips permanently"
+    },
+    "settings.useLatestUrls.label": {
+        "text": "使用最新網址",
+        "translationContext": "Label for the setting that controls URL format"
+    },
+    "settings.useLatestUrls.description": {
+        "text": "使用 /latest 網址取得即時新聞，讓書籤始終顯示最新內容。",
+        "translationContext": "Description explaining what the latest URLs setting does"
+    },
+    "settings.useLatestUrls.enabled": {
+        "text": "已啟用",
+        "translationContext": "Option when latest URLs are enabled"
+    },
+    "settings.useLatestUrls.disabled": {
+        "text": "已停用",
+        "translationContext": "Option when latest URLs are disabled"
+    },
+    "search.no_results_description_simple": {
+        "text": "請嘗試不同的搜尋字詞以尋找您要的內容。",
+        "translationContext": "Simple no results message when historical search is disabled"
+    },
+    "search.try_searching_for": {
+        "text": "試試搜尋：",
+        "translationContext": "Prompt before showing search examples"
+    },
+    "search.source_single": {
+        "text": "來源",
+        "translationContext": "Singular form of 'source' for news sources"
+    },
+    "search.source_plural": {
+        "text": "來源",
+        "translationContext": "Plural form of 'sources' for news sources"
+    },
+    "search.close_search": {
+        "text": "關閉搜尋",
+        "translationContext": "Aria label for close search button"
+    },
+    "search.search_news_stories": {
+        "text": "搜尋新聞報導",
+        "translationContext": "Aria label for search input field"
+    },
+    "search.close": {
+        "text": "關閉",
+        "translationContext": "Keyboard shortcut hint for Escape key"
+    },
+    "search.search": {
+        "text": "搜尋",
+        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+    },
+    "search.loading_historical_data": {
+        "text": "正在載入歷史資料...",
+        "translationContext": "Loading message when fetching historical search results"
+    },
+    "navigation.backToTop": {
+        "text": "回頂端",
+        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
     }
 }

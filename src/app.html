@@ -26,8 +26,14 @@
           // Check if we're in a browser environment
           if (typeof window === "undefined") return;
 
-          // Get theme from localStorage
-          const storedTheme = localStorage.getItem("theme");
+          // Try to get theme from localStorage with error handling
+          let storedTheme = null;
+          try {
+            storedTheme = localStorage.getItem("theme");
+          } catch (storageError) {
+            // localStorage might be blocked in private mode or by security settings
+            console.warn("localStorage not accessible:", storageError);
+          }
 
           let darkModePreferred = false;
 
@@ -36,7 +42,7 @@
           } else if (storedTheme === "system" || !storedTheme) {
             // Check system preference for 'system' theme or when no theme is stored
             const darkMediaQuery = window.matchMedia(
-              "(prefers-color-scheme: dark)",
+              "(prefers-color-scheme: dark)"
             );
             darkModePreferred = darkMediaQuery.matches;
           }
@@ -52,6 +58,14 @@
           if (themeColorMeta) {
             const newColor = darkModePreferred ? "#1f2937" : "#ffffff";
             themeColorMeta.setAttribute("content", newColor);
+          }
+
+          // Update favicon for dark mode
+          const favicon = document.querySelector('link[rel="icon"]');
+          if (favicon) {
+            favicon.href = darkModePreferred
+              ? "/svg/kagi_news_icon_dark.svg"
+              : "/svg/kagi_news_icon.svg";
           }
         } catch (e) {
           console.error("Theme detection error:", e);
