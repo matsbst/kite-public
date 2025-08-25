@@ -2114,5 +2114,49 @@
     "navigation.backToTop": {
         "text": "Нагору",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "settings.categories.noFiltered": {
+        "text": "Жодна категорія цього типу не вимкнена",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} видавців, {{articles}} статей",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+    },
+    "settings.storyOpenMode.label": {
+        "text": "Режим відкритої історії",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "Оберіть, чи дозволяти кілька відкритих історій одночасно, чи лише одну",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "Кілька історій",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "Лише одна історія за раз",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "Зовнішній вигляд",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "Мова та регіон",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "Досвід читання",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "Навігація",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "Про нас",
+        "translationContext": "Subsection heading for about and info section"
     }
 }

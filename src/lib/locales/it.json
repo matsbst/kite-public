@@ -2114,5 +2114,49 @@
     "navigation.backToTop": {
         "text": "Torna su",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "settings.categories.noFiltered": {
+        "text": "Nessuna categoria di questo tipo è disabilitata",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} editori, {{articles}} articoli",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+    },
+    "settings.storyOpenMode.label": {
+        "text": "Modalità storia aperta",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "Scegli se consentire più storie aperte contemporaneamente o solo una",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "Storie multiple",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "Una storia alla volta",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "Aspetto",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "Lingua e regione",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "Esperienza di lettura",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "Navigazione",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "Informazioni",
+        "translationContext": "Subsection heading for about and info section"
     }
 }

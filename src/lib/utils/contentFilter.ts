@@ -68,10 +68,15 @@ export function shouldFilterStory(
     }
   }
 
-  // Check each keyword
+  // Check each keyword with whole word matching
   for (const keyword of normalizedKeywords) {
-    // Support multi-word phrases
-    if (textToCheck.includes(keyword)) {
+    // Create a regex for whole word matching
+    // \b ensures word boundaries (start/end of word)
+    // Special regex characters in keywords are escaped
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
+    
+    if (regex.test(textToCheck)) {
       matchedKeywords.push(keyword);
     }
   }

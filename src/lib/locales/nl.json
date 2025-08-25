@@ -2114,5 +2114,49 @@
     "navigation.backToTop": {
         "text": "Terug naar boven",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "settings.categories.noFiltered": {
+        "text": "Er zijn geen categorieën van dit type uitgeschakeld",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} uitgevers, {{articles}} artikelen",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+    },
+    "settings.storyOpenMode.label": {
+        "text": "Modus verhaal openen",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "Kies of u meerdere verhalen tegelijk wilt openen of slechts één.",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "Meerdere verhalen",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "Eén verhaal tegelijk",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "Uiterlijk",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "Taal en regio",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "Leeservaring",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "Navigatie",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "Over",
+        "translationContext": "Subsection heading for about and info section"
     }
 }

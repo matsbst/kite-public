@@ -2114,5 +2114,49 @@
     "navigation.backToTop": {
         "text": "शीर्ष पर वापस जाएं",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "settings.categories.noFiltered": {
+        "text": "इस प्रकार की कोई श्रेणी अक्षम नहीं है",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} प्रकाशक, {{articles}} लेख",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+    },
+    "settings.storyOpenMode.label": {
+        "text": "स्टोरी ओपन मोड",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "चुनें कि एक साथ कई कहानियों को खुला रखना है या केवल एक को।",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "कई कहानियाँ",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "एक समय में एक कहानी",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "प्रकटन",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "भाषा और क्षेत्र",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "पठन अनुभव",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "नेविगेशन",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "हमारे बारे में",
+        "translationContext": "Subsection heading for about and info section"
     }
 }

@@ -2114,5 +2114,49 @@
     "navigation.backToTop": {
         "text": "Volver arriba",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "settings.categories.noFiltered": {
+        "text": "No hay categorías de este tipo deshabilitadas",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} editores, {{articles}} artículos",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+    },
+    "settings.storyOpenMode.label": {
+        "text": "Modo de inicio de historia",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "Elige si permitir varias historias abiertas a la vez o solo una",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "Varias historias",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "Una historia a la vez",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "Apariencia",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "Idioma y Región",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "Experiencia de Lectura",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "Navegación",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "Acerca de",
+        "translationContext": "Subsection heading for about and info section"
     }
 }

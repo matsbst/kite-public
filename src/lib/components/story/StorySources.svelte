@@ -27,6 +27,22 @@
     isLoadingMediaInfo = $bindable(false),
   }: Props = $props();
 
+  // Sort domains to ensure Reddit always appears last
+  let sortedDomains = $derived.by(() => {
+    if (!domains || domains.length === 0) return [];
+    
+    // Separate Reddit domains from others
+    const redditDomains = domains.filter(d => 
+      d?.name?.toLowerCase().includes('reddit.com')
+    );
+    const nonRedditDomains = domains.filter(d => 
+      !d?.name?.toLowerCase().includes('reddit.com')
+    );
+    
+    // Concatenate with Reddit at the end
+    return [...nonRedditDomains, ...redditDomains];
+  });
+
   // State
   let showAllSources = $state(false);
   let visibleSources = $state(
@@ -39,6 +55,10 @@
       visibleSources = window.innerWidth <= 768 ? 4 : 8;
     });
   }
+
+  // Calculate publisher and article counts
+  let publisherCount = $derived(sortedDomains.length);
+  let totalArticleCount = $derived(articles?.length || 0);
 
   // Handle source click
   async function handleSourceClick(domain: any) {
@@ -72,10 +92,15 @@
 
 <section class="mt-6">
   <div class="mb-4 flex items-center justify-between">
-    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-      {s("section.sources") || "Sources"}
-    </h3>
-    {#if domains.length > visibleSources}
+    <div>
+      <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+        {s("section.sources") || "Sources"}
+      </h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+        {s("sources.summary", { publishers: publisherCount.toString(), articles: totalArticleCount.toString() })}
+      </p>
+    </div>
+    {#if sortedDomains.length > visibleSources}
       <button
         onclick={() => (showAllSources = !showAllSources)}
         class="text-gray-600 hover:text-gray-800 focus-visible-ring dark:text-gray-400 dark:hover:text-gray-200"
@@ -103,7 +128,7 @@
   <div
     class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
-    {#each domains as domain, index}
+    {#each sortedDomains as domain, index}
       {#if index < visibleSources || showAllSources}
         <button
           class="flex w-full flex-col items-start space-y-1 rounded-lg py-2 pl-2 text-left transition-colors hover:bg-gray-100 focus-visible-ring dark:hover:bg-gray-700"

@@ -268,7 +268,7 @@
 {#if score > 0}
   <button
     onclick={handleClick}
-    class="flex items-center gap-1.5 rounded-md px-1.5 py-2 md:px-2 md:py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+    class="flex items-center gap-1.5 rounded-md pl-1.5 pr-0 py-2 sm:px-1.5 md:px-2 md:py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
     title="World Tension: {score}° - {getTemperatureText()}"
     aria-label="Show world tension details"
   >

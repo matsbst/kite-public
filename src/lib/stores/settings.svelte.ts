@@ -3,6 +3,7 @@ import { browser } from "$app/environment";
 export type FontSize = "small" | "normal" | "large";
 export type CategoryHeaderPosition = "top" | "bottom";
 export type StoryExpandMode = "always" | "doubleClick" | "never";
+export type StoryOpenMode = "multiple" | "single";
 
 interface SettingsState {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface SettingsState {
   showIntro: boolean;
   activeTab?: string;
   storyExpandMode: StoryExpandMode;
+  storyOpenMode: StoryOpenMode;
   useLatestUrls: boolean;
 }
 
@@ -23,6 +25,7 @@ const settingsState = $state<SettingsState>({
   categoryHeaderPosition: "bottom",
   showIntro: false,
   storyExpandMode: "doubleClick",
+  storyOpenMode: "multiple", // Default to multiple stories open
   useLatestUrls: false, // Default to false to maintain backwards compatibility
 });
 
@@ -81,6 +84,10 @@ if (browser) {
     "storyExpandMode",
     "doubleClick",
   ) as StoryExpandMode;
+  settingsState.storyOpenMode = loadFromStorage(
+    "storyOpenMode",
+    "multiple",
+  ) as StoryOpenMode;
   settingsState.useLatestUrls = useLatestUrls;
 
   applyFontSize(fontSize);
@@ -116,6 +123,10 @@ export const settings = {
     return settingsState.storyExpandMode;
   },
 
+  get storyOpenMode() {
+    return settingsState.storyOpenMode;
+  },
+
   get useLatestUrls() {
     return settingsState.useLatestUrls;
   },
@@ -123,6 +134,11 @@ export const settings = {
   setStoryExpandMode(mode: StoryExpandMode) {
     settingsState.storyExpandMode = mode;
     saveToStorage("storyExpandMode", mode);
+  },
+
+  setStoryOpenMode(mode: StoryOpenMode) {
+    settingsState.storyOpenMode = mode;
+    saveToStorage("storyOpenMode", mode);
   },
 
   setUseLatestUrls(use: boolean) {

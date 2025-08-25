@@ -577,10 +577,14 @@
     const currentlyExpanded = expandedStories[storyId];
 
     // Create a new object with existing expanded stories to ensure reactivity
-    const newExpandedStories: Record<string, boolean> = { ...expandedStories };
+    let newExpandedStories: Record<string, boolean> = { ...expandedStories };
 
     // Toggle the clicked story
     if (!currentlyExpanded) {
+      // If single story mode is enabled, collapse all other stories first
+      if (settings.storyOpenMode === "single") {
+        newExpandedStories = {};
+      }
       newExpandedStories[storyId] = true;
 
       // Find the story and mark it as read

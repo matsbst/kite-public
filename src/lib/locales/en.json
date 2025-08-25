@@ -1083,6 +1083,10 @@
         "text": "All categories enabled",
         "translationContext": "Shows when no categories are disabled"
     },
+    "settings.categories.noFiltered": {
+        "text": "No categories of this type are disabled",
+        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+    },
     "settings.categories.types.all": {
         "text": "All types",
         "translationContext": "Option to show all category types in filter"
@@ -1507,6 +1511,42 @@
         "text": "Never expand all",
         "translationContext": "Option to disable bulk story expansion"
     },
+    "settings.storyOpenMode.label": {
+        "text": "Story Open Mode",
+        "translationContext": "Label for story open mode setting"
+    },
+    "settings.storyOpenMode.description": {
+        "text": "Choose whether to allow multiple stories open at once or only one",
+        "translationContext": "Description for story open mode setting"
+    },
+    "settings.storyOpenMode.multiple": {
+        "text": "Multiple stories",
+        "translationContext": "Option to allow multiple stories open at once"
+    },
+    "settings.storyOpenMode.single": {
+        "text": "One story at a time",
+        "translationContext": "Option to allow only one story open at a time"
+    },
+    "settings.subsections.appearance": {
+        "text": "Appearance",
+        "translationContext": "Subsection heading for appearance-related settings"
+    },
+    "settings.subsections.localization": {
+        "text": "Language & Region",
+        "translationContext": "Subsection heading for language and localization settings"
+    },
+    "settings.subsections.readingExperience": {
+        "text": "Reading Experience",
+        "translationContext": "Subsection heading for story display and reading settings"
+    },
+    "settings.subsections.navigation": {
+        "text": "Navigation",
+        "translationContext": "Subsection heading for navigation and URL settings"
+    },
+    "settings.subsections.about": {
+        "text": "About",
+        "translationContext": "Subsection heading for about and info section"
+    },
     "settings.tabs.categories": {
         "text": "Categories",
         "translationContext": "Title for the categories settings tab"
@@ -1606,6 +1646,10 @@
     "sources.showArticlesFrom": {
         "text": "Show articles from {source}",
         "translationContext": "Title/aria-label for the source button, {source} will be replaced with the source name"
+    },
+    "sources.summary": {
+        "text": "{{publishers}} publishers, {{articles}} articles",
+        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
     },
     "stats.newsToday": {
         "text": "{{count}} news today",

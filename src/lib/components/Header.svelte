@@ -252,32 +252,43 @@
 {/snippet}
 
 <header class="mb-1">
-  <!-- First row: Logo and buttons -->
-  <div class="flex items-center justify-between">
+  <!-- First row: Logo, Chaos Index (mobile), and buttons -->
+  <div class="flex items-center justify-between relative">
     <div class="flex items-center">
       <img
         src={theme.isDark
           ? "/svg/kagi_news_compact_dark.svg"
           : "/svg/kagi_news_compact.svg"}
         alt={s("app.logo.newsAlt") || "Kite News"}
-        class="mr-2 h-8 w-22 logo relative z-50"
+        class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
         role="presentation"
         style="isolation: isolate;"
       />
     </div>
 
-    <!-- Date section hidden on mobile, shown on desktop -->
+    <!-- Chaos Index - Mobile: centered in first row -->
+    {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
+      <div class="sm:hidden absolute left-1/2 transform -translate-x-1/2">
+        <ChaosIndex
+          score={chaosIndex.score}
+          summary={chaosIndex.summary}
+          lastUpdated={chaosIndex.lastUpdated}
+        />
+      </div>
+    {/if}
+
+    <!-- Date section hidden on mobile, shown on desktop in center -->
     <div
       class="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 items-center"
     >
       {@render dateSection()}
     </div>
 
-    <div class="ml-auto flex items-center space-x-2">
-      <!-- Chaos Index - Hidden on mobile, shown in second row -->
+    <div class="ml-auto flex items-center space-x-1 sm:space-x-2">
+      <!-- Chaos Index - Desktop only, in first row -->
       {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
-        <div class="hidden md:block">
+        <div class="hidden sm:block">
           <ChaosIndex
             score={chaosIndex.score}
             summary={chaosIndex.summary}
@@ -292,7 +303,7 @@
           onclick={() => timeTravel.toggle()}
           title={s("header.timeTravel") || "Time Travel"}
           aria-label={s("header.timeTravel") || "Time Travel"}
-          class="ml-2"
+          class="p-1 sm:ml-2"
           type="button"
         >
           <IconClock size={24} stroke={2} class="text-black dark:text-white" />
@@ -303,7 +314,7 @@
         onclick={onSearchClick}
         title={searchTooltip}
         aria-label={s("header.search") || "Search"}
-        class="ml-2"
+        class="p-1 sm:ml-2"
         type="button"
       >
         <IconSearch size={24} stroke={2} class="text-black dark:text-white" />
@@ -313,13 +324,13 @@
         onclick={toggleFontSize}
         title={s("header.fontSize") || "Font Size"}
         aria-label={s("header.fontSize") || "Font Size"}
-        class="ml-2"
+        class="p-1 sm:ml-2"
         type="button"
       >
         <img
           src="/svg/font-size.svg"
           alt=""
-          class="h-6 w-6 text-gray-600 dark:text-gray-400 dark:invert"
+          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
         />
       </button>
@@ -327,34 +338,23 @@
       <button
         onclick={() => settings.open()}
         title={s("header.settings") || "Settings"}
-        class="ml-2"
+        class="p-1 sm:ml-2"
         type="button"
       >
         <img
           src="/svg/gear.svg"
           alt=""
-          class="h-6 w-6 text-gray-600 dark:text-gray-400 dark:invert"
+          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
         />
       </button>
     </div>
   </div>
 
-  <!-- Date section on mobile - Second row -->
-  <div class="flex sm:hidden justify-center mt-2">
+  <!-- Mobile layout - Date only, centered -->
+  <div class="flex sm:hidden items-center justify-center mt-1 px-2">
     {@render dateSection()}
   </div>
-
-  <!-- Chaos Index on mobile - Second row -->
-  {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
-    <div class="mt-1 md:hidden">
-      <ChaosIndex
-        score={chaosIndex.score}
-        summary={chaosIndex.summary}
-        lastUpdated={chaosIndex.lastUpdated}
-      />
-    </div>
-  {/if}
 </header>
 
 <!-- Flying kite animation -->
