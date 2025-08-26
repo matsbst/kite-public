@@ -1289,6 +1289,7 @@
       "https://www.972mag.com/topic/gaza/feed/",
       "https://www.aljazeera.com/xml/rss/all.xml",
       "https://www.alquds.com/en/rss",
+      "https://www.dropsitenews.com/feed",
       "https://www.france24.com/en/tag/israel-hamas-war/rss",
       "https://www.middleeasteye.net/rss",
       "https://www.newarab.com/rss",
@@ -1301,8 +1302,7 @@
       "https://www.theguardian.com/world/gaza/rss",
       "https://www.unrwa.org/rss.xml",
       "https://www.vox.com/rss/palestine/index.xml",
-      "https://www.watanserb.com/en/tag/gaza/feed/",
-      "https://www.dropsitenews.com/feed"
+      "https://www.watanserb.com/en/tag/gaza/feed/"
     ]
   },
   "Philippines": {
