@@ -77,23 +77,23 @@
   <Portal>
     <div
       bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-[70] pointer-events-none {floating.isPositioned
+      class="pointer-events-none absolute top-0 left-0 z-[70] {floating.isPositioned
         ? 'opacity-100'
-        : 'opacity-0 invisible'}"
+        : 'invisible opacity-0'}"
       style={floating.floatingStyles}
       transition:fade={{ duration: 200 }}
     >
       <!-- Arrow pointing up -->
       <div
-        class="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0
-				border-l-[6px] border-l-transparent
-				border-r-[6px] border-r-transparent
-				border-b-[8px] border-b-gray-800 dark:border-b-gray-700"
+        class="absolute -top-2 left-1/2 h-0 w-0 -translate-x-1/2
+				border-r-[6px] border-b-[8px]
+				border-l-[6px] border-r-transparent
+				border-b-gray-800 border-l-transparent dark:border-b-gray-700"
       ></div>
 
       <!-- Tooltip content -->
       <div
-        class="bg-gray-800 dark:bg-gray-700 text-white text-xs px-3 py-2 rounded-md shadow-lg max-w-xs"
+        class="max-w-xs rounded-md bg-gray-800 px-3 py-2 text-xs text-white shadow-lg dark:bg-gray-700"
       >
         <p class="whitespace-nowrap">
           {s("app.temporaryCategoryNotice") ||

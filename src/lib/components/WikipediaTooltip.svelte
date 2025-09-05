@@ -311,7 +311,7 @@
         bind:this={floating.elements.floating}
         class="absolute top-0 left-0 z-[2000] w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
           ? 'opacity-100'
-          : 'opacity-0 invisible'}"
+          : 'invisible opacity-0'}"
         style={floating.floatingStyles}
         onmouseenter={handleTooltipEnter}
         onmouseleave={handleTooltipLeave}
@@ -344,7 +344,7 @@
         >
           <div class="p-3">
             <h4
-              class="mb-2 font-semibold text-gray-800 dark:text-gray-200 break-words"
+              class="mb-2 font-semibold break-words text-gray-800 dark:text-gray-200"
             >
               {tooltipTitle}
             </h4>
@@ -363,10 +363,10 @@
                 <img
                   src={tooltipImage}
                   alt={tooltipTitle}
-                  class="mb-2 w-full rounded h-auto object-contain"
+                  class="mb-2 h-auto w-full rounded object-contain"
                 />
               {/if}
-              <p class="text-sm text-gray-600 dark:text-gray-400 break-words">
+              <p class="text-sm break-words text-gray-600 dark:text-gray-400">
                 {tooltipContent}
               </p>
             {/if}

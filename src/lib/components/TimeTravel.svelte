@@ -368,16 +368,16 @@
     tabindex="-1"
   >
     <div
-      class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 m-4 max-w-md w-full relative"
+      class="relative m-4 w-full max-w-md rounded-lg bg-white p-6 shadow-2xl dark:bg-gray-800"
     >
       <!-- Loading overlay for the modal content -->
       {#if isSelectingBatch}
         <div
-          class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 rounded-lg flex items-center justify-center z-10"
+          class="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-white/80 dark:bg-gray-800/80"
         >
           <div class="flex flex-col items-center gap-3">
             <div
-              class="animate-spin h-8 w-8 border-3 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"
+              class="h-8 w-8 animate-spin rounded-full border-3 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"
             ></div>
             <p class="text-sm text-gray-600 dark:text-gray-400">
               {s("timeTravel.loadingData") || "Loading historical data..."}
@@ -387,18 +387,18 @@
       {/if}
 
       <!-- Header -->
-      <div class="flex items-center justify-between mb-4">
+      <div class="mb-4 flex items-center justify-between">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
           {s("timeTravel.title") || "Time Travel"}
         </h2>
         <button
           onclick={() => timeTravel.close()}
-          class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          class="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
           aria-label={s("common.close") || "Close"}
           disabled={isSelectingBatch}
         >
           <svg
-            class="w-5 h-5 text-gray-500 dark:text-gray-400"
+            class="h-5 w-5 text-gray-500 dark:text-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -415,17 +415,17 @@
 
       {#if !showBatchSelector}
         <!-- Month Navigation -->
-        <div class="flex items-center justify-between mb-4">
+        <div class="mb-4 flex items-center justify-between">
           <button
             onclick={previousMonth}
             disabled={!canNavigatePrevious()}
-            class="p-2 rounded-lg transition-colors {canNavigatePrevious()
+            class="rounded-lg p-2 transition-colors {canNavigatePrevious()
               ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
-              : 'opacity-30 cursor-not-allowed'}"
+              : 'cursor-not-allowed opacity-30'}"
             aria-label={s("timeTravel.previousMonth") || "Previous month"}
           >
             <svg
-              class="w-5 h-5 text-gray-600 dark:text-gray-400"
+              class="h-5 w-5 text-gray-600 dark:text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -442,7 +442,7 @@
           <div class="flex items-center gap-2">
             {#if showYearPicker}
               <select
-                class="text-lg font-medium text-gray-700 dark:text-gray-300 bg-transparent border-none focus:outline-none cursor-pointer"
+                class="cursor-pointer border-none bg-transparent text-lg font-medium text-gray-700 focus:outline-none dark:text-gray-300"
                 value={currentMonth.getFullYear()}
                 onchange={(e) => selectYear(parseInt(e.currentTarget.value))}
                 onblur={() => (showYearPicker = false)}
@@ -454,14 +454,14 @@
             {:else}
               <button
                 onclick={() => (showYearPicker = true)}
-                class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                class="text-lg font-medium text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
               >
                 {monthYearDisplay}
               </button>
             {/if}
             {#if loading}
               <div
-                class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"
+                class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"
               ></div>
             {/if}
           </div>
@@ -469,13 +469,13 @@
           <button
             onclick={nextMonth}
             disabled={!canNavigateNext()}
-            class="p-2 rounded-lg transition-colors {canNavigateNext()
+            class="rounded-lg p-2 transition-colors {canNavigateNext()
               ? 'hover:bg-gray-100 dark:hover:bg-gray-700'
-              : 'opacity-30 cursor-not-allowed'}"
+              : 'cursor-not-allowed opacity-30'}"
             aria-label={s("timeTravel.nextMonth") || "Next month"}
           >
             <svg
-              class="w-5 h-5 text-gray-600 dark:text-gray-400"
+              class="h-5 w-5 text-gray-600 dark:text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -491,10 +491,10 @@
         </div>
 
         <!-- Today Button -->
-        <div class="flex justify-center mb-4">
+        <div class="mb-4 flex justify-center">
           <button
             onclick={goToToday}
-            class="px-3 py-1 text-sm rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+            class="rounded-lg bg-blue-50 px-3 py-1 text-sm text-blue-600 transition-colors hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50"
           >
             {s("timeTravel.today") || "Today"}
           </button>
@@ -502,9 +502,9 @@
 
         <!-- Calendar Grid -->
         {#if loading}
-          <div class="flex justify-center items-center h-64">
+          <div class="flex h-64 items-center justify-center">
             <div
-              class="animate-spin h-8 w-8 border-3 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"
+              class="h-8 w-8 animate-spin rounded-full border-3 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"
             ></div>
           </div>
         {:else}
@@ -512,7 +512,7 @@
             <!-- Weekday Headers -->
             {#each weekdayHeaders as day}
               <div
-                class="text-center text-xs font-medium text-gray-500 dark:text-gray-400 py-2"
+                class="py-2 text-center text-xs font-medium text-gray-500 dark:text-gray-400"
               >
                 {day}
               </div>
@@ -529,9 +529,9 @@
               <button
                 onclick={() => selectDay(date)}
                 disabled={!hasBatch || !inRange}
-                class="relative p-2 h-10 rounded-lg transition-all
+                class="relative h-10 rounded-lg p-2 transition-all
               {hasBatch && inRange
-                  ? 'hover:bg-blue-50 dark:hover:bg-blue-900/30 cursor-pointer'
+                  ? 'cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/30'
                   : 'cursor-default'}
               {today ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''}
               {!currentMonth || !inRange ? 'opacity-30' : ''}"
@@ -547,11 +547,11 @@
 
                 {#if hasBatch && inRange}
                   <div
-                    class="absolute bottom-0.5 left-1/2 transform -translate-x-1/2 flex gap-0.5"
+                    class="absolute bottom-0.5 left-1/2 flex -translate-x-1/2 transform gap-0.5"
                   >
                     {#each Array(Math.min(batchCount, 3)) as _}
                       <div
-                        class="w-1 h-1 rounded-full bg-blue-500 dark:bg-blue-400"
+                        class="h-1 w-1 rounded-full bg-blue-500 dark:bg-blue-400"
                       ></div>
                     {/each}
                   </div>
@@ -562,7 +562,7 @@
         {/if}
 
         <!-- Legend -->
-        <div class="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
+        <div class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">
           {s("timeTravel.selectDate") ||
             "Select a date to view news from that day"}
         </div>
@@ -581,10 +581,10 @@
         <div>
           <button
             onclick={() => (showBatchSelector = false)}
-            class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 mb-4"
+            class="mb-4 flex items-center gap-1 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
           >
             <svg
-              class="w-4 h-4"
+              class="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -599,14 +599,14 @@
             {s("common.back") || "Back"}
           </button>
 
-          <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <h3 class="mb-1 text-lg font-medium text-gray-700 dark:text-gray-300">
             {dateStr}
           </h3>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+          <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">
             {s("timeTravel.selectBatch") || "Select a news update"}
           </p>
 
-          <div class="space-y-2 max-h-96 overflow-y-auto">
+          <div class="max-h-96 space-y-2 overflow-y-auto">
             {#each selectedDayBatches as batch, index}
               {@const batchDate = new Date(batch.createdAt)}
               {@const timeStr = batchDate.toLocaleTimeString(language.current, {
@@ -616,13 +616,13 @@
               })}
               <button
                 onclick={() => selectBatch(batch)}
-                class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left group"
+                class="group w-full rounded-lg bg-gray-50 p-4 text-left transition-colors hover:bg-gray-100 dark:bg-gray-700/50 dark:hover:bg-gray-700"
               >
-                <div class="flex justify-between items-center">
+                <div class="flex items-center justify-between">
                   <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
+                    <div class="mb-1 flex items-center gap-2">
                       <svg
-                        class="w-4 h-4 text-blue-500 dark:text-blue-400"
+                        class="h-4 w-4 text-blue-500 dark:text-blue-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -639,7 +639,7 @@
                       </div>
                       {#if index === 0}
                         <span
-                          class="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded"
+                          class="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-900/50 dark:text-blue-400"
                         >
                           {s("timeTravel.latest") || "Latest"}
                         </span>
@@ -651,7 +651,7 @@
                     </div>
                   </div>
                   <svg
-                    class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors"
+                    class="h-5 w-5 text-gray-400 transition-colors group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

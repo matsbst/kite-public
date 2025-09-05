@@ -48,7 +48,7 @@
     data-citation-number="-1"
   >
     <span
-      class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
+      class="citation-number-badge rounded {paddingClasses} flex-shrink-0 leading-none font-medium {badgeClasses}"
     >
       [*]
     </span>
@@ -77,19 +77,19 @@
     data-citation-number={item.number}
   >
     <span
-      class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
+      class="citation-number-badge rounded {paddingClasses} flex-shrink-0 leading-none font-medium {badgeClasses}"
     >
       [{item.number}]
     </span>
-    <div class="flex items-center {spacingClasses} flex-1 min-w-0">
+    <div class="flex items-center {spacingClasses} min-w-0 flex-1">
       <img
         src={getFaviconUrl(item.article.domain)}
         alt="{item.article.domain} favicon"
-        class="{iconSizeClasses} rounded-full flex-shrink-0"
+        class="{iconSizeClasses} flex-shrink-0 rounded-full"
         loading="lazy"
       />
       <span
-        class="font-medium text-gray-700 dark:text-gray-300 truncate leading-none"
+        class="truncate leading-none font-medium text-gray-700 dark:text-gray-300"
       >
         {item.article.domain}
       </span>
@@ -100,7 +100,7 @@
       href={item.article.link}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-gray-600 dark:text-gray-400 hover:underline {linkClasses} block"
+      class="text-gray-600 hover:underline dark:text-gray-400 {linkClasses} block"
       title={item.article.title}
     >
       {item.article.title}

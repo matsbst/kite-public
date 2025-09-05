@@ -142,7 +142,7 @@
   <IconAlertTriangle
     size={20}
     stroke={2}
-    class="transition-colors text-gray-600 group-hover:text-amber-600 dark:text-gray-400 dark:group-hover:text-amber-500"
+    class="text-gray-600 transition-colors group-hover:text-amber-600 dark:text-gray-400 dark:group-hover:text-amber-500"
   />
 </button>
 
@@ -155,18 +155,18 @@
   closeOnEscape={!isSubmitting && !isSuccess}
   closeOnBackdrop={!isSubmitting && !isSuccess}
 >
-  <div class="p-4 sm:p-6 space-y-4">
+  <div class="space-y-4 p-4 sm:p-6">
     <!-- Subtitle -->
-    <p class="text-sm text-gray-600 dark:text-gray-400 -mt-2">
+    <p class="-mt-2 text-sm text-gray-600 dark:text-gray-400">
       {s("article.reportModal.subtitle")}
     </p>
 
     <!-- Story Title -->
-    <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+    <div class="rounded-lg bg-gray-50 p-3 dark:bg-gray-800">
       <p class="text-sm text-gray-600 dark:text-gray-400">
         {s("article.reportModal.reportingFor")}
       </p>
-      <p class="font-medium text-gray-900 dark:text-gray-100 line-clamp-2">
+      <p class="line-clamp-2 font-medium text-gray-900 dark:text-gray-100">
         {title}
       </p>
     </div>
@@ -175,7 +175,7 @@
     <div>
       <fieldset>
         <legend
-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+          class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
         >
           {s("article.reportModal.issueType")}
         </legend>
@@ -240,7 +240,7 @@
     <div>
       <label
         for="report-description"
-        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+        class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {s("article.reportModal.description")}
       </label>
@@ -250,7 +250,7 @@
         onkeydown={handleKeydown}
         disabled={isSubmitting || isSuccess}
         placeholder={s("article.reportModal.descriptionPlaceholder")}
-        class="w-full h-[180px] px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none overflow-y-auto"
+        class="h-[180px] w-full resize-none overflow-y-auto rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-transparent focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
         maxlength={MAX_DESCRIPTION_LENGTH}
       ></textarea>
       <div
@@ -287,14 +287,14 @@
               onkeydown={handleKeydown}
               disabled={isSubmitting || isSuccess}
               placeholder={s("article.reportModal.sourcePlaceholder")}
-              class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+              class="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-transparent focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"
             />
             {#if sourceUrls.length > 1}
               <button
                 type="button"
                 onclick={() => removeSourceField(index)}
                 disabled={isSubmitting || isSuccess}
-                class="p-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="p-2 text-gray-500 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-gray-400 dark:hover:text-red-400"
                 aria-label="Remove source"
               >
                 <IconX size={20} stroke={2} />
@@ -307,7 +307,7 @@
             type="button"
             onclick={addSourceField}
             disabled={isSubmitting || isSuccess}
-            class="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 hover:text-amber-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-amber-500 dark:hover:text-amber-400"
           >
             <IconPlus size={16} stroke={2} />
             {s("article.reportModal.addSource")}
@@ -319,7 +319,7 @@
     <!-- Error/Success Messages -->
     {#if errorMessage}
       <div
-        class="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+        class="rounded-lg border border-red-200 bg-red-50 p-3 dark:border-red-800 dark:bg-red-900/20"
       >
         <p class="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
       </div>
@@ -327,13 +327,13 @@
 
     {#if successMessage}
       <div
-        class="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+        class="rounded-lg border border-green-200 bg-green-50 p-3 dark:border-green-800 dark:bg-green-900/20"
       >
         <p class="text-sm text-green-600 dark:text-green-400">
           {successMessage}
         </p>
         {#if reportId}
-          <p class="text-xs text-green-600 dark:text-green-400 mt-1">
+          <p class="mt-1 text-xs text-green-600 dark:text-green-400">
             {s("article.reportModal.reportId", { id: reportId })}
           </p>
         {/if}
@@ -345,7 +345,7 @@
       <button
         onclick={closeModal}
         disabled={isSubmitting || isSuccess}
-        class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
       >
         {s("article.reportModal.cancel")}
       </button>
@@ -355,7 +355,7 @@
           !description.trim() ||
           !issueType ||
           isSuccess}
-        class="px-4 py-2 text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        class="flex items-center gap-2 rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700 focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-amber-700 dark:hover:bg-amber-800"
       >
         {#if isSubmitting}
           <IconLoader2 size={16} stroke={2} class="animate-spin" />

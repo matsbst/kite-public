@@ -193,7 +193,10 @@
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
+      if (
+        initialCategoryId &&
+        !validEnabledCategories.includes(initialCategoryId)
+      ) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(
@@ -401,7 +404,10 @@
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
+      if (
+        initialCategoryId &&
+        !validEnabledCategories.includes(initialCategoryId)
+      ) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(

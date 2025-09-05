@@ -1,12 +1,12 @@
 <script lang="ts">
   import { s } from "$lib/client/localization.svelte";
+  import { kiteDB } from "$lib/db/dexie";
   import { contentFilter } from "$lib/stores/contentFilter.svelte.js";
   import { settings } from "$lib/stores/settings.svelte.js";
   import { storyCount } from "$lib/stores/storyCount.svelte.js";
   import type { Story } from "$lib/types";
   import { filterStories, type FilteredStory } from "$lib/utils/contentFilter";
   import { generateStoryId } from "$lib/utils/storyId";
-  import { kiteDB } from "$lib/db/dexie";
   import StoryCard from "./story/StoryCard.svelte";
 
   // Props
@@ -53,13 +53,23 @@
     const storyId = generateStoryId(story, batchId, currentCategory);
     const isNowRead = !readStories[storyId];
     readStories[storyId] = isNowRead;
-    
+
     // Persist to database
     if (isNowRead) {
-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.markStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
     } else {
       // Remove from database when unmarking as read
-      await kiteDB.unmarkStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.unmarkStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
       // Also remove from local state
       delete readStories[storyId];
       readStories = { ...readStories }; // Trigger reactivity
@@ -72,7 +82,12 @@
       const storyId = generateStoryId(story, batchId, currentCategory);
       readStories[storyId] = true;
       // Persist to database
-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.markStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
     });
   }
 
@@ -127,7 +142,9 @@
 
   // Check if all stories are read
   const allStoriesRead = $derived(
-    displayedStories.every((story) => readStories[generateStoryId(story, batchId, currentCategory)]),
+    displayedStories.every(
+      (story) => readStories[generateStoryId(story, batchId, currentCategory)],
+    ),
   );
 
   // Check if all stories are expanded
@@ -145,24 +162,24 @@
     <div class="py-8 text-center text-gray-500 dark:text-gray-400">
       {#if contentFilter.isActive && filteredCount > 0 && contentFilter.filterMode === "hide"}
         <!-- All stories filtered message -->
-        <p class="text-base font-medium mb-2">
+        <p class="mb-2 text-base font-medium">
           {s("contentFilter.allStoriesFiltered") ||
             "All stories in this category were filtered"}
         </p>
-        <p class="text-sm mb-4">
+        <p class="mb-4 text-sm">
           {s("contentFilter.allStoriesFilteredDescription") ||
             "Your content filters have hidden all stories in this category for today."}
         </p>
-        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+        <div class="flex flex-col justify-center gap-2 sm:flex-row">
           <button
             onclick={() => (window.location.href = "#settings/contentFilter")}
-            class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            class="rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
           >
             {s("contentFilter.adjustFilters") || "Adjust filters"}
           </button>
           <button
             onclick={() => (window.location.href = "#settings/categories")}
-            class="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            class="rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           >
             {s("contentFilter.disableCategory") || "Disable category"}
           </button>
@@ -182,7 +199,8 @@
         storyIndex={index}
         {batchId}
         categoryId={currentCategory}
-        isRead={readStories[generateStoryId(story, batchId, currentCategory)] || false}
+        isRead={readStories[generateStoryId(story, batchId, currentCategory)] ||
+          false}
         isExpanded={expandedStories[
           story.cluster_number?.toString() || story.title
         ] || false}

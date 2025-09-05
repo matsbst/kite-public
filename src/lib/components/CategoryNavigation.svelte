@@ -133,10 +133,10 @@
 
 <div
   class="category-slider-container dark:bg-dark-bg
-	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:py-2 md:shadow-none md:left-auto md:right-auto md:top-auto md:bottom-auto
+	md:relative md:top-auto md:right-auto md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:py-2 md:shadow-none md:dark:bg-transparent
 	{mobilePosition === 'integrated'
-    ? 'relative bg-white dark:bg-gray-900 px-6 pb-2'
-    : 'fixed z-[60] bg-white px-6 left-0 right-0'}
+    ? 'relative bg-white px-6 pb-2 dark:bg-gray-900'
+    : 'fixed right-0 left-0 z-[60] bg-white px-6'}
 	{mobilePosition === 'top'
     ? 'top-[88px] pt-1 pb-0.5 shadow-[0_4px_8px_rgba(0,0,0,0.1)]'
     : ''}
@@ -150,7 +150,7 @@
       <!-- Left scroll button (desktop only) -->
       <button
         onclick={scrollLeft}
-        class="relative -ml-1 hidden py-3 pr-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
+        class="focus-visible-ring relative -ml-1 hidden py-3 pr-4 text-gray-400 transition-colors hover:text-gray-600 md:block dark:text-gray-500 dark:hover:text-gray-300"
         class:md:hidden={!hasOverflow}
         aria-label="Scroll categories left"
       >
@@ -185,7 +185,7 @@
             tabindex={currentCategory === category.id ? 0 : -1}
             aria-selected={currentCategory === category.id}
             aria-controls="category-{category.id}"
-            class="category-tab whitespace-nowrap cursor-pointer px-4 py-2 md:py-3 text-base font-medium transition-colors focus-visible-ring relative"
+            class="category-tab focus-visible-ring relative cursor-pointer px-4 py-2 text-base font-medium whitespace-nowrap transition-colors md:py-3"
             class:active={currentCategory === category.id}
             class:text-blue-600={currentCategory === category.id}
             class:border-b-2={currentCategory === category.id}
@@ -208,7 +208,7 @@
       <!-- Right scroll button (desktop only) -->
       <button
         onclick={scrollRight}
-        class="relative -mr-1 hidden py-3 pl-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
+        class="focus-visible-ring relative -mr-1 hidden py-3 pl-4 text-gray-400 transition-colors hover:text-gray-600 md:block dark:text-gray-500 dark:hover:text-gray-300"
         class:md:hidden={!hasOverflow}
         aria-label="Scroll categories right"
       >

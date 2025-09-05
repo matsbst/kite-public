@@ -30,15 +30,15 @@
   // Sort domains to ensure Reddit always appears last
   let sortedDomains = $derived.by(() => {
     if (!domains || domains.length === 0) return [];
-    
+
     // Separate Reddit domains from others
-    const redditDomains = domains.filter(d => 
-      d?.name?.toLowerCase().includes('reddit.com')
+    const redditDomains = domains.filter((d) =>
+      d?.name?.toLowerCase().includes("reddit.com"),
     );
-    const nonRedditDomains = domains.filter(d => 
-      !d?.name?.toLowerCase().includes('reddit.com')
+    const nonRedditDomains = domains.filter(
+      (d) => !d?.name?.toLowerCase().includes("reddit.com"),
     );
-    
+
     // Concatenate with Reddit at the end
     return [...nonRedditDomains, ...redditDomains];
   });
@@ -96,14 +96,17 @@
       <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
         {s("section.sources") || "Sources"}
       </h3>
-      <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-        {s("sources.summary", { publishers: publisherCount.toString(), articles: totalArticleCount.toString() })}
+      <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        {s("sources.summary", {
+          publishers: publisherCount.toString(),
+          articles: totalArticleCount.toString(),
+        })}
       </p>
     </div>
     {#if sortedDomains.length > visibleSources}
       <button
         onclick={() => (showAllSources = !showAllSources)}
-        class="text-gray-600 hover:text-gray-800 focus-visible-ring dark:text-gray-400 dark:hover:text-gray-200"
+        class="focus-visible-ring text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
         aria-label={showAllSources ? "Show fewer sources" : "Show all sources"}
       >
         <svg
@@ -131,7 +134,7 @@
     {#each sortedDomains as domain, index}
       {#if index < visibleSources || showAllSources}
         <button
-          class="flex w-full flex-col items-start space-y-1 rounded-lg py-2 pl-2 text-left transition-colors hover:bg-gray-100 focus-visible-ring dark:hover:bg-gray-700"
+          class="focus-visible-ring flex w-full flex-col items-start space-y-1 rounded-lg py-2 pl-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
           onclick={() => handleSourceClick(domain)}
           aria-label={`Show articles from ${domain?.name || "Unknown"}`}
           title={`Show articles from ${domain?.name || "Unknown"}`}

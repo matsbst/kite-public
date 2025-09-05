@@ -260,7 +260,7 @@
   >
     <div
       bind:this={dialogElement}
-      class="flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:min-h-[670px] md:max-h-[670px] md:max-w-[42rem] md:rounded-lg md:p-8 dark:bg-gray-800"
+      class="flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:max-h-[670px] md:min-h-[670px] md:max-w-[42rem] md:rounded-lg md:p-8 dark:bg-gray-800"
       role="document"
       transition:fade={{ duration: modal.getTransitionDuration() }}
     >
@@ -269,7 +269,7 @@
         <div class="mb-1 flex justify-end">
           <button
             onclick={handleClose}
-            class="text-gray-500 transition-colors duration-200 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
+            class="focus-visible-ring rounded text-gray-500 transition-colors duration-200 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             aria-label={s("ui.close") || "Close"}
           >
             <svg
@@ -299,7 +299,7 @@
             {#each tabs as tab}
               <button
                 onclick={() => changeTab(tab.id)}
-                class="border-b-2 px-4 py-2 text-sm font-medium transition-colors focus-visible-ring"
+                class="focus-visible-ring border-b-2 px-4 py-2 text-sm font-medium transition-colors"
                 class:border-blue-500={activeTab === tab.id}
                 class:text-blue-600={activeTab === tab.id}
                 class:dark:text-blue-400={activeTab === tab.id}
@@ -321,7 +321,7 @@
       <!-- Tab Content -->
       <main
         bind:this={scrollableElement}
-        class="mt-6 flex-1 overflow-auto p-4 md:p-0 md:pr-2 md:max-h-[60vh]"
+        class="mt-6 flex-1 overflow-auto p-4 md:max-h-[60vh] md:p-0 md:pr-2"
         id="settings-content"
         aria-labelledby="tab-{activeTab}"
         data-overlayscrollbars-initialize

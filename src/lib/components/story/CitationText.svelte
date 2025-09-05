@@ -200,7 +200,7 @@
         {:else if segment.type === "citation"}
           {#if showNumbers}
             <span
-              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
+              class="citation-number cursor-help align-super text-xs text-gray-600 dark:text-gray-400"
               title="Source: {segment.citation?.domain}"
             >
               {segment.content}
@@ -209,7 +209,7 @@
             <!-- Show as clean numbered citation -->
             <!-- svelte-ignore a11y_mouse_events_have_key_events -->
             <span
-              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors"
+              class="citation-number cursor-help rounded px-0.5 align-super text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
               title={segment.citation?.domain === "common"
                 ? "Common knowledge"
                 : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
@@ -262,7 +262,7 @@
           {:else if segment.type === "citation"}
             {#if showNumbers}
               <span
-                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
+                class="citation-number cursor-help align-super text-xs text-gray-600 dark:text-gray-400"
                 title="Source: {segment.citation?.domain}"
               >
                 {segment.content}
@@ -271,7 +271,7 @@
               <!-- Show as clean numbered citation -->
               <!-- svelte-ignore a11y_mouse_events_have_key_events -->
               <span
-                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors"
+                class="citation-number cursor-help rounded px-0.5 align-super text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
                 title={segment.citation?.domain === "common"
                   ? "Common knowledge"
                   : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
@@ -321,7 +321,7 @@
   {#if showFavicons && uniqueDomains.length > 0}
     <!-- svelte-ignore a11y_mouse_events_have_key_events -->
     <div
-      class="citation-sources flex items-center cursor-pointer"
+      class="citation-sources flex cursor-pointer items-center"
       onmouseover={(e) =>
         tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
       onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
@@ -343,20 +343,20 @@
       tabindex="0"
       aria-label="View sources: {uniqueDomains.join(', ')}"
     >
-      <span class="text-xs text-gray-500 dark:text-gray-400 mr-2">
+      <span class="mr-2 text-xs text-gray-500 dark:text-gray-400">
         {s(uniqueDomains.length === 1 ? "citation.source" : "citation.sources")}
       </span>
       <div class="flex items-center -space-x-3">
         {#each uniqueDomains.slice(0, 5) as domain, index}
           <div
-            class="favicon-wrapper relative w-6 h-6 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:z-10 transition-all hover:scale-110"
+            class="favicon-wrapper relative flex h-6 w-6 items-center justify-center rounded-full border border-gray-200 bg-white transition-all hover:z-10 hover:scale-110 dark:border-gray-600 dark:bg-gray-800"
             style="z-index: {5 - index}"
             title={domain}
           >
             <img
               src={getFaviconUrl(domain)}
               alt="{domain} favicon"
-              class="w-5 h-5 rounded-full"
+              class="h-5 w-5 rounded-full"
               loading="lazy"
             />
           </div>
@@ -373,7 +373,7 @@
   <!-- Numbered citations list (if using numbered format) -->
   {#if showNumbers && parsedData.citations.length > 0 && !inline}
     <button
-      class="mt-2 text-xs text-gray-600 dark:text-gray-400 hover:underline"
+      class="mt-2 text-xs text-gray-600 hover:underline dark:text-gray-400"
       onclick={() => (showSources = !showSources)}
     >
       {showSources ? "Hide" : "Show"} sources
@@ -388,7 +388,7 @@
               <img
                 src={getFaviconUrl(citation.domain)}
                 alt="{citation.domain} favicon"
-                class="inline-block w-3 h-3 ml-1"
+                class="ml-1 inline-block h-3 w-3"
                 loading="lazy"
               />
             {/if}

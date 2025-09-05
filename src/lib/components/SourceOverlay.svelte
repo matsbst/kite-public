@@ -215,7 +215,7 @@
           </div>
           <button
             onclick={handleClose}
-            class="text-gray-500 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
+            class="focus-visible-ring rounded text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
             aria-label="Close source overlay"
           >
             <svg
@@ -279,7 +279,7 @@
         <div class="mt-8 border-t border-gray-200 pt-4 dark:border-gray-700">
           <button
             onclick={() => (showSourceInfo = !showSourceInfo)}
-            class="flex w-full items-center justify-between rounded-lg p-2 text-left text-gray-800 hover:bg-gray-50 focus-visible-ring dark:text-gray-200 dark:hover:bg-gray-700"
+            class="focus-visible-ring flex w-full items-center justify-between rounded-lg p-2 text-left text-gray-800 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700"
           >
             <span class="font-semibold">
               {s("source.info.title") || "Source Information"}
@@ -304,7 +304,7 @@
               {#if isLoadingMediaInfo}
                 <div class="py-6 text-center">
                   <div
-                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400 mx-auto mb-4"
+                    class="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2 border-gray-400"
                   ></div>
                   <p class="text-gray-600 dark:text-gray-400">
                     {s("source.info.loading") ||
@@ -317,17 +317,17 @@
                   <div class="grid gap-4 sm:grid-cols-2">
                     <!-- Country -->
                     <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
+                      <div class="mt-0.5 flex-shrink-0">
                         <IconMapPin class="h-5 w-5 text-gray-500" />
                       </div>
                       <div class="min-w-0 flex-1">
                         <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
+                          class="text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
                           {s("source.info.country") || "Country"}
                         </div>
                         <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
+                          class="break-words text-gray-600 dark:text-gray-400"
                         >
                           {mediaInfo?.country}
                         </div>
@@ -336,17 +336,17 @@
 
                     <!-- Owner -->
                     <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
+                      <div class="mt-0.5 flex-shrink-0">
                         <IconUser class="h-5 w-5 text-gray-500" />
                       </div>
                       <div class="min-w-0 flex-1">
                         <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
+                          class="text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
                           {s("source.info.owner") || "Owner"}
                         </div>
                         <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
+                          class="break-words text-gray-600 dark:text-gray-400"
                         >
                           {mediaInfo?.owner ||
                             s("source.info.notSpecified") ||
@@ -357,17 +357,17 @@
 
                     <!-- Organization -->
                     <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
+                      <div class="mt-0.5 flex-shrink-0">
                         <IconBuilding class="h-5 w-5 text-gray-500" />
                       </div>
                       <div class="min-w-0 flex-1">
                         <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
+                          class="text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
                           {s("source.info.organization") || "Organization"}
                         </div>
                         <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
+                          class="break-words text-gray-600 dark:text-gray-400"
                         >
                           {mediaInfo?.organization}
                         </div>
@@ -376,18 +376,18 @@
 
                     <!-- Media Classification -->
                     <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
+                      <div class="mt-0.5 flex-shrink-0">
                         <IconTag class="h-5 w-5 text-gray-500" />
                       </div>
                       <div class="min-w-0 flex-1">
                         <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
+                          class="text-sm font-medium text-gray-700 dark:text-gray-300"
                         >
                           {s("source.info.mediaClassification") ||
                             "Media Classification"}
                         </div>
                         <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
+                          class="break-words text-gray-600 dark:text-gray-400"
                         >
                           {mediaInfo?.typology}
                         </div>
@@ -406,7 +406,7 @@
                         {s("source.info.description") || "Description"}
                       </h4>
                       <p
-                        class="text-gray-600 dark:text-gray-400 leading-relaxed"
+                        class="leading-relaxed text-gray-600 dark:text-gray-400"
                       >
                         {mediaInfo?.description}
                       </p>

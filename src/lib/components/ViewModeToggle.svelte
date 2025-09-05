@@ -22,9 +22,9 @@
   <!-- List View Button -->
   <button
     onclick={handleListClick}
-    class={`flex items-center justify-center p-2 rounded-md transition-colors ${
+    class={`flex items-center justify-center rounded-md p-2 transition-colors ${
       viewMode === "list"
-        ? "text-blue-500 bg-blue-50 dark:bg-blue-900/20"
+        ? "bg-blue-50 text-blue-500 dark:bg-blue-900/20"
         : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
     }`}
     aria-label={s("view.list") || "List view"}
@@ -50,9 +50,9 @@
   <!-- Map View Button -->
   <button
     onclick={handleMapClick}
-    class={`flex items-center justify-center p-2 rounded-md transition-colors ${
+    class={`flex items-center justify-center rounded-md p-2 transition-colors ${
       viewMode === "map"
-        ? "text-blue-500 bg-blue-50 dark:bg-blue-900/20"
+        ? "bg-blue-50 text-blue-500 dark:bg-blue-900/20"
         : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
     }`}
     aria-label={s("view.map") || "Map view"}

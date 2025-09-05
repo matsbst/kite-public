@@ -10,7 +10,9 @@ import { join } from "path";
 /**
  * Loads the kite.json file (or localized version) and returns parsed data
  */
-export async function loadKiteData(language: string = "default"): Promise<KiteData> {
+export async function loadKiteData(
+  language: string = "default",
+): Promise<KiteData> {
   let kiteFile = "kite.json";
 
   logDebug("Loading kite data", { language });

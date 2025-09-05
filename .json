@@ -1,0 +1,1276 @@
+[1mdiff --git a/src/app.html b/src/app.html[m
+[1mindex 3aa68f9..62c2a41 100644[m
+[1m--- a/src/app.html[m
+[1m+++ b/src/app.html[m
+[36m@@ -42,7 +42,7 @@[m
+           } else if (storedTheme === "system" || !storedTheme) {[m
+             // Check system preference for 'system' theme or when no theme is stored[m
+             const darkMediaQuery = window.matchMedia([m
+[31m-              "(prefers-color-scheme: dark)"[m
+[32m+[m[32m              "(prefers-color-scheme: dark)",[m
+             );[m
+             darkModePreferred = darkMediaQuery.matches;[m
+           }[m
+[1mdiff --git a/src/lib/components/BackToTop.svelte b/src/lib/components/BackToTop.svelte[m
+[1mindex db9cd1d..dfcd1df 100644[m
+[1m--- a/src/lib/components/BackToTop.svelte[m
+[1m+++ b/src/lib/components/BackToTop.svelte[m
+[36m@@ -1,8 +1,8 @@[m
+ <script lang="ts">[m
+[31m-  import { onMount } from "svelte";[m
+[31m-  import { IconArrowUp } from "@tabler/icons-svelte";[m
+   import { s } from "$lib/client/localization.svelte";[m
+   import { settings } from "$lib/stores/settings.svelte.js";[m
+[32m+[m[32m  import { IconArrowUp } from "@tabler/icons-svelte";[m
+[32m+[m[32m  import { onMount } from "svelte";[m
+ [m
+   let visible = $state(false);[m
+   let isScrolling = false;[m
+[36m@@ -16,11 +16,11 @@[m
+       const scrollHeight = document.documentElement.scrollHeight;[m
+       const clientHeight = window.innerHeight;[m
+       const scrollProgress = scrollY / (scrollHeight - clientHeight);[m
+[31m-      [m
+[32m+[m
+       // On mobile (window width < 768px), only show when near the end (80% scrolled)[m
+       // On desktop, show after 500px[m
+       const isMobile = window.innerWidth < 768;[m
+[31m-      [m
+[32m+[m
+       if (isMobile) {[m
+         visible = scrollProgress > 0.8;[m
+       } else {[m
+[36m@@ -37,16 +37,16 @@[m
+     isScrolling = true;[m
+     scrollStartTime = performance.now();[m
+     scrollStartPosition = window.scrollY;[m
+[31m-    [m
+[32m+[m
+     const duration = 300; // 300ms for faster scrolling[m
+[31m-    [m
+[32m+[m
+     function animateScroll(currentTime: number) {[m
+       const elapsed = currentTime - scrollStartTime;[m
+       const progress = Math.min(elapsed / duration, 1);[m
+       const easeProgress = easeInOutCubic(progress);[m
+[31m-      [m
+[32m+[m
+       window.scrollTo(0, scrollStartPosition * (1 - easeProgress));[m
+[31m-      [m
+[32m+[m
+       if (progress < 1) {[m
+         animationFrame = requestAnimationFrame(animateScroll);[m
+       } else {[m
+[36m@@ -55,7 +55,7 @@[m
+         animationFrame = null;[m
+       }[m
+     }[m
+[31m-    [m
+[32m+[m
+     animationFrame = requestAnimationFrame(animateScroll);[m
+   }[m
+ [m
+[36m@@ -67,32 +67,32 @@[m
+   });[m
+ </script>[m
+ [m
+[31m-{#if settings.categoryHeaderPosition === 'bottom'}[m
+[32m+[m[32m{#if settings.categoryHeaderPosition === "bottom"}[m
+   <!-- When header is at bottom on mobile, position button above it -->[m
+   <button[m
+[31m-    class="fixed bottom-8 right-8 w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-50 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 max-md:bottom-20 max-md:right-6 max-md:w-11 max-md:h-11"[m
+[32m+[m[32m    class="fixed right-8 bottom-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 max-md:right-6 max-md:bottom-20 max-md:h-11 max-md:w-11 dark:border-gray-700 dark:bg-gray-800"[m
+     class:opacity-0={!visible}[m
+     class:invisible={!visible}[m
+     class:opacity-100={visible}[m
+[31m-    class:visible={visible}[m
+[32m+[m[32m    class:visible[m
+     onclick={scrollToTop}[m
+     aria-label={s("navigation.backToTop")}[m
+     title={s("navigation.backToTop")}[m
+   >[m
+[31m-    <IconArrowUp class="w-6 h-6 text-gray-700 dark:text-gray-300" />[m
+[32m+[m[32m    <IconArrowUp class="h-6 w-6 text-gray-700 dark:text-gray-300" />[m
+   </button>[m
+ {:else}[m
+   <!-- When header is at top on mobile, normal positioning -->[m
+   <button[m
+[31m-    class="fixed bottom-8 right-8 w-12 h-12 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-50 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 max-md:bottom-6 max-md:right-6 max-md:w-11 max-md:h-11"[m
+[32m+[m[32m    class="fixed right-8 bottom-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 max-md:right-6 max-md:bottom-6 max-md:h-11 max-md:w-11 dark:border-gray-700 dark:bg-gray-800"[m
+     class:opacity-0={!visible}[m
+     class:invisible={!visible}[m
+     class:opacity-100={visible}[m
+[31m-    class:visible={visible}[m
+[32m+[m[32m    class:visible[m
+     onclick={scrollToTop}[m
+     aria-label={s("navigation.backToTop")}[m
+     title={s("navigation.backToTop")}[m
+   >[m
+[31m-    <IconArrowUp class="w-6 h-6 text-gray-700 dark:text-gray-300" />[m
+[32m+[m[32m    <IconArrowUp class="h-6 w-6 text-gray-700 dark:text-gray-300" />[m
+   </button>[m
+[31m-{/if}[m
+\ No newline at end of file[m
+[32m+[m[32m{/if}[m
+[1mdiff --git a/src/lib/components/BaseModal.svelte b/src/lib/components/BaseModal.svelte[m
+[1mindex 1a0655d..2ac0e28 100644[m
+[1m--- a/src/lib/components/BaseModal.svelte[m
+[1m+++ b/src/lib/components/BaseModal.svelte[m
+[36m@@ -176,7 +176,7 @@[m
+   <!-- svelte-ignore a11y_click_events_have_key_events -->[m
+   <!-- svelte-ignore a11y_no_static_element_interactions -->[m
+   <div[m
+[31m-    class="fixed inset-0 bg-black/50 flex {positionClasses[[m
+[32m+[m[32m    class="fixed inset-0 flex bg-black/50 {positionClasses[[m
+       position[m
+     ]} p-0 sm:p-4"[m
+     style="z-index: {zIndex}"[m
+[36m@@ -186,10 +186,10 @@[m
+     <!-- Modal -->[m
+     <div[m
+       bind:this={modalElement}[m
+[31m-      class="relative w-full h-full sm:h-auto {sizeClasses[size]} {position ===[m
+[32m+[m[32m      class="relative h-full w-full sm:h-auto {sizeClasses[size]} {position ===[m
+       'bottom'[m
+         ? 'rounded-t-2xl'[m
+[31m-        : 'sm:rounded-lg'} bg-white shadow-xl dark:bg-gray-800 flex flex-col {className}"[m
+[32m+[m[32m        : 'sm:rounded-lg'} flex flex-col bg-white shadow-xl dark:bg-gray-800 {className}"[m
+       role="dialog"[m
+       aria-modal="true"[m
+       aria-label={ariaLabel || title || "Modal dialog"}[m
+[36m@@ -218,7 +218,7 @@[m
+           {#if showCloseButton}[m
+             <button[m
+               onclick={onClose}[m
+[31m-              class="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring"[m
+[32m+[m[32m              class="focus-visible-ring rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"[m
+               aria-label={s("ui.close") || "Close"}[m
+             >[m
+               <svg[m
+[1mdiff --git a/src/lib/components/CategoryNavigation.svelte b/src/lib/components/CategoryNavigation.svelte[m
+[1mindex a1e8176..46b03d0 100644[m
+[1m--- a/src/lib/components/CategoryNavigation.svelte[m
+[1m+++ b/src/lib/components/CategoryNavigation.svelte[m
+[36m@@ -133,10 +133,10 @@[m
+ [m
+ <div[m
+   class="category-slider-container dark:bg-dark-bg[m
+[31m-	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:py-2 md:shadow-none md:left-auto md:right-auto md:top-auto md:bottom-auto[m
+[32m+[m	[32mmd:relative md:top-auto md:right-auto md:bottom-auto md:left-auto md:bg-transparent md:px-0 md:py-2 md:shadow-none md:dark:bg-transparent[m
+ 	{mobilePosition === 'integrated'[m
+[31m-    ? 'relative bg-white dark:bg-gray-900 px-6 pb-2'[m
+[31m-    : 'fixed z-[60] bg-white px-6 left-0 right-0'}[m
+[32m+[m[32m    ? 'relative bg-white px-6 pb-2 dark:bg-gray-900'[m
+[32m+[m[32m    : 'fixed right-0 left-0 z-[60] bg-white px-6'}[m
+ 	{mobilePosition === 'top'[m
+     ? 'top-[88px] pt-1 pb-0.5 shadow-[0_4px_8px_rgba(0,0,0,0.1)]'[m
+     : ''}[m
+[36m@@ -150,7 +150,7 @@[m
+       <!-- Left scroll button (desktop only) -->[m
+       <button[m
+         onclick={scrollLeft}[m
+[31m-        class="relative -ml-1 hidden py-3 pr-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"[m
+[32m+[m[32m        class="focus-visible-ring relative -ml-1 hidden py-3 pr-4 text-gray-400 transition-colors hover:text-gray-600 md:block dark:text-gray-500 dark:hover:text-gray-300"[m
+         class:md:hidden={!hasOverflow}[m
+         aria-label="Scroll categories left"[m
+       >[m
+[36m@@ -185,7 +185,7 @@[m
+             tabindex={currentCategory === category.id ? 0 : -1}[m
+             aria-selected={currentCategory === category.id}[m
+             aria-controls="category-{category.id}"[m
+[31m-            class="category-tab whitespace-nowrap cursor-pointer px-4 py-2 md:py-3 text-base font-medium transition-colors focus-visible-ring relative"[m
+[32m+[m[32m            class="category-tab focus-visible-ring relative cursor-pointer px-4 py-2 text-base font-medium whitespace-nowrap transition-colors md:py-3"[m
+             class:active={currentCategory === category.id}[m
+             class:text-blue-600={currentCategory === category.id}[m
+             class:border-b-2={currentCategory === category.id}[m
+[36m@@ -208,7 +208,7 @@[m
+       <!-- Right scroll button (desktop only) -->[m
+       <button[m
+         onclick={scrollRight}[m
+[31m-        class="relative -mr-1 hidden py-3 pl-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"[m
+[32m+[m[32m        class="focus-visible-ring relative -mr-1 hidden py-3 pl-4 text-gray-400 transition-colors hover:text-gray-600 md:block dark:text-gray-500 dark:hover:text-gray-300"[m
+         class:md:hidden={!hasOverflow}[m
+         aria-label="Scroll categories right"[m
+       >[m
+[1mdiff --git a/src/lib/components/ChaosIndex.svelte b/src/lib/components/ChaosIndex.svelte[m
+[1mindex cd4dfe8..2f3ada3 100644[m
+[1m--- a/src/lib/components/ChaosIndex.svelte[m
+[1m+++ b/src/lib/components/ChaosIndex.svelte[m
+[36m@@ -268,7 +268,7 @@[m
+ {#if score > 0}[m
+   <button[m
+     onclick={handleClick}[m
+[31m-    class="flex items-center gap-1.5 rounded-md pl-1.5 pr-0 py-2 sm:px-1.5 md:px-2 md:py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"[m
+[32m+[m[32m    class="flex items-center gap-1.5 rounded-md py-2 pr-0 pl-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 sm:px-1.5 md:px-2 md:py-1.5 dark:text-gray-400 dark:hover:bg-gray-700"[m
+     title="World Tension: {score}° - {getTemperatureText()}"[m
+     aria-label="Show world tension details"[m
+   >[m
+[36m@@ -411,7 +411,7 @@[m
+           <div class="mb-6 rounded-lg bg-gray-50 p-5 dark:bg-gray-800/50">[m
+             <div class="space-y-2">[m
+               <p[m
+[31m-                class="text-base font-medium leading-relaxed text-gray-900 dark:text-gray-100"[m
+[32m+[m[32m                class="text-base leading-relaxed font-medium text-gray-900 dark:text-gray-100"[m
+               >[m
+                 {tempPart}.[m
+               </p>[m
+[1mdiff --git a/src/lib/components/DataLoader.svelte b/src/lib/components/DataLoader.svelte[m
+[1mindex 1ea2ec6..f17d599 100644[m
+[1m--- a/src/lib/components/DataLoader.svelte[m
+[1m+++ b/src/lib/components/DataLoader.svelte[m
+[36m@@ -193,7 +193,10 @@[m
+       let temporaryCategoryId: string | null = null;[m
+ [m
+       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary[m
+[31m-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {[m
+[32m+[m[32m      if ([m
+[32m+[m[32m        initialCategoryId &&[m
+[32m+[m[32m        !validEnabledCategories.includes(initialCategoryId)[m
+[32m+[m[32m      ) {[m
+         // Check if this category exists in the available categories[m
+         if (availableCategoryIds.includes(initialCategoryId)) {[m
+           console.log([m
+[36m@@ -401,7 +404,10 @@[m
+       let temporaryCategoryId: string | null = null;[m
+ [m
+       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary[m
+[31m-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {[m
+[32m+[m[32m      if ([m
+[32m+[m[32m        initialCategoryId &&[m
+[32m+[m[32m        !validEnabledCategories.includes(initialCategoryId)[m
+[32m+[m[32m      ) {[m
+         // Check if this category exists in the available categories[m
+         if (availableCategoryIds.includes(initialCategoryId)) {[m
+           console.log([m
+[1mdiff --git a/src/lib/components/Footer.svelte b/src/lib/components/Footer.svelte[m
+[1mindex 141162b..3e9d8a6 100644[m
+[1m--- a/src/lib/components/Footer.svelte[m
+[1m+++ b/src/lib/components/Footer.svelte[m
+[36m@@ -37,7 +37,7 @@[m
+ [m
+ <footer class="mt-8 pt-4 pb-8 md:pb-4">[m
+   <div[m
+[31m-    class="container mx-auto flex max-w-[732px] items-center justify-center space-x-3 sm:space-x-6 px-4"[m
+[32m+[m[32m    class="container mx-auto flex max-w-[732px] items-center justify-center space-x-3 px-4 sm:space-x-6"[m
+   >[m
+     <a[m
+       href="https://github.com/kagisearch/kite-public"[m
+[1mdiff --git a/src/lib/components/Header.svelte b/src/lib/components/Header.svelte[m
+[1mindex 832c93c..893d1e0 100644[m
+[1m--- a/src/lib/components/Header.svelte[m
+[1m+++ b/src/lib/components/Header.svelte[m
+[36m@@ -159,7 +159,7 @@[m
+     <!-- Loading state when exiting time travel -->[m
+     <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">[m
+       <div[m
+[31m-        class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"[m
+[32m+[m[32m        class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"[m
+       ></div>[m
+       <span class="text-sm"[m
+         >{s("timeTravel.returningToLive") || "Returning to live..."}</span[m
+[36m@@ -167,7 +167,7 @@[m
+     </div>[m
+   {:else if timeTravel.selectedDate}[m
+     <div[m
+[31m-      class="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg"[m
+[32m+[m[32m      class="flex items-center gap-2 rounded-lg bg-blue-50 px-2 py-1 dark:bg-blue-900/30"[m
+     >[m
+       <svg[m
+         xmlns="http://www.w3.org/2000/svg"[m
+[36m@@ -207,7 +207,7 @@[m
+         disabled={isExitingTimeTravel}[m
+       >[m
+         <svg[m
+[31m-          class="w-3 h-3 text-blue-600 dark:text-blue-400"[m
+[32m+[m[32m          class="h-3 w-3 text-blue-600 dark:text-blue-400"[m
+           fill="none"[m
+           stroke="currentColor"[m
+           viewBox="0 0 24 24"[m
+[36m@@ -223,7 +223,7 @@[m
+     </div>[m
+   {:else}[m
+     <div[m
+[31m-      class="cursor-pointer text-gray-600 dark:text-gray-400 focus-visible-ring rounded px-1 py-1"[m
+[32m+[m[32m      class="focus-visible-ring cursor-pointer rounded px-1 py-1 text-gray-600 dark:text-gray-400"[m
+       onclick={handleDateClick}[m
+       onkeydown={handleDateKeydown}[m
+       role="button"[m
+[36m@@ -253,14 +253,14 @@[m
+ [m
+ <header class="mb-1">[m
+   <!-- First row: Logo, Chaos Index (mobile), and buttons -->[m
+[31m-  <div class="flex items-center justify-between relative">[m
+[32m+[m[32m  <div class="relative flex items-center justify-between">[m
+     <div class="flex items-center">[m
+       <img[m
+         src={theme.isDark[m
+           ? "/svg/kagi_news_compact_dark.svg"[m
+           : "/svg/kagi_news_compact.svg"}[m
+         alt={s("app.logo.newsAlt") || "Kite News"}[m
+[31m-        class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"[m
+[32m+[m[32m        class="logo relative z-50 mr-2 h-7 w-20 sm:h-8 sm:w-22"[m
+         onclick={handleLogoClick}[m
+         role="presentation"[m
+         style="isolation: isolate;"[m
+[36m@@ -269,7 +269,7 @@[m
+ [m
+     <!-- Chaos Index - Mobile: centered in first row -->[m
+     {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}[m
+[31m-      <div class="sm:hidden absolute left-1/2 transform -translate-x-1/2">[m
+[32m+[m[32m      <div class="absolute left-1/2 -translate-x-1/2 transform sm:hidden">[m
+         <ChaosIndex[m
+           score={chaosIndex.score}[m
+           summary={chaosIndex.summary}[m
+[36m@@ -280,7 +280,7 @@[m
+ [m
+     <!-- Date section hidden on mobile, shown on desktop in center -->[m
+     <div[m
+[31m-      class="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 items-center"[m
+[32m+[m[32m      class="absolute left-1/2 hidden -translate-x-1/2 transform items-center sm:flex"[m
+     >[m
+       {@render dateSection()}[m
+     </div>[m
+[36m@@ -330,7 +330,7 @@[m
+         <img[m
+           src="/svg/font-size.svg"[m
+           alt=""[m
+[31m-          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"[m
+[32m+[m[32m          class="h-5 w-5 text-gray-600 sm:h-6 sm:w-6 dark:text-gray-400 dark:invert"[m
+           aria-hidden="true"[m
+         />[m
+       </button>[m
+[36m@@ -344,7 +344,7 @@[m
+         <img[m
+           src="/svg/gear.svg"[m
+           alt=""[m
+[31m-          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"[m
+[32m+[m[32m          class="h-5 w-5 text-gray-600 sm:h-6 sm:w-6 dark:text-gray-400 dark:invert"[m
+           aria-hidden="true"[m
+         />[m
+       </button>[m
+[36m@@ -352,7 +352,7 @@[m
+   </div>[m
+ [m
+   <!-- Mobile layout - Date only, centered -->[m
+[31m-  <div class="flex sm:hidden items-center justify-center mt-1 px-2">[m
+[32m+[m[32m  <div class="mt-1 flex items-center justify-center px-2 sm:hidden">[m
+     {@render dateSection()}[m
+   </div>[m
+ </header>[m
+[1mdiff --git a/src/lib/components/IntroScreen.svelte b/src/lib/components/IntroScreen.svelte[m
+[1mindex 20886e7..1f0c9ce 100644[m
+[1m--- a/src/lib/components/IntroScreen.svelte[m
+[1m+++ b/src/lib/components/IntroScreen.svelte[m
+[36m@@ -155,8 +155,8 @@[m
+           </section>[m
+ [m
+           <!-- Disclaimer -->[m
+[31m-          <section class="mt-6 rounded-lg bg-gray-100 dark:bg-gray-700 p-4">[m
+[31m-            <p class="text-sm text-gray-600 dark:text-gray-400 text-center">[m
+[32m+[m[32m          <section class="mt-6 rounded-lg bg-gray-100 p-4 dark:bg-gray-700">[m
+[32m+[m[32m            <p class="text-center text-sm text-gray-600 dark:text-gray-400">[m
+               {s("app.disclaimerAutoGenerated") ||[m
+                 "Summaries are AI-generated and Kite can make mistakes."}[m
+               {" "}[m
+[1mdiff --git a/src/lib/components/OnThisDay.svelte b/src/lib/components/OnThisDay.svelte[m
+[1mindex e7c9016..7695686 100644[m
+[1m--- a/src/lib/components/OnThisDay.svelte[m
+[1m+++ b/src/lib/components/OnThisDay.svelte[m
+[36m@@ -57,7 +57,7 @@[m
+     <!-- Loading spinner -->[m
+     <div class="flex items-center justify-center py-12">[m
+       <div[m
+[31m-        class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"[m
+[32m+[m[32m        class="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-400"[m
+       ></div>[m
+     </div>[m
+   {:else}[m
+[1mdiff --git a/src/lib/components/OnboardingModal.svelte b/src/lib/components/OnboardingModal.svelte[m
+[1mindex 4749cf0..c9a861e 100644[m
+[1m--- a/src/lib/components/OnboardingModal.svelte[m
+[1m+++ b/src/lib/components/OnboardingModal.svelte[m
+[36m@@ -140,15 +140,15 @@[m
+         transition:slide={{ duration: 300 }}[m
+       >[m
+         <!-- Progress Bar -->[m
+[31m-        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-t-2xl">[m
+[32m+[m[32m        <div class="h-2 rounded-t-2xl bg-gray-200 dark:bg-gray-700">[m
+           <div[m
+[31m-            class="h-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 transition-all duration-300 rounded-t-2xl"[m
+[32m+[m[32m            class="h-full rounded-t-2xl bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 dark:from-blue-400 dark:to-blue-500"[m
+             style="width: {(currentStep / totalSteps) * 100}%"[m
+           ></div>[m
+         </div>[m
+ [m
+         <!-- Modal Body -->[m
+[31m-        <div class="bg-white dark:bg-gray-800 rounded-b-2xl overflow-hidden">[m
+[32m+[m[32m        <div class="overflow-hidden rounded-b-2xl bg-white dark:bg-gray-800">[m
+           <div[m
+             bind:this={scrollableElement}[m
+             class="max-h-[600px] overflow-hidden"[m
+[36m@@ -167,19 +167,19 @@[m
+ [m
+           <!-- Navigation Buttons -->[m
+           <div class="px-8 pb-8">[m
+[31m-            <div class="flex justify-between mt-4">[m
+[32m+[m[32m            <div class="mt-4 flex justify-between">[m
+               <div class="flex items-center gap-4">[m
+                 {#if currentStep === 1}[m
+                   <button[m
+                     onclick={skipOnboarding}[m
+[31m-                    class="px-6 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"[m
+[32m+[m[32m                    class="cursor-pointer rounded-lg bg-gray-100 px-6 py-2 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"[m
+                   >[m
+                     {s("onboarding.button.skip") || "Skip"}[m
+                   </button>[m
+                 {:else}[m
+                   <button[m
+                     onclick={previousStep}[m
+[31m-                    class="px-6 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer"[m
+[32m+[m[32m                    class="cursor-pointer px-6 py-2 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"[m
+                   >[m
+                     {s("onboarding.button.back") || "← Back"}[m
+                   </button>[m
+[36m@@ -188,7 +188,7 @@[m
+ [m
+               <button[m
+                 onclick={nextStep}[m
+[31m-                class="px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors cursor-pointer"[m
+[32m+[m[32m                class="cursor-pointer rounded-lg bg-black px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"[m
+               >[m
+                 {currentStep === totalSteps[m
+                   ? s("onboarding.button.getStarted") || "Get Started"[m
+[1mdiff --git a/src/lib/components/ReportButton.svelte b/src/lib/components/ReportButton.svelte[m
+[1mindex 9d6142b..438d1a6 100644[m
+[1m--- a/src/lib/components/ReportButton.svelte[m
+[1m+++ b/src/lib/components/ReportButton.svelte[m
+[36m@@ -142,7 +142,7 @@[m
+   <IconAlertTriangle[m
+     size={20}[m
+     stroke={2}[m
+[31m-    class="transition-colors text-gray-600 group-hover:text-amber-600 dark:text-gray-400 dark:group-hover:text-amber-500"[m
+[32m+[m[32m    class="text-gray-600 transition-colors group-hover:text-amber-600 dark:text-gray-400 dark:group-hover:text-amber-500"[m
+   />[m
+ </button>[m
+ [m
+[36m@@ -155,18 +155,18 @@[m
+   closeOnEscape={!isSubmitting && !isSuccess}[m
+   closeOnBackdrop={!isSubmitting && !isSuccess}[m
+ >[m
+[31m-  <div class="p-4 sm:p-6 space-y-4">[m
+[32m+[m[32m  <div class="space-y-4 p-4 sm:p-6">[m
+     <!-- Subtitle -->[m
+[31m-    <p class="text-sm text-gray-600 dark:text-gray-400 -mt-2">[m
+[32m+[m[32m    <p class="-mt-2 text-sm text-gray-600 dark:text-gray-400">[m
+       {s("article.reportModal.subtitle")}[m
+     </p>[m
+ [m
+     <!-- Story Title -->[m
+[31m-    <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">[m
+[32m+[m[32m    <div class="rounded-lg bg-gray-50 p-3 dark:bg-gray-800">[m
+       <p class="text-sm text-gray-600 dark:text-gray-400">[m
+         {s("article.reportModal.reportingFor")}[m
+       </p>[m
+[31m-      <p class="font-medium text-gray-900 dark:text-gray-100 line-clamp-2">[m
+[32m+[m[32m      <p class="line-clamp-2 font-medium text-gray-900 dark:text-gray-100">[m
+         {title}[m
+       </p>[m
+     </div>[m
+[36m@@ -175,7 +175,7 @@[m
+     <div>[m
+       <fieldset>[m
+         <legend[m
+[31m-          class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"[m
+[32m+[m[32m          class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"[m
+         >[m
+           {s("article.reportModal.issueType")}[m
+         </legend>[m
+[36m@@ -240,7 +240,7 @@[m
+     <div>[m
+       <label[m
+         for="report-description"[m
+[31m-        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"[m
+[32m+[m[32m        class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"[m
+       >[m
+         {s("article.reportModal.description")}[m
+       </label>[m
+[36m@@ -250,7 +250,7 @@[m
+         onkeydown={handleKeydown}[m
+         disabled={isSubmitting || isSuccess}[m
+         placeholder={s("article.reportModal.descriptionPlaceholder")}[m
+[31m-        class="w-full h-[180px] px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-none overflow-y-auto"[m
+[32m+[m[32m        class="h-[180px] w-full resize-none overflow-y-auto rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-transparent focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"[m
+         maxlength={MAX_DESCRIPTION_LENGTH}[m
+       ></textarea>[m
+       <div[m
+[36m@@ -287,14 +287,14 @@[m
+               onkeydown={handleKeydown}[m
+               disabled={isSubmitting || isSuccess}[m
+               placeholder={s("article.reportModal.sourcePlaceholder")}[m
+[31m-              class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"[m
+[32m+[m[32m              class="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-transparent focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:placeholder-gray-400"[m
+             />[m
+             {#if sourceUrls.length > 1}[m
+               <button[m
+                 type="button"[m
+                 onclick={() => removeSourceField(index)}[m
+                 disabled={isSubmitting || isSuccess}[m
+[31m-                class="p-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed"[m
+[32m+[m[32m                class="p-2 text-gray-500 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-gray-400 dark:hover:text-red-400"[m
+                 aria-label="Remove source"[m
+               >[m
+                 <IconX size={20} stroke={2} />[m
+[36m@@ -307,7 +307,7 @@[m
+             type="button"[m
+             onclick={addSourceField}[m
+             disabled={isSubmitting || isSuccess}[m
+[31m-            class="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400 disabled:opacity-50 disabled:cursor-not-allowed"[m
+[32m+[m[32m            class="flex items-center gap-2 px-3 py-1.5 text-sm text-amber-600 hover:text-amber-700 disabled:cursor-not-allowed disabled:opacity-50 dark:text-amber-500 dark:hover:text-amber-400"[m
+           >[m
+             <IconPlus size={16} stroke={2} />[m
+             {s("article.reportModal.addSource")}[m
+[36m@@ -319,7 +319,7 @@[m
+     <!-- Error/Success Messages -->[m
+     {#if errorMessage}[m
+       <div[m
+[31m-        class="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"[m
+[32m+[m[32m        class="rounded-lg border border-red-200 bg-red-50 p-3 dark:border-red-800 dark:bg-red-900/20"[m
+       >[m
+         <p class="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>[m
+       </div>[m
+[36m@@ -327,13 +327,13 @@[m
+ [m
+     {#if successMessage}[m
+       <div[m
+[31m-        class="p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"[m
+[32m+[m[32m        class="rounded-lg border border-green-200 bg-green-50 p-3 dark:border-green-800 dark:bg-green-900/20"[m
+       >[m
+         <p class="text-sm text-green-600 dark:text-green-400">[m
+           {successMessage}[m
+         </p>[m
+         {#if reportId}[m
+[31m-          <p class="text-xs text-green-600 dark:text-green-400 mt-1">[m
+[32m+[m[32m          <p class="mt-1 text-xs text-green-600 dark:text-green-400">[m
+             {s("article.reportModal.reportId", { id: reportId })}[m
+           </p>[m
+         {/if}[m
+[36m@@ -345,7 +345,7 @@[m
+       <button[m
+         onclick={closeModal}[m
+         disabled={isSubmitting || isSuccess}[m
+[31m-        class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"[m
+[32m+[m[32m        class="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"[m
+       >[m
+         {s("article.reportModal.cancel")}[m
+       </button>[m
+[36m@@ -355,7 +355,7 @@[m
+           !description.trim() ||[m
+           !issueType ||[m
+           isSuccess}[m
+[31m-        class="px-4 py-2 text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"[m
+[32m+[m[32m        class="flex items-center gap-2 rounded-lg bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700 focus:ring-2 focus:ring-amber-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-amber-700 dark:hover:bg-amber-800"[m
+       >[m
+         {#if isSubmitting}[m
+           <IconLoader2 size={16} stroke={2} class="animate-spin" />[m
+[1mdiff --git a/src/lib/components/Settings.svelte b/src/lib/components/Settings.svelte[m
+[1mindex 53bcae2..ec45a6d 100644[m
+[1m--- a/src/lib/components/Settings.svelte[m
+[1m+++ b/src/lib/components/Settings.svelte[m
+[36m@@ -260,7 +260,7 @@[m
+   >[m
+     <div[m
+       bind:this={dialogElement}[m
+[31m-      class="flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:min-h-[670px] md:max-h-[670px] md:max-w-[42rem] md:rounded-lg md:p-8 dark:bg-gray-800"[m
+[32m+[m[32m      class="flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:max-h-[670px] md:min-h-[670px] md:max-w-[42rem] md:rounded-lg md:p-8 dark:bg-gray-800"[m
+       role="document"[m
+       transition:fade={{ duration: modal.getTransitionDuration() }}[m
+     >[m
+[36m@@ -269,7 +269,7 @@[m
+         <div class="mb-1 flex justify-end">[m
+           <button[m
+             onclick={handleClose}[m
+[31m-            class="text-gray-500 transition-colors duration-200 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"[m
+[32m+[m[32m            class="focus-visible-ring rounded text-gray-500 transition-colors duration-200 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"[m
+             aria-label={s("ui.close") || "Close"}[m
+           >[m
+             <svg[m
+[36m@@ -299,7 +299,7 @@[m
+             {#each tabs as tab}[m
+               <button[m
+                 onclick={() => changeTab(tab.id)}[m
+[31m-                class="border-b-2 px-4 py-2 text-sm font-medium transition-colors focus-visible-ring"[m
+[32m+[m[32m                class="focus-visible-ring border-b-2 px-4 py-2 text-sm font-medium transition-colors"[m
+                 class:border-blue-500={activeTab === tab.id}[m
+                 class:text-blue-600={activeTab === tab.id}[m
+                 class:dark:text-blue-400={activeTab === tab.id}[m
+[36m@@ -321,7 +321,7 @@[m
+       <!-- Tab Content -->[m
+       <main[m
+         bind:this={scrollableElement}[m
+[31m-        class="mt-6 flex-1 overflow-auto p-4 md:p-0 md:pr-2 md:max-h-[60vh]"[m
+[32m+[m[32m        class="mt-6 flex-1 overflow-auto p-4 md:max-h-[60vh] md:p-0 md:pr-2"[m
+         id="settings-content"[m
+         aria-labelledby="tab-{activeTab}"[m
+         data-overlayscrollbars-initialize[m
+[1mdiff --git a/src/lib/components/ShareButton.svelte b/src/lib/components/ShareButton.svelte[m
+[1mindex b0d9fbf..d89208e 100644[m
+[1m--- a/src/lib/components/ShareButton.svelte[m
+[1m+++ b/src/lib/components/ShareButton.svelte[m
+[36m@@ -209,7 +209,7 @@[m
+     <IconShare[m
+       size={20}[m
+       stroke={2}[m
+[31m-      class="transition-colors text-gray-600 group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-200"[m
+[32m+[m[32m      class="text-gray-600 transition-colors group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-200"[m
+     />[m
+   {/if}[m
+ </button>[m
+[36m@@ -221,7 +221,7 @@[m
+       bind:this={floating.elements.floating}[m
+       class="absolute top-0 left-0 z-[2000] flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned[m
+         ? 'opacity-100'[m
+[31m-        : 'opacity-0 invisible'}"[m
+[32m+[m[32m        : 'invisible opacity-0'}"[m
+       style={floating.floatingStyles}[m
+     >[m
+       <IconCheck size={16} stroke={2.5} class="text-white" />[m
+[1mdiff --git a/src/lib/components/SourceOverlay.svelte b/src/lib/components/SourceOverlay.svelte[m
+[1mindex ca2119a..3235beb 100644[m
+[1m--- a/src/lib/components/SourceOverlay.svelte[m
+[1m+++ b/src/lib/components/SourceOverlay.svelte[m
+[36m@@ -215,7 +215,7 @@[m
+           </div>[m
+           <button[m
+             onclick={handleClose}[m
+[31m-            class="text-gray-500 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"[m
+[32m+[m[32m            class="focus-visible-ring rounded text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"[m
+             aria-label="Close source overlay"[m
+           >[m
+             <svg[m
+[36m@@ -279,7 +279,7 @@[m
+         <div class="mt-8 border-t border-gray-200 pt-4 dark:border-gray-700">[m
+           <button[m
+             onclick={() => (showSourceInfo = !showSourceInfo)}[m
+[31m-            class="flex w-full items-center justify-between rounded-lg p-2 text-left text-gray-800 hover:bg-gray-50 focus-visible-ring dark:text-gray-200 dark:hover:bg-gray-700"[m
+[32m+[m[32m            class="focus-visible-ring flex w-full items-center justify-between rounded-lg p-2 text-left text-gray-800 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-700"[m
+           >[m
+             <span class="font-semibold">[m
+               {s("source.info.title") || "Source Information"}[m
+[36m@@ -304,7 +304,7 @@[m
+               {#if isLoadingMediaInfo}[m
+                 <div class="py-6 text-center">[m
+                   <div[m
+[31m-                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400 mx-auto mb-4"[m
+[32m+[m[32m                    class="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-b-2 border-gray-400"[m
+                   ></div>[m
+                   <p class="text-gray-600 dark:text-gray-400">[m
+                     {s("source.info.loading") ||[m
+[36m@@ -317,17 +317,17 @@[m
+                   <div class="grid gap-4 sm:grid-cols-2">[m
+                     <!-- Country -->[m
+                     <div class="flex items-start gap-3">[m
+[31m-                      <div class="flex-shrink-0 mt-0.5">[m
+[32m+[m[32m                      <div class="mt-0.5 flex-shrink-0">[m
+                         <IconMapPin class="h-5 w-5 text-gray-500" />[m
+                       </div>[m
+                       <div class="min-w-0 flex-1">[m
+                         <div[m
+[31m-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"[m
+[32m+[m[32m                          class="text-sm font-medium text-gray-700 dark:text-gray-300"[m
+                         >[m
+                           {s("source.info.country") || "Country"}[m
+                         </div>[m
+                         <div[m
+[31m-                          class="text-gray-600 dark:text-gray-400 break-words"[m
+[32m+[m[32m                          class="break-words text-gray-600 dark:text-gray-400"[m
+                         >[m
+                           {mediaInfo?.country}[m
+                         </div>[m
+[36m@@ -336,17 +336,17 @@[m
+ [m
+                     <!-- Owner -->[m
+                     <div class="flex items-start gap-3">[m
+[31m-                      <div class="flex-shrink-0 mt-0.5">[m
+[32m+[m[32m                      <div class="mt-0.5 flex-shrink-0">[m
+                         <IconUser class="h-5 w-5 text-gray-500" />[m
+                       </div>[m
+                       <div class="min-w-0 flex-1">[m
+                         <div[m
+[31m-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"[m
+[32m+[m[32m                          class="text-sm font-medium text-gray-700 dark:text-gray-300"[m
+                         >[m
+                           {s("source.info.owner") || "Owner"}[m
+                         </div>[m
+                         <div[m
+[31m-                          class="text-gray-600 dark:text-gray-400 break-words"[m
+[32m+[m[32m                          class="break-words text-gray-600 dark:text-gray-400"[m
+                         >[m
+                           {mediaInfo?.owner ||[m
+                             s("source.info.notSpecified") ||[m
+[36m@@ -357,17 +357,17 @@[m
+ [m
+                     <!-- Organization -->[m
+                     <div class="flex items-start gap-3">[m
+[31m-                      <div class="flex-shrink-0 mt-0.5">[m
+[32m+[m[32m                      <div class="mt-0.5 flex-shrink-0">[m
+                         <IconBuilding class="h-5 w-5 text-gray-500" />[m
+                       </div>[m
+                       <div class="min-w-0 flex-1">[m
+                         <div[m
+[31m-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"[m
+[32m+[m[32m                          class="text-sm font-medium text-gray-700 dark:text-gray-300"[m
+                         >[m
+                           {s("source.info.organization") || "Organization"}[m
+                         </div>[m
+                         <div[m
+[31m-                          class="text-gray-600 dark:text-gray-400 break-words"[m
+[32m+[m[32m                          class="break-words text-gray-600 dark:text-gray-400"[m
+                         >[m
+                           {mediaInfo?.organization}[m
+                         </div>[m
+[36m@@ -376,18 +376,18 @@[m
+ [m
+                     <!-- Media Classification -->[m
+                     <div class="flex items-start gap-3">[m
+[31m-                      <div class="flex-shrink-0 mt-0.5">[m
+[32m+[m[32m                      <div class="mt-0.5 flex-shrink-0">[m
+                         <IconTag class="h-5 w-5 text-gray-500" />[m
+                       </div>[m
+                       <div class="min-w-0 flex-1">[m
+                         <div[m
+[31m-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"[m
+[32m+[m[32m                          class="text-sm font-medium text-gray-700 dark:text-gray-300"[m
+                         >[m
+                           {s("source.info.mediaClassification") ||[m
+                             "Media Classification"}[m
+                         </div>[m
+                         <div[m
+[31m-                          class="text-gray-600 dark:text-gray-400 break-words"[m
+[32m+[m[32m                          class="break-words text-gray-600 dark:text-gray-400"[m
+                         >[m
+                           {mediaInfo?.typology}[m
+                         </div>[m
+[36m@@ -406,7 +406,7 @@[m
+                         {s("source.info.description") || "Description"}[m
+                       </h4>[m
+                       <p[m
+[31m-                        class="text-gray-600 dark:text-gray-400 leading-relaxed"[m
+[32m+[m[32m                        class="leading-relaxed text-gray-600 dark:text-gray-400"[m
+                       >[m
+                         {mediaInfo?.description}[m
+                       </p>[m
+[1mdiff --git a/src/lib/components/SplashScreen.svelte b/src/lib/components/SplashScreen.svelte[m
+[1mindex c1bf051..dfb2691 100644[m
+[1m--- a/src/lib/components/SplashScreen.svelte[m
+[1m+++ b/src/lib/components/SplashScreen.svelte[m
+[36m@@ -55,7 +55,7 @@[m
+ </script>[m
+ [m
+ <div[m
+[31m-  class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-dark-bg"[m
+[32m+[m[32m  class="dark:bg-dark-bg fixed inset-0 z-50 flex items-center justify-center bg-white"[m
+ >[m
+   <div class="text-center">[m
+     <div class="relative mx-auto mb-4 h-40 w-40">[m
+[36m@@ -63,7 +63,7 @@[m
+       <img[m
+         src="/svg/spin_body.svg"[m
+         alt=""[m
+[31m-        class="absolute inset-0 h-full w-full animate-spin-slow"[m
+[32m+[m[32m        class="animate-spin-slow absolute inset-0 h-full w-full"[m
+         class:brightness-75={hasError}[m
+         class:sepia={hasError}[m
+         class:hue-rotate-[320deg]={hasError}[m
+[36m@@ -76,7 +76,7 @@[m
+           ? "/svg/spin_circle_dark.svg"[m
+           : "/svg/spin_circle_light.svg"}[m
+         alt=""[m
+[31m-        class="absolute inset-0 h-full w-full animate-spin-reverse"[m
+[32m+[m[32m        class="animate-spin-reverse absolute inset-0 h-full w-full"[m
+         class:brightness-75={hasError}[m
+         class:sepia={hasError}[m
+         class:hue-rotate-[320deg]={hasError}[m
+[36m@@ -84,7 +84,7 @@[m
+       />[m
+     </div>[m
+     <h1[m
+[31m-      class="mb-2 flex items-center justify-center text-2xl font-bold text-gray-800 dark:text-dark-text"[m
+[32m+[m[32m      class="dark:text-dark-text mb-2 flex items-center justify-center text-2xl font-bold text-gray-800"[m
+     >[m
+       <span>{s("app.title") || "Kite"}</span>[m
+       <span[m
+[36m@@ -99,10 +99,10 @@[m
+ [m
+     {#if hasError}[m
+       <div class="mt-4 text-center">[m
+[31m-        <p class="text-red-500 dark:text-red-400 font-medium">[m
+[32m+[m[32m        <p class="font-medium text-red-500 dark:text-red-400">[m
+           {errorMessage || "An error occurred"}[m
+         </p>[m
+[31m-        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">[m
+[32m+[m[32m        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">[m
+           {s("loading.errorFallback") ||[m
+             "Continuing with limited functionality..."}[m
+         </p>[m
+[36m@@ -115,7 +115,7 @@[m
+         </p>[m
+ [m
+         <!-- Loading stage -->[m
+[31m-        <p class="min-h-[1.5rem] text-sm text-gray-500 dark:text-gray-400 mt-1">[m
+[32m+[m[32m        <p class="mt-1 min-h-[1.5rem] text-sm text-gray-500 dark:text-gray-400">[m
+           {stage || ""}[m
+         </p>[m
+       </div>[m
+[1mdiff --git a/src/lib/components/StoryList.svelte b/src/lib/components/StoryList.svelte[m
+[1mindex 705b862..0af9733 100644[m
+[1m--- a/src/lib/components/StoryList.svelte[m
+[1m+++ b/src/lib/components/StoryList.svelte[m
+[36m@@ -1,12 +1,12 @@[m
+ <script lang="ts">[m
+   import { s } from "$lib/client/localization.svelte";[m
+[32m+[m[32m  import { kiteDB } from "$lib/db/dexie";[m
+   import { contentFilter } from "$lib/stores/contentFilter.svelte.js";[m
+   import { settings } from "$lib/stores/settings.svelte.js";[m
+   import { storyCount } from "$lib/stores/storyCount.svelte.js";[m
+   import type { Story } from "$lib/types";[m
+   import { filterStories, type FilteredStory } from "$lib/utils/contentFilter";[m
+   import { generateStoryId } from "$lib/utils/storyId";[m
+[31m-  import { kiteDB } from "$lib/db/dexie";[m
+   import StoryCard from "./story/StoryCard.svelte";[m
+ [m
+   // Props[m
+[36m@@ -53,13 +53,23 @@[m
+     const storyId = generateStoryId(story, batchId, currentCategory);[m
+     const isNowRead = !readStories[storyId];[m
+     readStories[storyId] = isNowRead;[m
+[31m-    [m
+[32m+[m
+     // Persist to database[m
+     if (isNowRead) {[m
+[31m-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);[m
+[32m+[m[32m      await kiteDB.markStoryAsRead([m
+[32m+[m[32m        story.title,[m
+[32m+[m[32m        story.cluster_number,[m
+[32m+[m[32m        batchId,[m
+[32m+[m[32m        currentCategory,[m
+[32m+[m[32m      );[m
+     } else {[m
+       // Remove from database when unmarking as read[m
+[31m-      await kiteDB.unmarkStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);[m
+[32m+[m[32m      await kiteDB.unmarkStoryAsRead([m
+[32m+[m[32m        story.title,[m
+[32m+[m[32m        story.cluster_number,[m
+[32m+[m[32m        batchId,[m
+[32m+[m[32m        currentCategory,[m
+[32m+[m[32m      );[m
+       // Also remove from local state[m
+       delete readStories[storyId];[m
+       readStories = { ...readStories }; // Trigger reactivity[m
+[36m@@ -72,7 +82,12 @@[m
+       const storyId = generateStoryId(story, batchId, currentCategory);[m
+       readStories[storyId] = true;[m
+       // Persist to database[m
+[31m-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);[m
+[32m+[m[32m      await kiteDB.markStoryAsRead([m
+[32m+[m[32m        story.title,[m
+[32m+[m[32m        story.cluster_number,[m
+[32m+[m[32m        batchId,[m
+[32m+[m[32m        currentCategory,[m
+[32m+[m[32m      );[m
+     });[m
+   }[m
+ [m
+[36m@@ -127,7 +142,9 @@[m
+ [m
+   // Check if all stories are read[m
+   const allStoriesRead = $derived([m
+[31m-    displayedStories.every((story) => readStories[generateStoryId(story, batchId, currentCategory)]),[m
+[32m+[m[32m    displayedStories.every([m
+[32m+[m[32m      (story) => readStories[generateStoryId(story, batchId, currentCategory)],[m
+[32m+[m[32m    ),[m
+   );[m
+ [m
+   // Check if all stories are expanded[m
+[36m@@ -145,24 +162,24 @@[m
+     <div class="py-8 text-center text-gray-500 dark:text-gray-400">[m
+       {#if contentFilter.isActive && filteredCount > 0 && contentFilter.filterMode === "hide"}[m
+         <!-- All stories filtered message -->[m
+[31m-        <p class="text-base font-medium mb-2">[m
+[32m+[m[32m        <p class="mb-2 text-base font-medium">[m
+           {s("contentFilter.allStoriesFiltered") ||[m
+             "All stories in this category were filtered"}[m
+         </p>[m
+[31m-        <p class="text-sm mb-4">[m
+[32m+[m[32m        <p class="mb-4 text-sm">[m
+           {s("contentFilter.allStoriesFilteredDescription") ||[m
+             "Your content filters have hidden all stories in this category for today."}[m
+         </p>[m
+[31m-        <div class="flex flex-col sm:flex-row gap-2 justify-center">[m
+[32m+[m[32m        <div class="flex flex-col justify-center gap-2 sm:flex-row">[m
+           <button[m
+             onclick={() => (window.location.href = "#settings/contentFilter")}[m
+[31m-            class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"[m
+[32m+[m[32m            class="rounded-md bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"[m
+           >[m
+             {s("contentFilter.adjustFilters") || "Adjust filters"}[m
+           </button>[m
+           <button[m
+             onclick={() => (window.location.href = "#settings/categories")}[m
+[31m-            class="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"[m
+[32m+[m[32m            class="rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"[m
+           >[m
+             {s("contentFilter.disableCategory") || "Disable category"}[m
+           </button>[m
+[36m@@ -182,7 +199,8 @@[m
+         storyIndex={index}[m
+         {batchId}[m
+         categoryId={currentCategory}[m
+[31m-        isRead={readStories[generateStoryId(story, batchId, currentCategory)] || false}[m
+[32m+[m[32m        isRead={readStories[generateStoryId(story, batchId, currentCategory)] ||[m
+[32m+[m[32m          false}[m
+         isExpanded={expandedStories[[m
+           story.cluster_number?.toString() || story.title[m
+         ] || false}[m
+[1mdiff --git a/src/lib/components/TemporaryCategoryTooltip.svelte b/src/lib/components/TemporaryCategoryTooltip.svelte[m
+[1mindex 647b6a0..aed24c8 100644[m
+[1m--- a/src/lib/components/TemporaryCategoryTooltip.svelte[m
+[1m+++ b/src/lib/components/TemporaryCategoryTooltip.svelte[m
+[36m@@ -77,23 +77,23 @@[m
+   <Portal>[m
+     <div[m
+       bind:this={floating.elements.floating}[m
+[31m-      class="absolute top-0 left-0 z-[70] pointer-events-none {floating.isPositioned[m
+[32m+[m[32m      class="pointer-events-none absolute top-0 left-0 z-[70] {floating.isPositioned[m
+         ? 'opacity-100'[m
+[31m-        : 'opacity-0 invisible'}"[m
+[32m+[m[32m        : 'invisible opacity-0'}"[m
+       style={floating.floatingStyles}[m
+       transition:fade={{ duration: 200 }}[m
+     >[m
+       <!-- Arrow pointing up -->[m
+       <div[m
+[31m-        class="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0[m
+[31m-				border-l-[6px] border-l-transparent[m
+[31m-				border-r-[6px] border-r-transparent[m
+[31m-				border-b-[8px] border-b-gray-800 dark:border-b-gray-700"[m
+[32m+[m[32m        class="absolute -top-2 left-1/2 h-0 w-0 -translate-x-1/2[m
+[32m+[m				[32mborder-r-[6px] border-b-[8px][m
+[32m+[m				[32mborder-l-[6px] border-r-transparent[m
+[32m+[m				[32mborder-b-gray-800 border-l-transparent dark:border-b-gray-700"[m
+       ></div>[m
+ [m
+       <!-- Tooltip content -->[m
+       <div[m
+[31m-        class="bg-gray-800 dark:bg-gray-700 text-white text-xs px-3 py-2 rounded-md shadow-lg max-w-xs"[m
+[32m+[m[32m        class="max-w-xs rounded-md bg-gray-800 px-3 py-2 text-xs text-white shadow-lg dark:bg-gray-700"[m
+       >[m
+         <p class="whitespace-nowrap">[m
+           {s("app.temporaryCategoryNotice") ||[m
+[1mdiff --git a/src/lib/components/TimeTravel.svelte b/src/lib/components/TimeTravel.svelte[m
+[1mindex b81fc2c..6fc4396 100644[m
+[1m--- a/src/lib/components/TimeTravel.svelte[m
+[1m+++ b/src/lib/components/TimeTravel.svelte[m
+[36m@@ -368,16 +368,16 @@[m
+     tabindex="-1"[m
+   >[m
+     <div[m
+[31m-      class="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-6 m-4 max-w-md w-full relative"[m
+[32m+[m[32m      class="relative m-4 w-full max-w-md rounded-lg bg-white p-6 shadow-2xl dark:bg-gray-800"[m
+     >[m
+       <!-- Loading overlay for the modal content -->[m
+       {#if isSelectingBatch}[m
+         <div[m
+[31m-          class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 rounded-lg flex items-center justify-center z-10"[m
+[32m+[m[32m          class="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-white/80 dark:bg-gray-800/80"[m
+         >[m
+           <div class="flex flex-col items-center gap-3">[m
+             <div[m
+[31m-              class="animate-spin h-8 w-8 border-3 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"[m
+[32m+[m[32m              class="h-8 w-8 animate-spin rounded-full border-3 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"[m
+             ></div>[m
+             <p class="text-sm text-gray-600 dark:text-gray-400">[m
+               {s("timeTravel.loadingData") || "Loading historical data..."}[m
+[36m@@ -387,18 +387,18 @@[m
+       {/if}[m
+ [m
+       <!-- Header -->[m
+[31m-      <div class="flex items-center justify-between mb-4">[m
+[32m+[m[32m      <div class="mb-4 flex items-center justify-between">[m
+         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">[m
+           {s("timeTravel.title") || "Time Travel"}[m
+         </h2>[m
+         <button[m
+           onclick={() => timeTravel.close()}[m
+[31m-          class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"[m
+[32m+[m[32m          class="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"[m
+           aria-label={s("common.close") || "Close"}[m
+           disabled={isSelectingBatch}[m
+         >[m
+           <svg[m
+[31m-            class="w-5 h-5 text-gray-500 dark:text-gray-400"[m
+[32m+[m[32m            class="h-5 w-5 text-gray-500 dark:text-gray-400"[m
+             fill="none"[m
+             stroke="currentColor"[m
+             viewBox="0 0 24 24"[m
+[36m@@ -415,17 +415,17 @@[m
+ [m
+       {#if !showBatchSelector}[m
+         <!-- Month Navigation -->[m
+[31m-        <div class="flex items-center justify-between mb-4">[m
+[32m+[m[32m        <div class="mb-4 flex items-center justify-between">[m
+           <button[m
+             onclick={previousMonth}[m
+             disabled={!canNavigatePrevious()}[m
+[31m-            class="p-2 rounded-lg transition-colors {canNavigatePrevious()[m
+[32m+[m[32m            class="rounded-lg p-2 transition-colors {canNavigatePrevious()[m
+               ? 'hover:bg-gray-100 dark:hover:bg-gray-700'[m
+[31m-              : 'opacity-30 cursor-not-allowed'}"[m
+[32m+[m[32m              : 'cursor-not-allowed opacity-30'}"[m
+             aria-label={s("timeTravel.previousMonth") || "Previous month"}[m
+           >[m
+             <svg[m
+[31m-              class="w-5 h-5 text-gray-600 dark:text-gray-400"[m
+[32m+[m[32m              class="h-5 w-5 text-gray-600 dark:text-gray-400"[m
+               fill="none"[m
+               stroke="currentColor"[m
+               viewBox="0 0 24 24"[m
+[36m@@ -442,7 +442,7 @@[m
+           <div class="flex items-center gap-2">[m
+             {#if showYearPicker}[m
+               <select[m
+[31m-                class="text-lg font-medium text-gray-700 dark:text-gray-300 bg-transparent border-none focus:outline-none cursor-pointer"[m
+[32m+[m[32m                class="cursor-pointer border-none bg-transparent text-lg font-medium text-gray-700 focus:outline-none dark:text-gray-300"[m
+                 value={currentMonth.getFullYear()}[m
+                 onchange={(e) => selectYear(parseInt(e.currentTarget.value))}[m
+                 onblur={() => (showYearPicker = false)}[m
+[36m@@ -454,14 +454,14 @@[m
+             {:else}[m
+               <button[m
+                 onclick={() => (showYearPicker = true)}[m
+[31m-                class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"[m
+[32m+[m[32m                class="text-lg font-medium text-gray-700 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"[m
+               >[m
+                 {monthYearDisplay}[m
+               </button>[m
+             {/if}[m
+             {#if loading}[m
+               <div[m
+[31m-                class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"[m
+[32m+[m[32m                class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"[m
+               ></div>[m
+             {/if}[m
+           </div>[m
+[36m@@ -469,13 +469,13 @@[m
+           <button[m
+             onclick={nextMonth}[m
+             disabled={!canNavigateNext()}[m
+[31m-            class="p-2 rounded-lg transition-colors {canNavigateNext()[m
+[32m+[m[32m            class="rounded-lg p-2 transition-colors {canNavigateNext()[m
+               ? 'hover:bg-gray-100 dark:hover:bg-gray-700'[m
+[31m-              : 'opacity-30 cursor-not-allowed'}"[m
+[32m+[m[32m              : 'cursor-not-allowed opacity-30'}"[m
+             aria-label={s("timeTravel.nextMonth") || "Next month"}[m
+           >[m
+             <svg[m
+[31m-              class="w-5 h-5 text-gray-600 dark:text-gray-400"[m
+[32m+[m[32m              class="h-5 w-5 text-gray-600 dark:text-gray-400"[m
+               fill="none"[m
+               stroke="currentColor"[m
+               viewBox="0 0 24 24"[m
+[36m@@ -491,10 +491,10 @@[m
+         </div>[m
+ [m
+         <!-- Today Button -->[m
+[31m-        <div class="flex justify-center mb-4">[m
+[32m+[m[32m        <div class="mb-4 flex justify-center">[m
+           <button[m
+             onclick={goToToday}[m
+[31m-            class="px-3 py-1 text-sm rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"[m
+[32m+[m[32m            class="rounded-lg bg-blue-50 px-3 py-1 text-sm text-blue-600 transition-colors hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 dark:hover:bg-blue-900/50"[m
+           >[m
+             {s("timeTravel.today") || "Today"}[m
+           </button>[m
+[36m@@ -502,9 +502,9 @@[m
+ [m
+         <!-- Calendar Grid -->[m
+         {#if loading}[m
+[31m-          <div class="flex justify-center items-center h-64">[m
+[32m+[m[32m          <div class="flex h-64 items-center justify-center">[m
+             <div[m
+[31m-              class="animate-spin h-8 w-8 border-3 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"[m
+[32m+[m[32m              class="h-8 w-8 animate-spin rounded-full border-3 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"[m
+             ></div>[m
+           </div>[m
+         {:else}[m
+[36m@@ -512,7 +512,7 @@[m
+             <!-- Weekday Headers -->[m
+             {#each weekdayHeaders as day}[m
+               <div[m
+[31m-                class="text-center text-xs font-medium text-gray-500 dark:text-gray-400 py-2"[m
+[32m+[m[32m                class="py-2 text-center text-xs font-medium text-gray-500 dark:text-gray-400"[m
+               >[m
+                 {day}[m
+               </div>[m
+[36m@@ -529,9 +529,9 @@[m
+               <button[m
+                 onclick={() => selectDay(date)}[m
+                 disabled={!hasBatch || !inRange}[m
+[31m-                class="relative p-2 h-10 rounded-lg transition-all[m
+[32m+[m[32m                class="relative h-10 rounded-lg p-2 transition-all[m
+               {hasBatch && inRange[m
+[31m-                  ? 'hover:bg-blue-50 dark:hover:bg-blue-900/30 cursor-pointer'[m
+[32m+[m[32m                  ? 'cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/30'[m
+                   : 'cursor-default'}[m
+               {today ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''}[m
+               {!currentMonth || !inRange ? 'opacity-30' : ''}"[m
+[36m@@ -547,11 +547,11 @@[m
+ [m
+                 {#if hasBatch && inRange}[m
+                   <div[m
+[31m-                    class="absolute bottom-0.5 left-1/2 transform -translate-x-1/2 flex gap-0.5"[m
+[32m+[m[32m                    class="absolute bottom-0.5 left-1/2 flex -translate-x-1/2 transform gap-0.5"[m
+                   >[m
+                     {#each Array(Math.min(batchCount, 3)) as _}[m
+                       <div[m
+[31m-                        class="w-1 h-1 rounded-full bg-blue-500 dark:bg-blue-400"[m
+[32m+[m[32m                        class="h-1 w-1 rounded-full bg-blue-500 dark:bg-blue-400"[m
+                       ></div>[m
+                     {/each}[m
+                   </div>[m
+[36m@@ -562,7 +562,7 @@[m
+         {/if}[m
+ [m
+         <!-- Legend -->[m
+[31m-        <div class="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">[m
+[32m+[m[32m        <div class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">[m
+           {s("timeTravel.selectDate") ||[m
+             "Select a date to view news from that day"}[m
+         </div>[m
+[36m@@ -581,10 +581,10 @@[m
+         <div>[m
+           <button[m
+             onclick={() => (showBatchSelector = false)}[m
+[31m-            class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 mb-4"[m
+[32m+[m[32m            class="mb-4 flex items-center gap-1 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"[m
+           >[m
+             <svg[m
+[31m-              class="w-4 h-4"[m
+[32m+[m[32m              class="h-4 w-4"[m
+               fill="none"[m
+               stroke="currentColor"[m
+               viewBox="0 0 24 24"[m
+[36m@@ -599,14 +599,14 @@[m
+             {s("common.back") || "Back"}[m
+           </button>[m
+ [m
+[31m-          <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">[m
+[32m+[m[32m          <h3 class="mb-1 text-lg font-medium text-gray-700 dark:text-gray-300">[m
+             {dateStr}[m
+           </h3>[m
+[31m-          <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">[m
+[32m+[m[32m          <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">[m
+             {s("timeTravel.selectBatch") || "Select a news update"}[m
+           </p>[m
+ [m
+[31m-          <div class="space-y-2 max-h-96 overflow-y-auto">[m
+[32m+[m[32m          <div class="max-h-96 space-y-2 overflow-y-auto">[m
+             {#each selectedDayBatches as batch, index}[m
+               {@const batchDate = new Date(batch.createdAt)}[m
+               {@const timeStr = batchDate.toLocaleTimeString(language.current, {[m
+[36m@@ -616,13 +616,13 @@[m
+               })}[m
+               <button[m
+                 onclick={() => selectBatch(batch)}[m
+[31m-                class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left group"[m
+[32m+[m[32m                class="group w-full rounded-lg bg-gray-50 p-4 text-left transition-colors hover:bg-gray-100 dark:bg-gray-700/50 dark:hover:bg-gray-700"[m
+               >[m
+[31m-                <div class="flex justify-between items-center">[m
+[32m+[m[32m                <div class="flex items-center justify-between">[m
+                   <div class="flex-1">[m
+[31m-                    <div class="flex items-center gap-2 mb-1">[m
+[32m+[m[32m                    <div class="mb-1 flex items-center gap-2">[m
+                       <svg[m
+[31m-                        class="w-4 h-4 text-blue-500 dark:text-blue-400"[m
+[32m+[m[32m                        class="h-4 w-4 text-blue-500 dark:text-blue-400"[m
+                         fill="none"[m
+                         stroke="currentColor"[m
+                         viewBox="0 0 24 24"[m
+[36m@@ -639,7 +639,7 @@[m
+                       </div>[m
+                       {#if index === 0}[m
+                         <span[m
+[31m-                          class="text-xs bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded"[m
+[32m+[m[32m                          class="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-600 dark:bg-blue-900/50 dark:text-blue-400"[m
+                         >[m
+                           {s("timeTravel.latest") || "Latest"}[m
+                         </span>[m
+[36m@@ -651,7 +651,7 @@[m
+                     </div>[m
+                   </div>[m
+                   <svg[m
+[31m-                    class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors"[m
+[32m+[m[32m                    class="h-5 w-5 text-gray-400 transition-colors group-hover:text-gray-600 dark:text-gray-500 dark:group-hover:text-gray-300"[m
+                     fill="none"[m
+                     stroke="currentColor"[m
+                     viewBox="0 0 24 24"[m
+[1mdiff --git a/src/lib/components/Tooltip.svelte b/src/lib/components/Tooltip.svelte[m
+[1mindex 7903248..cc9793f 100644[m
+[1m--- a/src/lib/components/Tooltip.svelte[m
+[1m+++ b/src/lib/components/Tooltip.svelte[m
+[36m@@ -338,7 +338,7 @@[m
+   <Portal target="body">[m
+     <div[m
+       bind:this={tooltipElement}[m
+[31m-      class="svelte-tooltip z-[9999999] max-w-xs overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-center text-xs text-white shadow-lg"[m
+[32m+[m[32m      class="svelte-tooltip z-[9999999] max-w-xs overflow-hidden rounded-md bg-gray-900 px-3 py-2 text-center text-xs text-white shadow-lg dark:bg-gray-800"[m
+       transition:fade={{ duration: 150 }}[m
+       style="position: fixed; pointer-events: none;"[m
+     >[m
+[1mdiff --git a/src/lib/components/ViewModeToggle.svelte b/src/lib/components/ViewModeToggle.svelte[m
+[1mindex 19c1055..41a4b2b 100644[m
+[1m--- a/src/lib/components/ViewModeToggle.svelte[m
+[1m+++ b/src/lib/components/ViewModeToggle.svelte[m
+[36m@@ -22,9 +22,9 @@[m
+   <!-- List View Button -->[m
+   <button[m
+     onclick={handleListClick}[m
+[31m-    class={`flex items-center justify-center p-2 rounded-md transition-colors ${[m
+[32m+[m[32m    class={`flex items-center justify-center rounded-md p-2 transition-colors ${[m
+       viewMode === "list"[m
+[31m-        ? "text-blue-500 bg-blue-50 dark:bg-blue-900/20"[m
+[32m+[m[32m        ? "bg-blue-50 text-blue-500 dark:bg-blue-900/20"[m
+         : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"[m
+     }`}[m
+     aria-label={s("view.list") || "List view"}[m
+[36m@@ -50,9 +50,9 @@[m
+   <!-- Map View Button -->[m
+   <button[m
+     onclick={handleMapClick}[m
+[31m-    class={`flex items-center justify-center p-2 rounded-md transition-colors ${[m
+[32m+[m[32m    class={`flex items-center justify-center rounded-md p-2 transition-colors ${[m
+       viewMode === "map"[m
+[31m-        ? "text-blue-500 bg-blue-50 dark:bg-blue-900/20"[m
+[32m+[m[32m        ? "bg-blue-50 text-blue-500 dark:bg-blue-900/20"[m
+         : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"[m
+     }`}[m
+     aria-label={s("view.map") || "Map view"}[m
+[1mdiff --git a/src/lib/components/WikipediaPopup.svelte b/src/lib/components/WikipediaPopup.svelte[m
+[1mindex 3a819fe..6f9f82d 100644[m
+[1m--- a/src/lib/components/WikipediaPopup.svelte[m
+[1m+++ b/src/lib/components/WikipediaPopup.svelte[m
+[36m@@ -26,7 +26,7 @@[m
+       <img[m
+         src={imageUrl}[m
+         alt={title}[m
+[31m-        class="mb-4 w-full rounded-lg h-full object-contain"[m
+[32m+[m[32m        class="mb-4 h-full w-full rounded-lg object-contain"[m
+       />[m
+     {/if}[m
+     <p class="text-gray-700 dark:text-gray-300">{content}</p>[m
+[1mdiff --git a/src/lib/components/WikipediaTooltip.svelte b/src/lib/components/WikipediaTooltip.svelte[m
+[1mindex 1856fd1..820cb7e 100644[m
+[1m--- a/src/lib/components/WikipediaTooltip.svelte[m
+[1m+++ b/src/lib/components/WikipediaTooltip.svelte[m
+[36m@@ -311,7 +311,7 @@[m
+         bind:this={floating.elements.floating}[m
+         class="absolute top-0 left-0 z-[2000] w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPosition

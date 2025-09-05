@@ -26,7 +26,7 @@
       <img
         src={imageUrl}
         alt={title}
-        class="mb-4 w-full rounded-lg h-full object-contain"
+        class="mb-4 h-full w-full rounded-lg object-contain"
       />
     {/if}
     <p class="text-gray-700 dark:text-gray-300">{content}</p>

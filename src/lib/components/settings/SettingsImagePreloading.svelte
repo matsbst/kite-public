@@ -80,7 +80,7 @@
         )}
       class="w-full"
     />
-    <div class="text-xs text-gray-500 dark:text-gray-400 text-right">
+    <div class="text-right text-xs text-gray-500 dark:text-gray-400">
       {preloadingConfig.categoryPreloadDelay}ms
     </div>
   </div>
@@ -107,7 +107,7 @@
         preloadingConfig.setPreloadTimeout(parseInt(e.currentTarget.value))}
       class="w-full"
     />
-    <div class="text-xs text-gray-500 dark:text-gray-400 text-right">
+    <div class="text-right text-xs text-gray-500 dark:text-gray-400">
       {preloadingConfig.preloadTimeout === 0
         ? "Disabled"
         : `${preloadingConfig.preloadTimeout}ms`}
@@ -115,8 +115,8 @@
   </div>
 
   <!-- Cache Stats -->
-  <div class="mt-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
-    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
+  <div class="mt-6 rounded-lg bg-gray-100 p-3 dark:bg-gray-800">
+    <h4 class="mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">
       Cache Statistics
     </h4>
     <div class="space-y-1 text-xs text-gray-600 dark:text-gray-400">
@@ -140,7 +140,7 @@
         imagePreloadingService.clearCache();
         cacheStats = imagePreloadingService.getCacheStats();
       }}
-      class="mt-3 w-full px-3 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+      class="mt-3 w-full rounded bg-red-600 px-3 py-1 text-xs text-white transition-colors hover:bg-red-700"
     >
       Clear Image Cache
     </button>

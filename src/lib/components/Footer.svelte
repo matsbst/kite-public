@@ -37,7 +37,7 @@
 
 <footer class="mt-8 pt-4 pb-8 md:pb-4">
   <div
-    class="container mx-auto flex max-w-[732px] items-center justify-center space-x-3 sm:space-x-6 px-4"
+    class="container mx-auto flex max-w-[732px] items-center justify-center space-x-3 px-4 sm:space-x-6"
   >
     <a
       href="https://github.com/kagisearch/kite-public"
