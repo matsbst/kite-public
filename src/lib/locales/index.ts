@@ -26,4 +26,7 @@ export default {
   uk,
   "zh-Hans": zhHans,
   "zh-Hant": zhHant,
-} as const;
+} as Record<
+  string,
+  Record<string, { text: string; translationContext: string }> | undefined
+>;

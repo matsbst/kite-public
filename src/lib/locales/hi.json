@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "हमारे बारे में",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← {{{date}}} के सभी लेख देखें",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "कागी न्यूज़ दुनिया भर के हज़ारों समाचार स्रोतों को एक बेहतरीन दैनिक संक्षिप्त जानकारी में बदल देता है। हर महत्वपूर्ण दृष्टिकोण को केवल 5 मिनट में जानें। अंतहीन स्क्रॉलिंग नहीं। ध्यान भटकाना नहीं।",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "कागी समाचार पर नवीनतम {category} समाचार",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "समाचार",
+        "translationContext": "The word 'News' used in titles"
     }
 }

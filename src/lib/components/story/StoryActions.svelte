@@ -13,9 +13,17 @@
     batchId?: string;
     categoryId?: string;
     storyIndex?: number;
+    isSharedView?: boolean;
   }
 
-  let { story, onClose, batchId, categoryId, storyIndex }: Props = $props();
+  let {
+    story,
+    onClose,
+    batchId,
+    categoryId,
+    storyIndex,
+    isSharedView = false,
+  }: Props = $props();
 
   // Get current navigation params from URL if not provided
   const navigationParams = $derived.by(() => {
@@ -61,12 +69,14 @@
   </div>
 
   <!-- Center: Close Button -->
-  <button
-    onclick={onClose}
-    class="focus:ring-opacity-75 rounded-lg bg-black px-6 py-3 font-semibold text-white transition-colors duration-200 ease-in-out hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 focus:outline-none"
-  >
-    {s("article.closeStory") || "Close"}
-  </button>
+  {#if !isSharedView}
+    <button
+      onclick={onClose}
+      class="focus:ring-opacity-75 rounded-lg bg-black px-6 py-3 font-semibold text-white transition-colors duration-200 ease-in-out hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 focus:outline-none"
+    >
+      {s("article.closeStory") || "Close"}
+    </button>
+  {/if}
 
   <!-- Right side: Empty for balance -->
   <div class="flex-1"></div>

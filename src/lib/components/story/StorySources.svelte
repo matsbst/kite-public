@@ -30,15 +30,15 @@
   // Sort domains to ensure Reddit always appears last
   let sortedDomains = $derived.by(() => {
     if (!domains || domains.length === 0) return [];
-    
+
     // Separate Reddit domains from others
-    const redditDomains = domains.filter(d => 
-      d?.name?.toLowerCase().includes('reddit.com')
+    const redditDomains = domains.filter((d) =>
+      d?.name?.toLowerCase().includes("reddit.com"),
     );
-    const nonRedditDomains = domains.filter(d => 
-      !d?.name?.toLowerCase().includes('reddit.com')
+    const nonRedditDomains = domains.filter(
+      (d) => !d?.name?.toLowerCase().includes("reddit.com"),
     );
-    
+
     // Concatenate with Reddit at the end
     return [...nonRedditDomains, ...redditDomains];
   });
@@ -97,7 +97,10 @@
         {s("section.sources") || "Sources"}
       </h3>
       <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
-        {s("sources.summary", { publishers: publisherCount.toString(), articles: totalArticleCount.toString() })}
+        {s("sources.summary", {
+          publishers: publisherCount.toString(),
+          articles: totalArticleCount.toString(),
+        })}
       </p>
     </div>
     {#if sortedDomains.length > visibleSources}

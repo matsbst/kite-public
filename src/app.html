@@ -42,7 +42,7 @@
           } else if (storedTheme === "system" || !storedTheme) {
             // Check system preference for 'system' theme or when no theme is stored
             const darkMediaQuery = window.matchMedia(
-              "(prefers-color-scheme: dark)"
+              "(prefers-color-scheme: dark)",
             );
             darkModePreferred = darkMediaQuery.matches;
           }

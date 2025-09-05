@@ -3,9 +3,11 @@
   import { dataService } from "$lib/services/dataService";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte";
   import { createModalBehavior } from "$lib/utils/modalBehavior.svelte";
+  import { splitFirstSentence } from "$lib/utils/sentenceSplitter";
   import LottieAnimation from "./LottieAnimation.svelte";
   import Chart from "chart.js/auto";
   import "chartjs-adapter-date-fns";
+  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
   import { fade } from "svelte/transition";
 
   // Props
@@ -26,9 +28,25 @@
   let isLoadingHistory = $state(false);
   let chartCanvas = $state<HTMLCanvasElement>();
   let chartInstance: Chart | null = null;
+  let scrollContainer = $state<HTMLElement>();
 
   // Modal behavior
   const modal = createModalBehavior();
+
+  // Initialize OverlayScrollbars
+  const [initializeScrollbar] = useOverlayScrollbars({
+    defer: false,
+    options: {
+      scrollbars: {
+        visibility: "auto",
+        autoHide: "leave",
+        autoHideDelay: 800,
+      },
+      overflow: {
+        x: "hidden",
+      },
+    },
+  });
 
   // Get temperature description
   function getTemperatureText(): string {
@@ -254,6 +272,13 @@
     };
   });
 
+  // Initialize OverlayScrollbars when modal opens
+  $effect(() => {
+    if (showModal && scrollContainer) {
+      initializeScrollbar(scrollContainer);
+    }
+  });
+
   // Toggle explanation
   function toggleExplanation() {
     showExplanation = !showExplanation;
@@ -330,7 +355,11 @@
       </div>
 
       <!-- Content -->
-      <main class="flex-1 overflow-y-auto p-6">
+      <main
+        bind:this={scrollContainer}
+        class="flex-1 overflow-y-auto p-6"
+        data-overlayscrollbars-initialize
+      >
         {#if !showExplanation}
           <!-- Current Status -->
           {@const animationKey = getWeatherAnimation()}
@@ -406,14 +435,13 @@
           </div>
 
           <!-- Summary -->
-          {@const [tempPart, ...restParts] = summary.split(". ")}
-          {@const restText = restParts.join(". ")}
+          {@const [firstSentence, restText] = splitFirstSentence(summary)}
           <div class="mb-6 rounded-lg bg-gray-50 p-5 dark:bg-gray-800/50">
             <div class="space-y-2">
               <p
                 class="text-base font-medium leading-relaxed text-gray-900 dark:text-gray-100"
               >
-                {tempPart}.
+                {firstSentence}
               </p>
               {#if restText}
                 <p

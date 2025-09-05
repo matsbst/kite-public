@@ -24,6 +24,7 @@
       allCategoryStories: Record<string, Story[]>;
       categoryMap: Record<string, string>;
       batchId: string;
+      batchCreatedAt?: string;
       chaosIndex?: number;
       chaosDescription?: string;
       chaosLastUpdated?: string;
@@ -193,7 +194,10 @@
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
+      if (
+        initialCategoryId &&
+        !validEnabledCategories.includes(initialCategoryId)
+      ) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(
@@ -327,6 +331,7 @@
             allCategoryStories, // Pass all preloaded stories
             categoryMap,
             batchId,
+            batchCreatedAt: providedBatchInfo?.createdAt,
             chaosIndex,
             chaosDescription,
             chaosLastUpdated,
@@ -367,6 +372,7 @@
       categories = initialData.categories;
       const {
         batchId,
+        batchCreatedAt,
         categoryMap,
         chaosIndex,
         chaosDescription,
@@ -401,7 +407,10 @@
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
-      if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
+      if (
+        initialCategoryId &&
+        !validEnabledCategories.includes(initialCategoryId)
+      ) {
         // Check if this category exists in the available categories
         if (availableCategoryIds.includes(initialCategoryId)) {
           console.log(
@@ -514,6 +523,7 @@
           allCategoryStories,
           categoryMap,
           batchId,
+          batchCreatedAt,
           chaosIndex,
           chaosDescription,
           chaosLastUpdated,

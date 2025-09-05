@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "Sobre",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← Ver todos os artigos de {{{date}}}",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "O Kagi News destila milhares de fontes de notícias do mundo inteiro em um briefing diário perfeito. Obtenha toda perspectiva crítica em apenas 5 minutos. Sem rolagem interminável. Sem roubo de atenção.",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Últimas notícias sobre {category} no Kagi News",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "Notícias",
+        "translationContext": "The word 'News' used in titles"
     }
 }

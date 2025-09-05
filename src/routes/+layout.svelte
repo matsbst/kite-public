@@ -1,10 +1,12 @@
 <script lang="ts">
   import { browser } from "$app/environment";
+  import { page } from "$app/state";
   import { categories } from "$lib/stores/categories.svelte.js";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import { experimental } from "$lib/stores/experimental.svelte.js";
   import { fontSize } from "$lib/stores/fontSize.svelte.js";
   import { language } from "$lib/stores/language.svelte.js";
+  import { pageMetadata } from "$lib/stores/pageMetadata.svelte.js";
   import { settings } from "$lib/stores/settings.svelte.js";
   import { storyCount } from "$lib/stores/storyCount.svelte.js";
   import { theme } from "$lib/stores/theme.svelte.js";
@@ -13,9 +15,16 @@
   import { useOverlayScrollbars } from "overlayscrollbars-svelte";
   import "overlayscrollbars/overlayscrollbars.css";
   import { onMount, type Snippet } from "svelte";
+  import { MetaTags, deepMerge } from "svelte-meta-tags";
 
   // Props from layout load
   let { data, children }: { data: PageData; children: Snippet } = $props();
+
+  // Merge base meta tags with page-specific ones
+  // Use pageMetadata store for client-side updates, fallback to page.data for SSR
+  let metaTags = $derived(
+    deepMerge(data.baseMetaTags, pageMetadata || page.data.pageMetaTags || {}),
+  );
 
   onMount(async () => {
     // Initialize all stores
@@ -42,7 +51,7 @@
       );
 
       // OverlayScrollbars setup with mobile-specific options
-      const [initialize, instance] = useOverlayScrollbars({
+      const [initialize] = useOverlayScrollbars({
         defer: true,
         options: {
           scrollbars: {
@@ -56,5 +65,7 @@
     }
   });
 </script>
+
+<MetaTags {...metaTags} />
 
 {@render children()}

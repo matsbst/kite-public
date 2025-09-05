@@ -7,6 +7,7 @@ export interface NavigationParams {
   categoryId?: string | null;
   storyIndex?: number | null;
   dataLang?: string | null;
+  isShared?: boolean;
 }
 
 export interface ParsedUrl extends NavigationParams {
@@ -28,6 +29,12 @@ export class UrlNavigationService {
     const dataLangParam = url.searchParams.get("data_lang");
     if (dataLangParam) {
       params.dataLang = dataLangParam;
+    }
+
+    // Check if this is a shared link
+    const sharedParam = url.searchParams.get("shared");
+    if (sharedParam === "1") {
+      params.isShared = true;
     }
 
     if (pathSegments.length === 0) {

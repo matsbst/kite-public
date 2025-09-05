@@ -29,11 +29,14 @@ function applyTheme(theme: ThemeOption) {
     metaThemeColor.setAttribute("content", isDark ? "#1f2937" : "#ffffff");
   }
 
-  // Update favicon for dark mode
+  // Update favicon based on browser's theme preference (not app theme)
   const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
   if (favicon) {
-    favicon.href = isDark 
-      ? "/svg/kagi_news_icon_dark.svg" 
+    const browserPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    favicon.href = browserPrefersDark
+      ? "/svg/kagi_news_icon_dark.svg"
       : "/svg/kagi_news_icon.svg";
   }
 }
@@ -81,8 +84,19 @@ export const theme = {
     // Listen for system theme changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     mediaQuery.addEventListener("change", () => {
+      // Update app theme if set to system
       if (themeState.current === "system") {
         applyTheme("system");
+      }
+
+      // Always update favicon based on browser preference
+      const favicon = document.querySelector(
+        'link[rel="icon"]',
+      ) as HTMLLinkElement;
+      if (favicon) {
+        favicon.href = mediaQuery.matches
+          ? "/svg/kagi_news_icon_dark.svg"
+          : "/svg/kagi_news_icon.svg";
       }
     });
   },

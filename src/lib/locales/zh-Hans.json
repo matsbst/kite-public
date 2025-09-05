@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "关于",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← 查看{{{date}}}的所有文章",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "Kagi News 将全球数千家新闻来源提炼成一份完美的每日简报。只需 5 分钟，即可获得所有重要观点。无需无休止地滚动。没有注意力劫持。",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Kagi News 上的最新{category}新闻",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "新闻",
+        "translationContext": "The word 'News' used in titles"
     }
 }

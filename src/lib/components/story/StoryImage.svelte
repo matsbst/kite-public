@@ -86,53 +86,53 @@
 </script>
 
 {#if !imageError}
-<section class="mt-6">
-  <figure>
-    <div class="relative">
-      <div class="relative mx-auto w-[calc(100%-1rem)] max-w-[800px]">
-        <a
-          href={article.link || "#"}
-          target="_blank"
-          class="relative block"
-          class:pointer-events-none={!article.link}
-        >
-          <img
-            src={currentImageSrc || getProxiedImageUrl(article.image)}
-            alt={article.image_caption || "Story image"}
-            class="h-auto w-full rounded-lg shadow-md"
-            class:opacity-50={!imageLoaded && !imageError}
-            loading={shouldLoadEagerly ? "eager" : "lazy"}
-            decoding={shouldLoadEagerly ? "sync" : "async"}
-            onload={handleImageLoad}
-            onerror={handleImageError}
-          />
+  <section class="mt-6">
+    <figure>
+      <div class="relative">
+        <div class="relative mx-auto w-[calc(100%-1rem)] max-w-[800px]">
+          <a
+            href={article.link || "#"}
+            target="_blank"
+            class="relative block"
+            class:pointer-events-none={!article.link}
+          >
+            <img
+              src={currentImageSrc || getProxiedImageUrl(article.image)}
+              alt={article.image_caption || "Story image"}
+              class="h-auto w-full rounded-lg shadow-md"
+              class:opacity-50={!imageLoaded && !imageError}
+              loading={shouldLoadEagerly ? "eager" : "lazy"}
+              decoding={shouldLoadEagerly ? "sync" : "async"}
+              onload={handleImageLoad}
+              onerror={handleImageError}
+            />
 
-          <!-- Loading indicator -->
-          {#if !imageLoaded}
-            <div
-              class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
-            >
+            <!-- Loading indicator -->
+            {#if !imageLoaded}
               <div
-                class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
-              ></div>
-            </div>
-          {/if}
+                class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
+              >
+                <div
+                  class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
+                ></div>
+              </div>
+            {/if}
 
-          {#if showCaption && article.domain && imageLoaded && !imageError}
-            <div
-              class="bg-opacity-50 hover:bg-opacity-75 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-sm text-white"
-            >
-              {article.domain}
-            </div>
+            {#if showCaption && article.domain && imageLoaded && !imageError}
+              <div
+                class="bg-opacity-50 hover:bg-opacity-75 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-sm text-white"
+              >
+                {article.domain}
+              </div>
+            {/if}
+          </a>
+          {#if showCaption && article.image_caption && imageLoaded && !imageError}
+            <p class="mt-2 text-sm text-gray-600 italic dark:text-gray-400">
+              {article.image_caption}
+            </p>
           {/if}
-        </a>
-        {#if showCaption && article.image_caption && imageLoaded && !imageError}
-          <p class="mt-2 text-sm text-gray-600 italic dark:text-gray-400">
-            {article.image_caption}
-          </p>
-        {/if}
+        </div>
       </div>
-    </div>
-  </figure>
-</section>
+    </figure>
+  </section>
 {/if}

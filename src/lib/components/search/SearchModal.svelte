@@ -381,7 +381,7 @@
 </script>
 
 {#if visible}
-  <div 
+  <div
     class="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4"
     ontouchmove={(e) => e.preventDefault()}
     style="touch-action: none;"

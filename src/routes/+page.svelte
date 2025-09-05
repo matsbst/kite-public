@@ -3,6 +3,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { s } from "$lib/client/localization.svelte";
+  import BackToTop from "$lib/components/BackToTop.svelte";
   import CategoryNavigation from "$lib/components/CategoryNavigation.svelte";
   import DataLoader from "$lib/components/DataLoader.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -10,7 +11,6 @@
   import HistoryManager from "$lib/components/HistoryManager.svelte";
   import IntroScreen from "$lib/components/IntroScreen.svelte";
   import OnThisDay from "$lib/components/OnThisDay.svelte";
-  import OnboardingModal from "$lib/components/OnboardingModal.svelte";
   import Settings from "$lib/components/Settings.svelte";
   import SourceOverlay from "$lib/components/SourceOverlay.svelte";
   import StoryList from "$lib/components/StoryList.svelte";
@@ -18,7 +18,7 @@
   import TimeTravel from "$lib/components/TimeTravel.svelte";
   import WikipediaPopup from "$lib/components/WikipediaPopup.svelte";
   import { SearchModal } from "$lib/components/search";
-  import BackToTop from "$lib/components/BackToTop.svelte";
+  import { kiteDB } from "$lib/db/dexie";
   import { dataService } from "$lib/services/dataService";
   import { imagePreloadingService } from "$lib/services/imagePreloadingService";
   import { navigationHandlerService } from "$lib/services/navigationHandlerService";
@@ -30,9 +30,11 @@
   import { categories as categoriesStore } from "$lib/stores/categories.svelte.js";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import type { SupportedLanguage } from "$lib/stores/language.svelte";
+  import { pageMetadata } from "$lib/stores/pageMetadata.svelte.js";
   import { settings } from "$lib/stores/settings.svelte.js";
   import { storyCount } from "$lib/stores/storyCount.svelte.js";
   import type { Category, Story, OnThisDayEvent } from "$lib/types";
+  import { getCategoryDisplayName } from "$lib/utils/category";
   import { categorySwipeHandler } from "$lib/utils/categorySwipeHandler";
   import { formatTimeAgo } from "$lib/utils/formatTimeAgo";
   import {
@@ -40,9 +42,8 @@
     getImageCacheStats,
     extractStoryImages,
   } from "$lib/utils/imagePreloader";
-  import { onMount } from "svelte";
-  import { kiteDB } from "$lib/db/dexie";
   import { generateStoryId } from "$lib/utils/storyId";
+  import { onMount } from "svelte";
 
   // App state
   let dataLoaded = $state(false);
@@ -55,11 +56,39 @@
   let storyCountOverride = $state<number | null>(null);
   let showOnboarding = $state(false);
   let showSearchModal = $state(false);
+  let isSharedArticleView = $state(false);
+  let sharedArticleIndex = $state<number | null>(null);
 
   // Reactive category header position
   const categoryHeaderPosition = $derived(settings.categoryHeaderPosition);
 
   const storyExpandMode = $derived(settings.storyExpandMode);
+
+  // Function to update page title based on current category
+  function updatePageTitle(categoryId: string) {
+    // Find the category object if categories are loaded
+    const categoryObj = categories.find((c) => c.id === categoryId);
+
+    // Get localized display name
+    let displayName: string;
+    if (categoryObj) {
+      displayName = getCategoryDisplayName(categoryObj);
+    } else {
+      // Fallback if category not found (shouldn't happen)
+      displayName = categoryId;
+    }
+
+    // Create the title - just the category name, no suffix
+    const title = displayName;
+
+    // Update the metadata store for SSR/meta tags
+    pageMetadata.title = title;
+
+    // Directly update document title for immediate effect in browser
+    if (browser && document) {
+      document.title = title;
+    }
+  }
 
   // Data state
   let categories = $state<Category[]>([]);
@@ -73,6 +102,7 @@
   let allCategoryStories = $state<Record<string, Story[]>>({});
   let categoryMap = $state<Record<string, string>>({}); // Map category ID to UUID
   let currentBatchId = $state<string>("");
+  let currentBatchCreatedAt = $state<string>("");
 
   // Component references
   let storyList = $state<StoryList | undefined>();
@@ -159,6 +189,7 @@
     allCategoryStories: Record<string, Story[]>;
     categoryMap: Record<string, string>;
     batchId: string;
+    batchCreatedAt?: string;
     chaosIndex?: number;
     chaosDescription?: string;
     chaosLastUpdated?: string;
@@ -186,7 +217,11 @@
     allCategoryStories = data.allCategoryStories;
     categoryMap = data.categoryMap;
     currentBatchId = data.batchId;
+    currentBatchCreatedAt = data.batchCreatedAt || new Date().toISOString();
     lastLoadedCategory = data.currentCategory; // Set the guard for initial load
+
+    // Update the page title with the initial category
+    updatePageTitle(currentCategory);
 
     // Use the isLatestBatch value from DataLoader
     isLatestBatch = data.isLatestBatch;
@@ -233,6 +268,8 @@
         if (urlParams.storyIndex >= storyCount.current) {
           storyCountOverride = urlParams.storyIndex + 1;
         }
+
+        // Shared article state is set in onMount to avoid mutation in derived
       }
     }
   }
@@ -318,7 +355,7 @@
     // Preload search doggo icon to prevent flicker
     const doggoImg = new Image();
     doggoImg.src = "/doggo_default.svg";
-    
+
     // Check for data language in URL first
     const urlParams = parseInitialUrl();
     if (urlParams.dataLang && urlParams.dataLang !== dataLanguage.current) {
@@ -332,16 +369,35 @@
       }
     }
 
+    // Set intro as shown and onboarding as completed for all users
+    if (browser) {
+      localStorage.setItem("introShown", "true");
+      localStorage.setItem("kite-onboarding-completed", "true");
+
+      // Check if this is a shared article URL
+      const urlParams = parseInitialUrl();
+      const url = new URL(window.location.href);
+      const isShared = url.searchParams.get("shared") === "1";
+      if (
+        isShared &&
+        urlParams.storyIndex !== null &&
+        urlParams.storyIndex !== undefined
+      ) {
+        isSharedArticleView = true;
+        sharedArticleIndex = urlParams.storyIndex;
+      }
+    }
+
     // Migrate from localStorage to IndexedDB if needed (async but non-blocking)
     (async () => {
       await kiteDB.migrateFromLocalStorage();
-      
+
       // Load saved read stories from IndexedDB
       try {
         const storyIds = await kiteDB.getReadStoryIds();
         // Convert Set back to Record format for UI compatibility
         readStories = {};
-        storyIds.forEach(id => {
+        storyIds.forEach((id) => {
           readStories[id] = true;
         });
         totalStoriesRead = storyIds.size;
@@ -396,20 +452,33 @@
   // Helper functions
   const getLastUpdated = (): string =>
     lastUpdated || s("loading.default") || "Loading...";
-  const parseInitialUrl = (): NavigationParams =>
-    browser ? UrlNavigationService.parseUrl(page.url) : {};
+  const parseInitialUrl = (): NavigationParams => {
+    if (!browser) return {};
+    return UrlNavigationService.parseUrl(page.url);
+  };
   const handleIntroClose = () => {
     settings.setShowIntro(false);
     // Check if we should show onboarding
-    if (
+    // Disabled - onboarding is set as completed by default
+    /*if (
       browser &&
       localStorage.getItem("kite-onboarding-completed") !== "true"
     ) {
       showOnboarding = true;
-    }
+    }*/
   };
-  const handleOnboardingComplete = () => {
-    showOnboarding = false;
+
+  // Handle exiting shared article view
+  const handleExitSharedView = () => {
+    isSharedArticleView = false;
+    sharedArticleIndex = null;
+
+    // Remove shared parameter from URL without navigation
+    if (browser && window.location.search.includes("shared=1")) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("shared");
+      window.history.replaceState({}, "", url.pathname + url.search);
+    }
   };
 
   // Handle category change
@@ -419,6 +488,9 @@
     }
 
     currentCategory = category;
+
+    // Update the page title when category changes
+    updatePageTitle(category);
 
     // Reset view mode when changing categories (when map view is implemented)
     // if (category.toLowerCase() !== 'world') {
@@ -528,7 +600,8 @@
             );
             if (storyElement) {
               storyElement.scrollIntoView({
-                behavior: "smooth",
+                behavior:
+                  settings.storyOpenMode === "single" ? "instant" : "smooth",
                 block: "center",
               });
             }
@@ -567,7 +640,10 @@
         `[data-story-id="${storyId}"]`,
       );
       if (storyElement) {
-        storyElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        storyElement.scrollIntoView({
+          behavior: settings.storyOpenMode === "single" ? "instant" : "smooth",
+          block: "center",
+        });
       }
     }, 100);
   }
@@ -594,17 +670,26 @@
 
       if (story) {
         // Mark as read - use proper story ID
-        const uniqueStoryId = generateStoryId(story, currentBatchId, currentCategory);
-        console.log('Marking story as read:', {
+        const uniqueStoryId = generateStoryId(
+          story,
+          currentBatchId,
+          currentCategory,
+        );
+        console.log("Marking story as read:", {
           title: story.title,
           clusterNumber: story.cluster_number,
           currentBatchId,
-          generatedId: uniqueStoryId
+          generatedId: uniqueStoryId,
         });
         readStories = { ...readStories, [uniqueStoryId]: true };
-        
+
         // Also save to IndexedDB (non-blocking)
-        kiteDB.markStoryAsRead(story.title, story.cluster_number, currentBatchId, currentCategory);
+        kiteDB.markStoryAsRead(
+          story.title,
+          story.cluster_number,
+          currentBatchId,
+          currentCategory,
+        );
 
         // Update URL with story index
         if (updateUrl && historyManager) {
@@ -640,7 +725,7 @@
     // Update total stories read count
     const readCount = Object.values(readStories).filter(Boolean).length;
     totalStoriesRead = readCount;
-    
+
     // Note: Individual story reads are now persisted directly in handleReadToggle and markAllAsRead
     // This avoids the issue where bulkUpdateReadStories would lose story metadata
   });
@@ -818,9 +903,6 @@
 </script>
 
 <svelte:head>
-  <title
-    >{s("app.title") || "Kite"} - {s("app.motto") || "News. Elevated."}</title
-  >
   <!-- Preload search doggo icon to prevent flicker -->
   <link rel="preload" as="image" href="/doggo_default.svg" />
 </svelte:head>
@@ -846,7 +928,9 @@
     onNavigate={handleUrlNavigation}
   />
   <!-- Sticky Header Container for Mobile (includes category nav when on top) -->
-  <div class="md:hidden sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm">
+  <div
+    class="md:hidden sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm relative"
+  >
     <div class="container mx-auto max-w-[732px] px-4 pt-8 pb-2">
       <Header
         {offlineMode}
@@ -888,7 +972,9 @@
 
   <!-- Main Content -->
   <main
-    class="pb-[56px] md:pb-0 {categoryHeaderPosition === 'top' ? 'pt-0' : ''}"
+    class="pb-[56px] md:pb-0 relative z-20 {categoryHeaderPosition === 'top'
+      ? 'pt-0'
+      : ''}"
     ontouchstart={categorySwipeHandler.handleTouchStart}
     ontouchmove={categorySwipeHandler.handleTouchMove}
     ontouchend={categorySwipeHandler.handleTouchEnd}
@@ -921,6 +1007,22 @@
       </div>
 
       <div>
+        <!-- Shared Article Banner -->
+        {#if isSharedArticleView}
+          <div class="mb-4">
+            <button
+              onclick={handleExitSharedView}
+              class="text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+            >
+              {s("shared.viewAllArticles", {
+                date: new Date(currentBatchCreatedAt || new Date())
+                  .toLocaleDateString()
+                  .toString(),
+              })}
+            </button>
+          </div>
+        {/if}
+
         <!-- News Content -->
         {#if currentCategory === "onthisday"}
           <OnThisDay
@@ -942,6 +1044,8 @@
             bind:currentMediaInfo
             bind:isLoadingMediaInfo
             {storyCountOverride}
+            isSharedView={isSharedArticleView}
+            {sharedArticleIndex}
           />
         {/if}
       </div>
@@ -994,8 +1098,8 @@
   referenceElement={temporaryCategoryElement}
 />
 
-<!-- Onboarding Modal -->
-<OnboardingModal
+<!-- Onboarding Modal - Disabled -->
+<!-- <OnboardingModal
   visible={showOnboarding}
   {categories}
   onComplete={handleOnboardingComplete}

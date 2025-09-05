@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "Про нас",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← Переглянути всі статті за {{{date}}}",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "Kagi News перетворює тисячі світових джерел новин на один ідеальний щоденний дайджест. Отримуйте всі важливі перспективи всього за 5 хвилин. Жодного нескінченного скролінгу. Жодного викрадення уваги.",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Останні новини {category} на Kagi News",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "Новини",
+        "translationContext": "The word 'News' used in titles"
     }
 }

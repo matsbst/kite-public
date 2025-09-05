@@ -1,3 +1,5 @@
+import { splitAtNonTimeColon } from "./colonSplitter";
+
 /**
  * Parse structured text that may contain colons separating title and content
  */
@@ -6,12 +8,13 @@ export function parseStructuredText(text: string): {
   title?: string;
   content: string;
 } {
-  if (text.includes(":")) {
-    const parts = text.split(":");
+  const splitResult = splitAtNonTimeColon(text);
+  if (splitResult) {
+    const [title, content] = splitResult;
     return {
       hasTitle: true,
-      title: parts[0].trim(),
-      content: parts.slice(1).join(":").trim(),
+      title,
+      content,
     };
   }
 

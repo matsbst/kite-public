@@ -1,5 +1,6 @@
 import type { Article } from "$lib/types";
 import type { CitationMapping } from "./citationContext";
+import { splitAtNonTimeColon } from "./colonSplitter";
 
 export interface CitationItem {
   article: Article | null;
@@ -138,10 +139,12 @@ export function aggregateCitationsFromPoints(
   const texts: string[] = [];
 
   points.forEach((point) => {
-    if (point.includes(":")) {
-      // Split title and content for highlights
-      const parts = [point.split(":")[0].trim(), point.split(":")[1].trim()];
-      texts.push(...parts);
+    // Check if the point contains a colon that's not part of a time format
+    const splitResult = splitAtNonTimeColon(point);
+    if (splitResult) {
+      // Split title and content for highlights at the non-time colon
+      const [title, content] = splitResult;
+      texts.push(title, content);
     } else {
       texts.push(point);
     }

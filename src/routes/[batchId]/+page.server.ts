@@ -1,7 +1,7 @@
 import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
 
-export const load: PageServerLoad = async ({ params, url }) => {
+export const load: PageServerLoad = async ({ params }) => {
   const { batchId } = params;
 
   // Check if the request is for an XML file
@@ -16,6 +16,6 @@ export const load: PageServerLoad = async ({ params, url }) => {
     error(404, "Not found");
   }
 
-  // Otherwise, continue with normal route handling
+  // No page-specific meta tags for batch-only URLs
   return {};
 };

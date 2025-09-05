@@ -43,6 +43,7 @@ class BatchService {
     },
   ): Promise<{
     batchId: string;
+    batchCreatedAt?: string;
     categories: Category[];
     categoryMap: Record<string, string>;
     timestamp: number;
@@ -142,6 +143,7 @@ class BatchService {
 
       return {
         batchId,
+        batchCreatedAt,
         categories,
         categoryMap,
         timestamp: new Date(batchCreatedAt).getTime() / 1000,

@@ -1376,7 +1376,7 @@
         "translationContext": "Label for article icons setting"
     },
     "settings.experimental.categoryIcons.description": {
-        "text": "Quando abilitate, delle piccole icone verranno mostrate accanto alle etichette delle categorie per fornire un contesto visivo.\n</translates_start>",
+        "text": "Quando abilitate, delle piccole icone verranno mostrate accanto alle etichette delle categorie per fornire un contesto visivo.\n",
         "translationContext": "Description for category icons setting"
     },
     "settings.experimental.categoryIcons.label": {
@@ -1868,7 +1868,7 @@
         "translationContext": "Temperature description for mild world tension (21-40%)"
     },
     "worldTension.whatIsThis": {
-        "text": "Che cos'è questo?\n</transl'l_start>",
+        "text": "Che cos'è questo?\n",
         "translationContext": "Button text to show explanation of world tension"
     },
     "header.search": {
@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "Informazioni",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← Visualizza tutti gli articoli di {{{date}}}",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "Kagi News distilla migliaia di fonti di notizie da tutto il mondo in un perfetto briefing quotidiano. Ottieni ogni prospettiva critica in soli 5 minuti. Nessuno scorrimento infinito. Nessun dirottamento dell'attenzione.",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Ultime notizie {category} su Kagi News",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "Notizie",
+        "translationContext": "The word 'News' used in titles"
     }
 }

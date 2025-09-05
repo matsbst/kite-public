@@ -868,7 +868,7 @@
         "translationContext": "Loading message shown when preloading story images"
     },
     "loading.initializing": {
-        "text": "Initialiseren...\n</translates_start>",
+        "text": "Initialiseren...\n",
         "translationContext": "Loading message shown when the app is starting up"
     },
     "loading.ready": {
@@ -1320,7 +1320,7 @@
         "translationContext": "Button to reset content filter to defaults"
     },
     "settings.contentFilter.resetModal.description": {
-        "text": "Hiermee worden alle filters gewist en de instellingen hersteld naar de standaardwaarden.\n</translato_start>",
+        "text": "Hiermee worden alle filters gewist en de instellingen hersteld naar de standaardwaarden.\n",
         "translationContext": "Description for reset confirmation modal"
     },
     "settings.contentFilter.resetModal.title": {
@@ -2158,5 +2158,21 @@
     "settings.subsections.about": {
         "text": "Over",
         "translationContext": "Subsection heading for about and info section"
+    },
+    "shared.viewAllArticles": {
+        "text": "← Bekijk alle artikelen van {{{date}}}",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+    },
+    "meta.description": {
+        "text": "Kagi News vat duizenden nieuwsbronnen wereldwijd samen tot één perfect dagelijks overzicht. Krijg elk essentieel standpunt in slechts 5 minuten. Geen eindeloos scrollen. Geen aandacht afgepakt.",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Laatste {category} nieuws op Kagi News",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "Nieuws",
+        "translationContext": "The word 'News' used in titles"
     }
 }

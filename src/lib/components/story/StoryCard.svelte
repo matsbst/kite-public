@@ -28,6 +28,7 @@
     isFiltered?: boolean;
     filterKeywords?: string[];
     shouldAutoScroll?: boolean;
+    isSharedView?: boolean;
   }
 
   let {
@@ -48,6 +49,7 @@
     priority = false,
     isFiltered = false,
     filterKeywords = [],
+    isSharedView = false,
   }: Props = $props();
 
   // Story element reference
@@ -76,6 +78,9 @@
 
   // Handle story click
   function handleStoryClick() {
+    // In shared view mode, don't allow toggling/closing
+    if (isSharedView) return;
+
     // If blurred, reveal and expand
     if (isBlurred) {
       isBlurred = false;
@@ -198,6 +203,7 @@
           {categoryId}
           {storyIndex}
           onClose={handleStoryClick}
+          {isSharedView}
         />
       </div>
     {/if}

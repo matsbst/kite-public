@@ -106,6 +106,7 @@ export interface Story {
 export interface Category {
   name: string;
   id: string;
+  display_name?: string;
   feeds?: string[];
 }
 

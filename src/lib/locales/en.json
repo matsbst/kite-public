@@ -1,4 +1,16 @@
 {
+    "meta.description": {
+        "text": "Kagi News distills thousands of world-wide news sources into one perfect daily briefing. Get every critical perspective in just 5 minutes. No endless scrolling. No attention hijacking.",
+        "translationContext": "Default meta description for SEO"
+    },
+    "meta.categoryDescription": {
+        "text": "Latest {category} news on Kagi News",
+        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+    },
+    "meta.news": {
+        "text": "News",
+        "translationContext": "The word 'News' used in titles"
+    },
     "about.approach.description1": {
         "text": "World doesn't live in echo chambers. The reality emerges from the collision of different viewpoints and perspectives - that's how we separate signal from noise.",
         "translationContext": "First paragraph of the approach section"
@@ -2090,5 +2102,9 @@
     "navigation.backToTop": {
         "text": "Back to top",
         "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+    },
+    "shared.viewAllArticles": {
+        "text": "← View all articles from {{{date}}}",
+        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
     }
 }

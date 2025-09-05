@@ -1,12 +1,12 @@
 <script lang="ts">
   import { s } from "$lib/client/localization.svelte";
+  import { kiteDB } from "$lib/db/dexie";
   import { contentFilter } from "$lib/stores/contentFilter.svelte.js";
   import { settings } from "$lib/stores/settings.svelte.js";
   import { storyCount } from "$lib/stores/storyCount.svelte.js";
   import type { Story } from "$lib/types";
   import { filterStories, type FilteredStory } from "$lib/utils/contentFilter";
   import { generateStoryId } from "$lib/utils/storyId";
-  import { kiteDB } from "$lib/db/dexie";
   import StoryCard from "./story/StoryCard.svelte";
 
   // Props
@@ -23,6 +23,8 @@
     currentMediaInfo?: any;
     isLoadingMediaInfo?: boolean;
     storyCountOverride?: number | null;
+    isSharedView?: boolean;
+    sharedArticleIndex?: number | null;
   }
 
   let {
@@ -38,6 +40,8 @@
     currentMediaInfo = $bindable(null),
     isLoadingMediaInfo = $bindable(false),
     storyCountOverride = null,
+    isSharedView = false,
+    sharedArticleIndex = null,
   }: Props = $props();
 
   // Handle story toggle
@@ -53,13 +57,23 @@
     const storyId = generateStoryId(story, batchId, currentCategory);
     const isNowRead = !readStories[storyId];
     readStories[storyId] = isNowRead;
-    
+
     // Persist to database
     if (isNowRead) {
-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.markStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
     } else {
       // Remove from database when unmarking as read
-      await kiteDB.unmarkStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.unmarkStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
       // Also remove from local state
       delete readStories[storyId];
       readStories = { ...readStories }; // Trigger reactivity
@@ -72,7 +86,12 @@
       const storyId = generateStoryId(story, batchId, currentCategory);
       readStories[storyId] = true;
       // Persist to database
-      await kiteDB.markStoryAsRead(story.title, story.cluster_number, batchId, currentCategory);
+      await kiteDB.markStoryAsRead(
+        story.title,
+        story.cluster_number,
+        batchId,
+        currentCategory,
+      );
     });
   }
 
@@ -97,6 +116,22 @@
 
   // Apply content filtering and story count limit
   const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
+    // If in shared view mode, only show the specific shared article
+    if (
+      isSharedView &&
+      sharedArticleIndex !== null &&
+      stories[sharedArticleIndex]
+    ) {
+      const sharedStory = stories[sharedArticleIndex];
+      return {
+        displayedStories: [sharedStory] as FilteredStory[],
+        filteredCount: 0,
+        hiddenStories: stories.filter(
+          (_, index) => index !== sharedArticleIndex,
+        ),
+      };
+    }
+
     // First apply story count limit
     // Use override if provided (e.g., from URL navigation), otherwise use user setting
     const effectiveLimit = storyCountOverride ?? storyCount.current;
@@ -127,7 +162,9 @@
 
   // Check if all stories are read
   const allStoriesRead = $derived(
-    displayedStories.every((story) => readStories[generateStoryId(story, batchId, currentCategory)]),
+    displayedStories.every(
+      (story) => readStories[generateStoryId(story, batchId, currentCategory)],
+    ),
   );
 
   // Check if all stories are expanded
@@ -182,7 +219,8 @@
         storyIndex={index}
         {batchId}
         categoryId={currentCategory}
-        isRead={readStories[generateStoryId(story, batchId, currentCategory)] || false}
+        isRead={readStories[generateStoryId(story, batchId, currentCategory)] ||
+          false}
         isExpanded={expandedStories[
           story.cluster_number?.toString() || story.title
         ] || false}
@@ -197,6 +235,7 @@
         bind:sourceArticles
         bind:currentMediaInfo
         bind:isLoadingMediaInfo
+        {isSharedView}
       />
     {/each}
 
