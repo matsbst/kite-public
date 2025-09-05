@@ -3074,21 +3074,21 @@
   },
   "Privacy": {
     "category_type": "topic",
-	"source_language": "en",
-	"display_names": {
-	  "en": "Privacy",
-	  "de": "Datenschutz",
-	  "fr": "Vie privée",
-	  "es": "Privacidad",
-	  "pt": "Privacidade",
-	  "it": "Privacy",
-	  "nl": "Privacy",
-	  "zh-Hans": "隐私",
-	  "zh-Hant": "隱私",
-	  "ja": "プライバシー",
-	  "hi": "गोपनीयता",
-	  "uk": "Приватність"
-	},
+    "source_language": "en",
+    "display_names": {
+      "en": "Privacy",
+      "de": "Datenschutz",
+      "fr": "Vie privée",
+      "es": "Privacidad",
+      "pt": "Privacidade",
+      "it": "Privacy",
+      "nl": "Privacy",
+      "zh-Hans": "隐私",
+      "zh-Hant": "隱私",
+      "ja": "プライバシー",
+      "hi": "गोपनीयता",
+      "uk": "Приватність"
+    },
     "feeds": [
       "https://www.eff.org/rss/updates.xml",
       "https://citizenlab.ca/feed/",
