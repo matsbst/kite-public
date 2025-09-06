@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "我們致力於資源的多樣性和透明度，歡迎您<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">做出貢獻</a>，以拓寬視野。這種多來源方法有助於呈現超越任何單一觀點的全貌。",
+        "text": "我們致力於資源的多樣性和透明度，歡迎您<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">做出貢獻</a>，以拓寬視野。這種多來源方法有助於呈現超越任何單一觀點的全貌。",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "透過設定中的類別重新排序與開關，個人化你的資訊提供。想貢獻嗎？ Kagi News 的大部分內容是<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">開源</a>的，包括我們的網路應用程式和社群策劃的資訊提供。",
+        "text": "透過設定中的類別重新排序與開關，個人化你的資訊提供。想貢獻嗎？ Kagi News 的大部分內容是<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">開源</a>的，包括我們的網路應用程式和社群策劃的資訊提供。",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {
