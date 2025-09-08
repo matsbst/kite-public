@@ -3,7 +3,6 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/state";
   import { s } from "$lib/client/localization.svelte";
-  import BackToTop from "$lib/components/BackToTop.svelte";
   import CategoryNavigation from "$lib/components/CategoryNavigation.svelte";
   import DataLoader from "$lib/components/DataLoader.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -19,7 +18,7 @@
   import TimeTravel from "$lib/components/TimeTravel.svelte";
   import WikipediaPopup from "$lib/components/WikipediaPopup.svelte";
   import { SearchModal } from "$lib/components/search";
-  import { kiteDB } from "$lib/db/dexie";
+  import BackToTop from "$lib/components/BackToTop.svelte";
   import { dataService } from "$lib/services/dataService";
   import { imagePreloadingService } from "$lib/services/imagePreloadingService";
   import { navigationHandlerService } from "$lib/services/navigationHandlerService";
@@ -41,8 +40,9 @@
     getImageCacheStats,
     extractStoryImages,
   } from "$lib/utils/imagePreloader";
-  import { generateStoryId } from "$lib/utils/storyId";
   import { onMount } from "svelte";
+  import { kiteDB } from "$lib/db/dexie";
+  import { generateStoryId } from "$lib/utils/storyId";
 
   // App state
   let dataLoaded = $state(false);
@@ -318,7 +318,7 @@
     // Preload search doggo icon to prevent flicker
     const doggoImg = new Image();
     doggoImg.src = "/doggo_default.svg";
-
+    
     // Check for data language in URL first
     const urlParams = parseInitialUrl();
     if (urlParams.dataLang && urlParams.dataLang !== dataLanguage.current) {
@@ -335,13 +335,13 @@
     // Migrate from localStorage to IndexedDB if needed (async but non-blocking)
     (async () => {
       await kiteDB.migrateFromLocalStorage();
-
+      
       // Load saved read stories from IndexedDB
       try {
         const storyIds = await kiteDB.getReadStoryIds();
         // Convert Set back to Record format for UI compatibility
         readStories = {};
-        storyIds.forEach((id) => {
+        storyIds.forEach(id => {
           readStories[id] = true;
         });
         totalStoriesRead = storyIds.size;
@@ -594,26 +594,17 @@
 
       if (story) {
         // Mark as read - use proper story ID
-        const uniqueStoryId = generateStoryId(
-          story,
-          currentBatchId,
-          currentCategory,
-        );
-        console.log("Marking story as read:", {
+        const uniqueStoryId = generateStoryId(story, currentBatchId, currentCategory);
+        console.log('Marking story as read:', {
           title: story.title,
           clusterNumber: story.cluster_number,
           currentBatchId,
-          generatedId: uniqueStoryId,
+          generatedId: uniqueStoryId
         });
         readStories = { ...readStories, [uniqueStoryId]: true };
-
+        
         // Also save to IndexedDB (non-blocking)
-        kiteDB.markStoryAsRead(
-          story.title,
-          story.cluster_number,
-          currentBatchId,
-          currentCategory,
-        );
+        kiteDB.markStoryAsRead(story.title, story.cluster_number, currentBatchId, currentCategory);
 
         // Update URL with story index
         if (updateUrl && historyManager) {
@@ -649,7 +640,7 @@
     // Update total stories read count
     const readCount = Object.values(readStories).filter(Boolean).length;
     totalStoriesRead = readCount;
-
+    
     // Note: Individual story reads are now persisted directly in handleReadToggle and markAllAsRead
     // This avoids the issue where bulkUpdateReadStories would lose story metadata
   });
@@ -855,7 +846,7 @@
     onNavigate={handleUrlNavigation}
   />
   <!-- Sticky Header Container for Mobile (includes category nav when on top) -->
-  <div class="sticky top-0 z-50 bg-white shadow-sm md:hidden dark:bg-gray-900">
+  <div class="md:hidden sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-sm">
     <div class="container mx-auto max-w-[732px] px-4 pt-8 pb-2">
       <Header
         {offlineMode}

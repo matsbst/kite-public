@@ -176,7 +176,7 @@
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
-    class="fixed inset-0 flex bg-black/50 {positionClasses[
+    class="fixed inset-0 bg-black/50 flex {positionClasses[
       position
     ]} p-0 sm:p-4"
     style="z-index: {zIndex}"
@@ -186,10 +186,10 @@
     <!-- Modal -->
     <div
       bind:this={modalElement}
-      class="relative h-full w-full sm:h-auto {sizeClasses[size]} {position ===
+      class="relative w-full h-full sm:h-auto {sizeClasses[size]} {position ===
       'bottom'
         ? 'rounded-t-2xl'
-        : 'sm:rounded-lg'} flex flex-col bg-white shadow-xl dark:bg-gray-800 {className}"
+        : 'sm:rounded-lg'} bg-white shadow-xl dark:bg-gray-800 flex flex-col {className}"
       role="dialog"
       aria-modal="true"
       aria-label={ariaLabel || title || "Modal dialog"}
@@ -218,7 +218,7 @@
           {#if showCloseButton}
             <button
               onclick={onClose}
-              class="focus-visible-ring rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+              class="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring"
               aria-label={s("ui.close") || "Close"}
             >
               <svg

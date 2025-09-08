@@ -206,7 +206,7 @@
   <!-- Blur Warning Overlay -->
   {#if isBlurred && filterKeywords && filterKeywords.length > 0}
     <div
-      class="absolute top-1/2 left-0 z-10 flex -translate-y-1/2 items-center gap-3 px-4"
+      class="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center gap-3 px-4"
     >
       <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
         {s("contentFilter.filteredBecause") || "Hidden due to filter:"}
@@ -214,7 +214,7 @@
       <div class="flex items-center gap-2">
         {#each filterKeywords.slice(0, 3) as keyword}
           <span
-            class="rounded bg-white/50 px-2 py-0.5 text-xs font-semibold text-gray-800 dark:bg-black/30 dark:text-gray-200"
+            class="text-xs font-semibold text-gray-800 dark:text-gray-200 bg-white/50 dark:bg-black/30 px-2 py-0.5 rounded"
           >
             {keyword}
           </span>
@@ -225,7 +225,7 @@
           </span>
         {/if}
       </div>
-      <span class="text-xs text-gray-600 italic dark:text-gray-400">
+      <span class="text-xs text-gray-600 dark:text-gray-400 italic">
         {s("contentFilter.clickToReveal") || "Click to show"}
       </span>
     </div>

@@ -1,3 +1,3 @@
-import { GET as proxyGET } from "$lib/server/proxy";
+import { GET as proxyGET } from '$lib/server/proxy';
 
-export const GET = proxyGET("/categories/metadata");
+export const GET = proxyGET('/categories/metadata');

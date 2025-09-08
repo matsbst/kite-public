@@ -140,15 +140,15 @@
         transition:slide={{ duration: 300 }}
       >
         <!-- Progress Bar -->
-        <div class="h-2 rounded-t-2xl bg-gray-200 dark:bg-gray-700">
+        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-t-2xl">
           <div
-            class="h-full rounded-t-2xl bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 dark:from-blue-400 dark:to-blue-500"
+            class="h-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 transition-all duration-300 rounded-t-2xl"
             style="width: {(currentStep / totalSteps) * 100}%"
           ></div>
         </div>
 
         <!-- Modal Body -->
-        <div class="overflow-hidden rounded-b-2xl bg-white dark:bg-gray-800">
+        <div class="bg-white dark:bg-gray-800 rounded-b-2xl overflow-hidden">
           <div
             bind:this={scrollableElement}
             class="max-h-[600px] overflow-hidden"
@@ -167,19 +167,19 @@
 
           <!-- Navigation Buttons -->
           <div class="px-8 pb-8">
-            <div class="mt-4 flex justify-between">
+            <div class="flex justify-between mt-4">
               <div class="flex items-center gap-4">
                 {#if currentStep === 1}
                   <button
                     onclick={skipOnboarding}
-                    class="cursor-pointer rounded-lg bg-gray-100 px-6 py-2 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                    class="px-6 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                   >
                     {s("onboarding.button.skip") || "Skip"}
                   </button>
                 {:else}
                   <button
                     onclick={previousStep}
-                    class="cursor-pointer px-6 py-2 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+                    class="px-6 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer"
                   >
                     {s("onboarding.button.back") || "← Back"}
                   </button>
@@ -188,7 +188,7 @@
 
               <button
                 onclick={nextStep}
-                class="cursor-pointer rounded-lg bg-black px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                class="px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors cursor-pointer"
               >
                 {currentStep === totalSteps
                   ? s("onboarding.button.getStarted") || "Get Started"

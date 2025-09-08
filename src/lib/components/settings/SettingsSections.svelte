@@ -64,14 +64,14 @@
     <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
       {s("settings.sections.title") || "Article Sections"}
     </h4>
-    <div class="mb-3 flex items-center justify-between">
+    <div class="mb-3 flex justify-between items-center">
       <p class="text-xs text-gray-500 dark:text-gray-400">
         {s("settings.sections.instructions") ||
           "Drag to reorder sections. Toggle to enable/disable."}
       </p>
 
       <button
-        class="mr-2 text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 mr-2"
         onclick={() =>
           sectionItems.map((section) => sections.toggleSection(section.id))}
       >
@@ -103,7 +103,7 @@
           <div class="flex items-center space-x-3">
             <!-- Drag Handle -->
             <div
-              class="cursor-grab touch-manipulation text-gray-400 hover:text-gray-600 active:cursor-grabbing dark:text-gray-500 dark:hover:text-gray-300"
+              class="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 touch-manipulation"
               use:dragHandle
               aria-label="drag handle for {getSectionName(section.id)}"
               role="button"
@@ -139,14 +139,14 @@
                 position="left"
               >
                 <button
-                  class="focus-visible-ring relative inline-flex h-6 w-11 cursor-not-allowed items-center rounded-full bg-blue-600 opacity-60 transition-colors"
+                  class="focus-visible-ring relative inline-flex h-6 w-11 items-center rounded-full transition-colors bg-blue-600 opacity-60 cursor-not-allowed"
                   role="switch"
                   aria-checked={true}
                   aria-label={`${getSectionName(section.id)} (always enabled)`}
                   disabled
                 >
                   <span
-                    class="inline-block h-4 w-4 translate-x-6 transform rounded-full bg-white transition"
+                    class="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"
                   ></span>
                 </button>
               </Tooltip>
@@ -175,10 +175,10 @@
   </div>
 
   <!-- Reset button -->
-  <div class="mb-4 text-center">
+  <div class="text-center mb-4">
     {#if showResetConfirmation}
       <span
-        class="flex items-center justify-center gap-2 text-sm text-green-600 dark:text-green-400"
+        class="text-sm text-green-600 dark:text-green-400 flex items-center justify-center gap-2"
       >
         <svg
           width="16"

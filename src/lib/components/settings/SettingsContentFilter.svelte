@@ -224,7 +224,7 @@
 
   <!-- Preset Filters -->
   <div>
-    <div class="mb-1 flex items-center justify-between">
+    <div class="flex items-center justify-between mb-1">
       <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
         {s("settings.contentFilter.presets.label") || "Filter Presets"}
       </h3>
@@ -246,10 +246,10 @@
           <button
             onclick={() =>
               contentFilter.togglePreset(preset.id, dataLanguage.current)}
-            class="flex w-full items-center justify-between rounded-md border px-3 py-2 text-sm transition-colors
+            class="flex items-center justify-between w-full px-3 py-2 text-sm rounded-md border transition-colors
 							{contentFilter.isPresetActive(preset.id)
-              ? 'border-blue-300 bg-blue-50 text-blue-700 dark:border-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
-              : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'}"
+              ? 'bg-blue-50 border-blue-300 text-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-300'
+              : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'}"
           >
             <span class="flex items-center gap-2">
               {preset.label}
@@ -297,7 +297,7 @@
       <button
         onclick={addKeyword}
         disabled={!newKeyword.trim()}
-        class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:disabled:bg-gray-600"
+        class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed dark:bg-blue-500 dark:hover:bg-blue-600 dark:disabled:bg-gray-600"
       >
         <IconPlus size={20} />
       </button>
@@ -307,7 +307,7 @@
   <!-- Active Filters -->
   {#if contentFilter.keywords.length > 0}
     <div>
-      <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+      <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
         {s("settings.contentFilter.activeFilters") || "Active Filters"}
       </h4>
 
@@ -316,7 +316,7 @@
         {@const preset = localizedPresets.find((p) => p.id === presetId)}
         {#if preset}
           <div class="mb-3">
-            <div class="mb-1 text-xs text-gray-500 dark:text-gray-400">
+            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
               {preset.label}:
             </div>
             <div class="flex flex-wrap gap-2">
@@ -335,7 +335,7 @@
       <!-- Custom Keywords -->
       {#if customKeywords.length > 0}
         <div class="mb-3">
-          <div class="mb-1 text-xs text-gray-500 dark:text-gray-400">
+          <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
             {s("settings.contentFilter.customKeywords") || "Custom"}:
           </div>
           <div class="flex flex-wrap gap-2">
@@ -474,24 +474,24 @@
           contentFilter.setShowFilteredCount(e.currentTarget.checked)}
       />
       <div
-        class="peer h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-blue-600 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white dark:bg-gray-700 dark:peer-checked:bg-blue-500"
+        class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:bg-gray-700 dark:peer-checked:bg-blue-500"
       ></div>
     </label>
   </div>
 
   <!-- Export/Import Section -->
-  <div class="border-t border-gray-200 pt-4 dark:border-gray-700">
-    <h4 class="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+  <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+    <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
       {s("settings.contentFilter.exportImport.title") || "Backup & Restore"}
     </h4>
-    <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
       {s("settings.contentFilter.exportImport.description") ||
         "Export your filter settings to a file or import from a previous backup"}
     </p>
-    <div class="relative flex gap-3">
+    <div class="flex gap-3 relative">
       <button
         onclick={exportConfig}
-        class="flex items-center gap-2 rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+        class="flex items-center gap-2 px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300"
       >
         <IconDownload size={16} />
         {s("settings.contentFilter.export") || "Export Settings"}
@@ -499,7 +499,7 @@
       <button
         bind:this={importButtonElement}
         onclick={() => fileInputElement?.click()}
-        class="flex items-center gap-2 rounded-md bg-gray-200 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+        class="flex items-center gap-2 px-4 py-2 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300"
       >
         <IconUpload size={16} />
         {s("settings.contentFilter.import") || "Import Settings"}
@@ -516,45 +516,45 @@
       {#if showImportConfirm}
         <div
           id="import-confirm-popup"
-          class="animate-in fade-in slide-in-from-bottom-1 absolute bottom-full left-0 z-50 mb-2"
+          class="absolute bottom-full mb-2 left-0 z-50 animate-in fade-in slide-in-from-bottom-1"
         >
           <div
-            class="w-80 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 w-80"
           >
-            <h5 class="mb-2 font-medium text-gray-900 dark:text-gray-100">
+            <h5 class="font-medium text-gray-900 dark:text-gray-100 mb-2">
               {s("settings.contentFilter.importConfirm.title") ||
                 "Import Settings?"}
             </h5>
-            <p class="mb-2 text-sm text-gray-700 dark:text-gray-300">
+            <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">
               {s("settings.contentFilter.importConfirm.warning") ||
                 "This will replace all current filter settings."}
             </p>
             {#if importWarning}
               <div
-                class="mb-3 rounded border border-yellow-200 bg-yellow-50 p-2 dark:border-yellow-800 dark:bg-yellow-900/20"
+                class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded p-2 mb-3"
               >
                 <p class="text-xs text-yellow-800 dark:text-yellow-300">
                   ⚠️ {importWarning}
                 </p>
               </div>
             {/if}
-            <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">
               {s("settings.contentFilter.importConfirm.backup") ||
                 "Tip: Export your current settings first to create a backup."}
             </p>
-            <div class="flex justify-end gap-2">
+            <div class="flex gap-2 justify-end">
               <button
                 onclick={() => {
                   showImportConfirm = false;
                   if (fileInputElement) fileInputElement.value = "";
                 }}
-                class="rounded-md bg-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300"
               >
                 {s("common.cancel") || "Cancel"}
               </button>
               <button
                 onclick={confirmImport}
-                class="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700"
+                class="px-3 py-1.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-md"
               >
                 {s("settings.contentFilter.importConfirm.action") || "Import"}
               </button>
@@ -566,7 +566,7 @@
   </div>
 
   <!-- Reset Button -->
-  <div class="relative border-t border-gray-200 pt-4 dark:border-gray-700">
+  <div class="pt-4 border-t border-gray-200 dark:border-gray-700 relative">
     <button
       bind:this={resetButtonElement}
       onclick={() => (showResetConfirm = !showResetConfirm)}
@@ -579,25 +579,25 @@
     {#if showResetConfirm}
       <div
         id="reset-confirm-popup"
-        class="animate-in fade-in slide-in-from-bottom-1 absolute bottom-full left-0 z-50 mb-2"
+        class="absolute bottom-full mb-2 left-0 z-50 animate-in fade-in slide-in-from-bottom-1"
       >
         <div
-          class="w-72 rounded-lg border border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800"
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 w-72"
         >
-          <p class="mb-3 text-sm text-gray-700 dark:text-gray-300">
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
             {s("settings.contentFilter.resetModal.description") ||
               "This will clear all filters and reset settings to defaults."}
           </p>
-          <div class="flex justify-end gap-2">
+          <div class="flex gap-2 justify-end">
             <button
               onclick={() => (showResetConfirm = false)}
-              class="rounded-md bg-gray-200 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              class="px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300"
             >
               {s("common.cancel") || "Cancel"}
             </button>
             <button
               onclick={resetToDefaults}
-              class="rounded-md bg-red-600 px-3 py-1.5 text-sm text-white hover:bg-red-700"
+              class="px-3 py-1.5 text-sm bg-red-600 hover:bg-red-700 text-white rounded-md"
             >
               {s("common.reset") || "Reset"}
             </button>

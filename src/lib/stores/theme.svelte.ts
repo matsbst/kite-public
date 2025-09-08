@@ -32,8 +32,8 @@ function applyTheme(theme: ThemeOption) {
   // Update favicon for dark mode
   const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
   if (favicon) {
-    favicon.href = isDark
-      ? "/svg/kagi_news_icon_dark.svg"
+    favicon.href = isDark 
+      ? "/svg/kagi_news_icon_dark.svg" 
       : "/svg/kagi_news_icon.svg";
   }
 }

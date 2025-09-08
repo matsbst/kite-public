@@ -41,7 +41,7 @@
 
 <div class="order-last mt-6 flex w-full items-center justify-center md:px-0">
   <!-- Left side: Share and Report Buttons -->
-  <div class="flex flex-1 justify-start gap-2">
+  <div class="flex-1 flex justify-start gap-2">
     <ShareButton
       title={story.title}
       description={story.short_summary}

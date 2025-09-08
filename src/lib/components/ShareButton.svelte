@@ -209,7 +209,7 @@
     <IconShare
       size={20}
       stroke={2}
-      class="text-gray-600 transition-colors group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-200"
+      class="transition-colors text-gray-600 group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-200"
     />
   {/if}
 </button>
@@ -221,7 +221,7 @@
       bind:this={floating.elements.floating}
       class="absolute top-0 left-0 z-[2000] flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned
         ? 'opacity-100'
-        : 'invisible opacity-0'}"
+        : 'opacity-0 invisible'}"
       style={floating.floatingStyles}
     >
       <IconCheck size={16} stroke={2.5} class="text-white" />

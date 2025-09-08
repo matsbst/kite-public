@@ -57,7 +57,7 @@
     <!-- Loading spinner -->
     <div class="flex items-center justify-center py-12">
       <div
-        class="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-400"
+        class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
       ></div>
     </div>
   {:else}

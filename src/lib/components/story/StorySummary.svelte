@@ -81,7 +81,7 @@
   </div>
   {#if story.location}
     <button
-      class="focus-visible-ring flex cursor-pointer items-center rounded border-none bg-transparent p-0 text-gray-600 dark:text-gray-300"
+      class="flex cursor-pointer items-center text-gray-600 dark:text-gray-300 bg-transparent border-none p-0 focus-visible-ring rounded"
       onclick={handleLocationClick}
       onkeydown={handleLocationKeydown}
       title={s("article.location") || `View on ${mapServiceName}`}

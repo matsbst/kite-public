@@ -1,5 +1,5 @@
-import "@testing-library/jest-dom/vitest";
-import { vi } from "vitest";
+import '@testing-library/jest-dom/vitest';
+import { vi } from 'vitest';
 
 // Make vi available globally
 (global as any).vi = vi;
@@ -19,9 +19,9 @@ global.IntersectionObserver = vi.fn().mockImplementation(() => ({
 }));
 
 // Mock matchMedia
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: vi.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
@@ -46,9 +46,9 @@ const localStorageMock = {
 global.localStorage = localStorageMock as any;
 
 // Mock OverlayScrollbars
-vi.mock("overlayscrollbars", () => ({
+vi.mock('overlayscrollbars', () => ({
   OverlayScrollbars: vi.fn(() => ({
     options: vi.fn(),
-    destroy: vi.fn(),
-  })),
+    destroy: vi.fn()
+  }))
 }));

@@ -73,9 +73,9 @@ export function shouldFilterStory(
     // Create a regex for whole word matching
     // \b ensures word boundaries (start/end of word)
     // Special regex characters in keywords are escaped
-    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(`\\b${escapedKeyword}\\b`, "i");
-
+    const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
+    
     if (regex.test(textToCheck)) {
       matchedKeywords.push(keyword);
     }

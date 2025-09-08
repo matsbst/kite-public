@@ -151,7 +151,7 @@
   <div class="relative hidden md:block">
     <!-- Left Arrow -->
     <button
-      class="focus-visible-ring absolute top-1/2 left-[-2rem] -translate-y-1/2 cursor-pointer rounded px-2 py-1 text-gray-400 transition-colors hover:text-gray-600 disabled:opacity-50 dark:text-gray-500 dark:hover:text-gray-300"
+      class="absolute top-1/2 left-[-2rem] -translate-y-1/2 cursor-pointer rounded px-2 py-1 text-gray-400 transition-colors hover:text-gray-600 disabled:opacity-50 focus-visible-ring dark:text-gray-500 dark:hover:text-gray-300"
       onclick={prevSlide}
       disabled={currentSlide === 0}
       aria-label="Previous slide"
@@ -223,7 +223,7 @@
 
     <!-- Right Arrow -->
     <button
-      class="focus-visible-ring absolute top-1/2 right-[-2rem] -translate-y-1/2 cursor-pointer rounded px-2 py-1 text-gray-400 transition-colors hover:text-gray-600 disabled:opacity-50 dark:text-gray-500 dark:hover:text-gray-300"
+      class="absolute top-1/2 right-[-2rem] -translate-y-1/2 cursor-pointer rounded px-2 py-1 text-gray-400 transition-colors hover:text-gray-600 disabled:opacity-50 focus-visible-ring dark:text-gray-500 dark:hover:text-gray-300"
       onclick={nextSlide}
       disabled={currentSlide === chunkedPeople.length - 1}
       aria-label="Next slide"
@@ -245,7 +245,7 @@
       <div class="mt-4 flex justify-center space-x-2">
         {#each chunkedPeople as _, i}
           <button
-            class="focus-visible-ring h-2 w-2 rounded-full transition-colors {currentSlide ===
+            class="h-2 w-2 rounded-full transition-colors focus-visible-ring {currentSlide ===
             i
               ? 'bg-gray-600 dark:bg-gray-400'
               : 'bg-gray-300 dark:bg-gray-600'}"

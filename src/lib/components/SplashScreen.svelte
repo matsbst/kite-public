@@ -55,7 +55,7 @@
 </script>
 
 <div
-  class="dark:bg-dark-bg fixed inset-0 z-50 flex items-center justify-center bg-white"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-dark-bg"
 >
   <div class="text-center">
     <div class="relative mx-auto mb-4 h-40 w-40">
@@ -63,7 +63,7 @@
       <img
         src="/svg/spin_body.svg"
         alt=""
-        class="animate-spin-slow absolute inset-0 h-full w-full"
+        class="absolute inset-0 h-full w-full animate-spin-slow"
         class:brightness-75={hasError}
         class:sepia={hasError}
         class:hue-rotate-[320deg]={hasError}
@@ -76,7 +76,7 @@
           ? "/svg/spin_circle_dark.svg"
           : "/svg/spin_circle_light.svg"}
         alt=""
-        class="animate-spin-reverse absolute inset-0 h-full w-full"
+        class="absolute inset-0 h-full w-full animate-spin-reverse"
         class:brightness-75={hasError}
         class:sepia={hasError}
         class:hue-rotate-[320deg]={hasError}
@@ -84,7 +84,7 @@
       />
     </div>
     <h1
-      class="dark:text-dark-text mb-2 flex items-center justify-center text-2xl font-bold text-gray-800"
+      class="mb-2 flex items-center justify-center text-2xl font-bold text-gray-800 dark:text-dark-text"
     >
       <span>{s("app.title") || "Kite"}</span>
       <span
@@ -99,10 +99,10 @@
 
     {#if hasError}
       <div class="mt-4 text-center">
-        <p class="font-medium text-red-500 dark:text-red-400">
+        <p class="text-red-500 dark:text-red-400 font-medium">
           {errorMessage || "An error occurred"}
         </p>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
           {s("loading.errorFallback") ||
             "Continuing with limited functionality..."}
         </p>
@@ -115,7 +115,7 @@
         </p>
 
         <!-- Loading stage -->
-        <p class="mt-1 min-h-[1.5rem] text-sm text-gray-500 dark:text-gray-400">
+        <p class="min-h-[1.5rem] text-sm text-gray-500 dark:text-gray-400 mt-1">
           {stage || ""}
         </p>
       </div>

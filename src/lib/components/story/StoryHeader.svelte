@@ -71,7 +71,7 @@
 <!-- Story Header -->
 <header class="mb-1 flex items-center justify-between">
   <span
-    class="category-label inline-flex items-center rounded py-1 text-xs text-gray-700 uppercase dark:text-gray-300"
+    class="category-label inline-flex items-center rounded py-1 text-xs text-gray-700 dark:text-gray-300 uppercase"
   >
     {#if categoryEmoji}
       <span class="mr-1">{categoryEmoji}</span>
@@ -86,7 +86,7 @@
 <div class="flex items-start">
   <div class="flex-grow">
     <button
-      class="dark:text-dark-text focus-visible-ring mb-2 flex w-full cursor-pointer items-center rounded border-none bg-transparent p-0 text-left text-xl text-gray-800"
+      class="dark:text-dark-text mb-2 flex cursor-pointer items-center text-xl text-gray-800 text-left w-full bg-transparent border-none p-0 focus-visible-ring rounded"
       class:font-semibold={!isRead}
       onclick={onTitleClick}
       id="story-title-{story.cluster_number}"

@@ -45,7 +45,7 @@
 
 <div class="space-y-2">
   {#if showTooltip}
-    <div class="mb-1 flex items-center space-x-1">
+    <div class="flex items-center space-x-1 mb-1">
       <label
         for="ui-language-select"
         class="text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -79,9 +79,9 @@
       onChange={handleLanguageChange}
     />
     {#if showLoadingSpinner && isLoading}
-      <div class="absolute top-2.5 right-3">
+      <div class="absolute right-3 top-2.5">
         <div
-          class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"
+          class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"
         ></div>
       </div>
     {/if}

@@ -69,12 +69,12 @@
 
 <section class="my-8 rounded-lg bg-[#F3F6FE] p-4 dark:bg-gray-700">
   <!-- Quote text on first line -->
-  <p class="first-letter-capitalize mb-2 text-black dark:text-white">
+  <p class="text-black dark:text-white mb-2 first-letter-capitalize">
     <span class="italic">"</span>{#if sourceUrl}<a
         href={sourceUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-black underline transition-colors hover:text-[#183FDC] dark:text-white dark:hover:text-[#5B89FF]"
+        class="underline text-black dark:text-white hover:text-[#183FDC] dark:hover:text-[#5B89FF] transition-colors"
         ><CitationText
           text={displayQuote}
           showFavicons={true}
@@ -95,7 +95,7 @@
 
   <!-- Attribution information on second line -->
   {#if author || attribution}
-    <p class="text-sm text-black dark:text-white">
+    <p class="text-black dark:text-white text-sm">
       {#if author && attribution}
         <span>{author} - {attribution}</span>
       {:else if attribution}

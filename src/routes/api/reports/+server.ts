@@ -1,3 +1,3 @@
-import { POST as proxyPOST } from "$lib/server/proxy";
+import { POST as proxyPOST } from '$lib/server/proxy';
 
-export const POST = proxyPOST("/reports");
+export const POST = proxyPOST('/reports');

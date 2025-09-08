@@ -379,7 +379,7 @@
         bind:this={floating.elements.floating}
         class="absolute top-0 left-0 z-[2000] w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
           ? 'opacity-100'
-          : 'invisible opacity-0'}"
+          : 'opacity-0 invisible'}"
         style={floating.floatingStyles}
         onmouseenter={handleTooltipEnter}
         onmouseleave={handleTooltipLeave}

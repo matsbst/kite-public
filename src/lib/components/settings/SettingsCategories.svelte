@@ -316,7 +316,7 @@
       {s("settings.categories.enabled") || "Enabled Categories"}
     </h4>
     <div
-      class="flex min-h-[40px] flex-wrap gap-2 rounded-lg border-2 border-dashed p-3"
+      class="min-h-[40px] rounded-lg p-3 flex flex-wrap gap-2 border-2 border-dashed"
       class:border-gray-300={!isDragging}
       class:dark:border-gray-600={!isDragging}
       class:border-transparent={isDragging}
@@ -342,7 +342,7 @@
 						{draggedItemId === category.id ? 'opacity-50' : ''} 
 						{enabledItems.length === 1
             ? 'cursor-not-allowed opacity-75'
-            : 'cursor-grab hover:bg-blue-200 active:cursor-grabbing dark:hover:bg-blue-700'} 
+            : 'cursor-grab active:cursor-grabbing hover:bg-blue-200 dark:hover:bg-blue-700'} 
 						transition-colors"
           title={enabledItems.length === 1
             ? s("settings.categories.lastCategory") ||
@@ -387,7 +387,7 @@
   </div>
 
   <div>
-    <div class="mb-3 flex items-center justify-between">
+    <div class="flex items-center justify-between mb-3">
       <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">
         {s("settings.categories.disabled") || "Disabled Categories"}
       </h4>
@@ -408,7 +408,7 @@
 
     <!-- Always use dndzone, but hide filtered items with CSS -->
     <div
-      class="flex min-h-[40px] flex-wrap gap-2 rounded-lg border-2 border-dashed p-3"
+      class="min-h-[40px] rounded-lg p-3 flex flex-wrap gap-2 border-2 border-dashed"
       class:border-gray-300={!isDragging}
       class:dark:border-gray-600={!isDragging}
       class:border-transparent={isDragging}
@@ -436,7 +436,7 @@
           class="group inline-flex items-center rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300
 						{isBeingDragged
             ? 'opacity-50'
-            : ''} cursor-grab transition-colors hover:bg-gray-200 active:cursor-grabbing dark:hover:bg-gray-600"
+            : ''} cursor-grab active:cursor-grabbing hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           style={isFiltered && !isBeingDragged
             ? "position: absolute; left: -9999px; opacity: 0; pointer-events: none;"
             : ""}
@@ -465,13 +465,13 @@
       {/each}
       {#if disabledItems.length === 0}
         <div
-          class="pointer-events-none text-sm text-gray-500 select-none dark:text-gray-400"
+          class="text-sm text-gray-500 dark:text-gray-400 pointer-events-none select-none"
         >
           {s("settings.categories.noDisabled") || "All categories enabled"}
         </div>
       {:else if categoryFilter !== "all" && disabledItems.every((item) => getCategoryType(item.id) !== categoryFilter)}
         <div
-          class="pointer-events-none text-sm text-gray-500 select-none dark:text-gray-400"
+          class="text-sm text-gray-500 dark:text-gray-400 pointer-events-none select-none"
         >
           {s("settings.categories.noFiltered") ||
             "No categories of this type are disabled"}

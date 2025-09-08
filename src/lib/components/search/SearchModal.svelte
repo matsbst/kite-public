@@ -381,8 +381,8 @@
 </script>
 
 {#if visible}
-  <div
-    class="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-20"
+  <div 
+    class="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4"
     ontouchmove={(e) => e.preventDefault()}
     style="touch-action: none;"
   >
@@ -402,7 +402,7 @@
 
     <!-- Search Modal -->
     <div
-      class="relative flex h-[70vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-white shadow-2xl dark:bg-gray-800 {isLoadingBatch
+      class="relative bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-2xl h-[70vh] flex flex-col overflow-hidden {isLoadingBatch
         ? 'pointer-events-none'
         : ''}"
       ontouchmove={(e) => e.stopPropagation()}
@@ -411,11 +411,11 @@
       <!-- Loading Overlay for Historical Results -->
       {#if isLoadingBatch}
         <div
-          class="absolute inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-sm dark:bg-gray-800/80"
+          class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm z-50 flex items-center justify-center"
         >
           <div class="text-center">
             <div
-              class="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-blue-500 dark:border-gray-600"
+              class="animate-spin w-8 h-8 border-4 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full mx-auto mb-4"
             ></div>
             <p class="text-sm text-gray-600 dark:text-gray-400">
               {s("search.loading_historical_data") ||
@@ -456,7 +456,7 @@
 
       <!-- Keyboard Shortcuts Help (hidden on mobile) -->
       <div
-        class="hidden border-t border-gray-100 bg-gray-50 px-4 py-2 sm:block dark:border-gray-700 dark:bg-gray-800/50"
+        class="hidden sm:block px-4 py-2 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
       >
         <div
           class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
@@ -464,21 +464,21 @@
           <div class="flex items-center gap-4">
             <span class="flex items-center gap-1">
               <kbd
-                class="rounded bg-gray-200 px-1.5 py-0.5 text-xs dark:bg-gray-700"
+                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
                 >↑↓</kbd
               >
               {s("search.navigate") || "navigate"}
             </span>
             <span class="flex items-center gap-1">
               <kbd
-                class="rounded bg-gray-200 px-1.5 py-0.5 text-xs dark:bg-gray-700"
+                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
                 >Enter</kbd
               >
               {s("search.select") || "select"}
             </span>
             <span class="flex items-center gap-1">
               <kbd
-                class="rounded bg-gray-200 px-1.5 py-0.5 text-xs dark:bg-gray-700"
+                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
                 >Esc</kbd
               >
               {s("search.close") || "close"}
@@ -486,7 +486,7 @@
           </div>
           <span class="flex items-center gap-1">
             <kbd
-              class="rounded bg-gray-200 px-1.5 py-0.5 text-xs dark:bg-gray-700"
+              class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
             >
               {isMac ? "⌘" : "Ctrl"}K
             </kbd>

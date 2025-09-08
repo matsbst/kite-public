@@ -64,7 +64,7 @@
               />
             </h4>
             <p
-              class="first-letter-capitalize -ml-10 text-gray-700 dark:text-gray-300"
+              class="-ml-10 text-gray-700 dark:text-gray-300 first-letter-capitalize"
             >
               <CitationText
                 text={parsed.content}
@@ -79,7 +79,7 @@
             citationMapping,
             articles,
           )}
-          <p class="first-letter-capitalize text-gray-700 dark:text-gray-300">
+          <p class="text-gray-700 dark:text-gray-300 first-letter-capitalize">
             <CitationText
               text={parsed.content}
               articles={contentCitations.citedArticles}

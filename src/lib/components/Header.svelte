@@ -159,7 +159,7 @@
     <!-- Loading state when exiting time travel -->
     <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
       <div
-        class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"
+        class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"
       ></div>
       <span class="text-sm"
         >{s("timeTravel.returningToLive") || "Returning to live..."}</span
@@ -167,7 +167,7 @@
     </div>
   {:else if timeTravel.selectedDate}
     <div
-      class="flex items-center gap-2 rounded-lg bg-blue-50 px-2 py-1 dark:bg-blue-900/30"
+      class="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +207,7 @@
         disabled={isExitingTimeTravel}
       >
         <svg
-          class="h-3 w-3 text-blue-600 dark:text-blue-400"
+          class="w-3 h-3 text-blue-600 dark:text-blue-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -223,7 +223,7 @@
     </div>
   {:else}
     <div
-      class="focus-visible-ring cursor-pointer rounded px-1 py-1 text-gray-600 dark:text-gray-400"
+      class="cursor-pointer text-gray-600 dark:text-gray-400 focus-visible-ring rounded px-1 py-1"
       onclick={handleDateClick}
       onkeydown={handleDateKeydown}
       role="button"
@@ -253,14 +253,14 @@
 
 <header class="mb-1">
   <!-- First row: Logo, Chaos Index (mobile), and buttons -->
-  <div class="relative flex items-center justify-between">
+  <div class="flex items-center justify-between relative">
     <div class="flex items-center">
       <img
         src={theme.isDark
           ? "/svg/kagi_news_compact_dark.svg"
           : "/svg/kagi_news_compact.svg"}
         alt={s("app.logo.newsAlt") || "Kite News"}
-        class="logo relative z-50 mr-2 h-7 w-20 sm:h-8 sm:w-22"
+        class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
         role="presentation"
         style="isolation: isolate;"
@@ -269,7 +269,7 @@
 
     <!-- Chaos Index - Mobile: centered in first row -->
     {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
-      <div class="absolute left-1/2 -translate-x-1/2 transform sm:hidden">
+      <div class="sm:hidden absolute left-1/2 transform -translate-x-1/2">
         <ChaosIndex
           score={chaosIndex.score}
           summary={chaosIndex.summary}
@@ -280,7 +280,7 @@
 
     <!-- Date section hidden on mobile, shown on desktop in center -->
     <div
-      class="absolute left-1/2 hidden -translate-x-1/2 transform items-center sm:flex"
+      class="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 items-center"
     >
       {@render dateSection()}
     </div>
@@ -330,7 +330,7 @@
         <img
           src="/svg/font-size.svg"
           alt=""
-          class="h-5 w-5 text-gray-600 sm:h-6 sm:w-6 dark:text-gray-400 dark:invert"
+          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
         />
       </button>
@@ -344,7 +344,7 @@
         <img
           src="/svg/gear.svg"
           alt=""
-          class="h-5 w-5 text-gray-600 sm:h-6 sm:w-6 dark:text-gray-400 dark:invert"
+          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
         />
       </button>
@@ -352,7 +352,7 @@
   </div>
 
   <!-- Mobile layout - Date only, centered -->
-  <div class="mt-1 flex items-center justify-center px-2 sm:hidden">
+  <div class="flex sm:hidden items-center justify-center mt-1 px-2">
     {@render dateSection()}
   </div>
 </header>
