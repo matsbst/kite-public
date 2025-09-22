@@ -5,7 +5,7 @@
 
 This repository contains public files for [Kite](https://kite.kagi.com), news app for people who want a healthy news diet, developed by [Kagi](https://kagi.com).
 
-Kite is designed for people who want to stay informed without getting overwhelmed. We provide thrice-daily updates of the most important news stories, from carefully curated sources and summarized by advanced language models to give you the essential information you need. We strive for diversity and transparency of resources and welcome your contributions to widen perspectives. This multi-source approach helps reveal the full picture beyond any single viewpoint.
+Kite is designed for people who want to stay informed without getting overwhelmed. We provide daily updates of the most important news stories, from carefully curated sources and summarized by advanced language models to give you the essential information you need. We strive for diversity and transparency of resources and welcome your contributions to widen perspectives. This multi-source approach helps reveal the full picture beyond any single viewpoint.
 
 Most of what powers Kite is open sourced and is found in this repository.
 
